@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:safetrack/presentation/pages/auth/register_page_location.dart';
+import 'package:safetrack/presentation/pages/home_page.dart';
 import 'package:safetrack/presentation/widgets/my_text_field.dart';
 
-class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class RegisterPage extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    'Create Account',
+                    'Welcome',
                     style: GoogleFonts.nunito(
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
@@ -48,7 +48,7 @@ class RegisterPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Please fill in the form to continue',
+                    'Please sign to your account',
                     style: GoogleFonts.nunito(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -67,7 +67,7 @@ class RegisterPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Register',
+                    'Login',
                     style: GoogleFonts.nunito(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
@@ -75,11 +75,6 @@ class RegisterPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const MyTextField(
-                    label: 'Name',
-                    icon: Icon(Icons.person),
-                  ),
-                  const SizedBox(height: 8),
                   const MyTextField(
                     label: 'Email',
                     icon: Icon(Icons.email),
@@ -91,10 +86,16 @@ class RegisterPage extends StatelessWidget {
                     obscureText: true,
                   ),
                   const SizedBox(height: 8),
-                  const MyTextField(
-                    label: 'Confirm Password',
-                    icon: Icon(Icons.lock),
-                    obscureText: true,
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      'Forgot Password?',
+                      style: GoogleFonts.nunito(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: const Color(0xCC3B3B3B),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
@@ -105,7 +106,7 @@ class RegisterPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const RegisterPageLocation(),
+                            builder: (context) => const HomePage(),
                           ),
                         );
                       },
@@ -116,7 +117,7 @@ class RegisterPage extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'Continue',
+                        'Login',
                         style: GoogleFonts.nunito(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -139,9 +140,10 @@ class RegisterPage extends StatelessWidget {
                       Text(
                         'Or Continue With',
                         style: GoogleFonts.nunito(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: const Color(0xCC3B3B3B)),
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xCC3B3B3B),
+                        ),
                       ),
                       const SizedBox(width: 8),
                       const Expanded(
@@ -160,7 +162,7 @@ class RegisterPage extends StatelessWidget {
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: const Color(0xCC3B3B3B),
+                            color: const Color(0xFF3B3B3B),
                           ),
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -174,7 +176,7 @@ class RegisterPage extends StatelessWidget {
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: const Color(0xCC3B3B3B),
+                            color: const Color(0xFF3B3B3B),
                           ),
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -190,15 +192,15 @@ class RegisterPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Already have an account?',
+                        'Not registered yet?',
                         style: GoogleFonts.nunito(
                           fontSize: 14,
-                          color: const Color(0xCC3B3B3B),
+                          color: const Color(0x803B3B3B),
                         ),
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        'Sign In',
+                        'Register Now',
                         style: GoogleFonts.nunito(
                           fontSize: 14,
                           color: const Color(0xFF023E8A),
