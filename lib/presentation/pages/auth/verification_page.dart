@@ -59,10 +59,10 @@ class VerificationPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: List.generate(
-                  4,
+                  6,
                   (index) => SizedBox(
-                    width: 64,
-                    height: 68,
+                    width: 50,
+                    height: 55,
                     child: TextFormField(
                       onChanged: (value) {
                         log('The token in the textField is; $value');

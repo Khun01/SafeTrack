@@ -4,6 +4,7 @@ import 'package:safetrack/models/activities.dart';
 import 'package:safetrack/models/announcement.dart';
 import 'package:safetrack/presentation/cards/activities_card.dart';
 import 'package:safetrack/presentation/cards/announcement_card.dart';
+import 'package:safetrack/presentation/pages/features/my_report_page.dart';
 import 'package:safetrack/presentation/widgets/my_app_bar.dart';
 import 'package:safetrack/presentation/widgets/my_home_page_feature_button.dart';
 
@@ -48,7 +49,8 @@ class HomePage extends StatelessWidget {
     final activities = [
       Activities(
         title: 'May nag away HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
-        description: 'May nag away raw sabi ni John Brandon Lambino HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
+        description:
+            'May nag away raw sabi ni John Brandon Lambino HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
         status: 'On-process',
       ),
       Activities(
@@ -124,66 +126,79 @@ class HomePage extends StatelessWidget {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
-                child: Column(
+                child: Row(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        MyHomePageFeatureButton(
-                          name: 'Submit Report',
-                          image: Image.asset('assets/icons/document.png'),
-                          onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('My Report')));
-                          },
-                        ),
-                        MyHomePageFeatureButton(
-                          name: 'Safety Map',
-                          image: Image.asset('assets/icons/map.png'),
-                          onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Safety Map')));
-                          },
-                        ),
-                        MyHomePageFeatureButton(
-                          name: 'Calendar',
-                          image: Image.asset('assets/icons/calendar.png'),
-                          onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Calendar')));
-                          },
-                        ),
-                      ],
+                    Expanded(
+                      child: Column(
+                        children: [
+                          MyHomePageFeatureButton(
+                            name: 'My Report',
+                            image: 'assets/icons/document.png',
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const MyReportPage()));
+                            },
+                          ),
+                          const SizedBox(height: 8),
+                          MyHomePageFeatureButton(
+                            name: 'Educational',
+                            image: 'assets/icons/educational.png',
+                            onTap: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('My Report')));
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        MyHomePageFeatureButton(
-                          name: 'Educational',
-                          image: Image.asset('assets/icons/educational.png'),
-                          onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Educational')));
-                          },
-                        ),
-                        MyHomePageFeatureButton(
-                          name: 'Contacts',
-                          image: Image.asset('assets/icons/contact.png'),
-                          onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Contacts')));
-                          },
-                        ),
-                        MyHomePageFeatureButton(
-                          name: 'SOS',
-                          image: Image.asset('assets/icons/sos.png'),
-                          onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('SOS')));
-                          },
-                        ),
-                      ],
+                    Expanded(
+                      child: Column(
+                        children: [
+                          MyHomePageFeatureButton(
+                            name: 'Safety Map',
+                            image: 'assets/icons/map.png',
+                            onTap: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('My Report')));
+                            },
+                          ),
+                          const SizedBox(height: 8),
+                          MyHomePageFeatureButton(
+                            name: 'Contacts',
+                            image: 'assets/icons/contact.png',
+                            onTap: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('My Report')));
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          MyHomePageFeatureButton(
+                            name: 'Calendar',
+                            image: 'assets/icons/calendar.png',
+                            onTap: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('My Report')));
+                            },
+                          ),
+                          const SizedBox(height: 8),
+                          MyHomePageFeatureButton(
+                            name: 'SOS',
+                            image: 'assets/icons/sos.png',
+                            onTap: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('My Report')));
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -200,7 +215,7 @@ class HomePage extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 child: Text(
-                  'Activities',
+                  'History',
                   style: GoogleFonts.nunito(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -218,7 +233,7 @@ class HomePage extends StatelessWidget {
               itemCount: activities.length,
             ),
             const SliverToBoxAdapter(
-              child: SizedBox(height: 95),
+              child: SizedBox(height: 85),
             )
           ],
         ),

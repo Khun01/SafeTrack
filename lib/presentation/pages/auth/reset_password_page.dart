@@ -54,16 +54,18 @@ class ResetPasswordPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              const MyForm(
+              MyForm(
                 label: 'Password',
-                icon: Icon(Icons.lock_outline),
+                icon: const Icon(Icons.lock_outline),
                 obscureText: true,
+                onChanged: (value) {},
               ),
               const SizedBox(height: 8),
-              const MyForm(
+              MyForm(
                 label: 'Confirm Password',
-                icon: Icon(Icons.lock_outline),
+                icon: const Icon(Icons.lock_outline),
                 obscureText: true,
+                onChanged: (value) {},
               ),
               const SizedBox(height: 24),
               SizedBox(

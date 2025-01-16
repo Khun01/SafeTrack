@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MyHomePageFeatureButton extends StatelessWidget {
   final String name;
-  final Image image;
+  final String image;
   final VoidCallback onTap;
 
   const MyHomePageFeatureButton({
@@ -18,16 +18,17 @@ class MyHomePageFeatureButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: 80,
-            width: 80,
+            height: 60,
+            width:  60,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               color: const Color(0xFFE5E9F4),
             ),
-            child: image,
+            child: Image.asset(image),
           ),
           const SizedBox(height: 8),
           Text(

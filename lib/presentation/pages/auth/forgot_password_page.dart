@@ -54,9 +54,10 @@ class ForgotPasswordPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              const MyForm(
+              MyForm(
                 label: 'Email',
-                icon: Icon(Icons.mail_outline),
+                icon: const Icon(Icons.mail_outline),
+                onChanged: (value) {},
               ),
               const SizedBox(height: 24),
               SizedBox(

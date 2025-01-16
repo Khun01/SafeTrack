@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/pages/home_page.dart';
+import 'package:safetrack/presentation/pages/profile_page.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({super.key});
@@ -21,16 +22,14 @@ class _WrapperState extends State<Wrapper> {
             IndexedStack(
               key: ValueKey<int>(selectedIndex),
               index: selectedIndex,
-              children: const [
-                HomePage(),
-              ],
+              children: const [HomePage(), ProfilePage()],
             ),
             Positioned(
               bottom: 0,
               left: 0,
               right: 0,
               child: Container(
-                height: 70,
+                height: 60,
                 decoration: BoxDecoration(boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.03),
@@ -46,14 +45,18 @@ class _WrapperState extends State<Wrapper> {
                     fontWeight: FontWeight.bold,
                     color: const Color(0xFF023E8A),
                   ),
-                  items: const [
+                  items: [
                     BottomNavigationBarItem(
-                      label: "Home",
-                      icon: Icon(Icons.home),
+                      label: 'Home',
+                      icon: selectedIndex == 0
+                          ? const Icon(Icons.home)
+                          : const Icon(Icons.home_outlined),
                     ),
                     BottomNavigationBarItem(
                       label: "Profile",
-                      icon: Icon(Icons.person),
+                      icon: selectedIndex == 1
+                          ? const Icon(Icons.person)
+                          : const Icon(Icons.person_outline),
                     ),
                   ],
                   currentIndex: selectedIndex,
@@ -66,7 +69,7 @@ class _WrapperState extends State<Wrapper> {
               ),
             ),
             Positioned(
-              bottom: 25,
+              bottom: 15,
               right: MediaQuery.of(context).size.width / 2 - 35,
               child: GestureDetector(
                 onTap: () {

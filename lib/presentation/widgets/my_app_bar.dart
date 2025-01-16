@@ -43,12 +43,7 @@ class MyAppBar extends StatelessWidget {
           const Spacer(),
           GestureDetector(
             onTap: () {},
-            child: const Icon(Icons.notifications),
-          ),
-          const SizedBox(width: 8),
-          GestureDetector(
-            onTap: () {},
-            child: const Icon(Icons.settings),
+            child: const Icon(Icons.notifications_outlined),
           ),
         ],
       ),

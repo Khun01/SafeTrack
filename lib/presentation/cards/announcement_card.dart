@@ -17,12 +17,12 @@ class AnnouncementCard extends StatelessWidget {
         color: const Color(0xFFF9FBFF),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: const Color(0x1A023E8A)),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            offset: const Offset(0.0, 10.0),
-            blurRadius: 10.0,
-            spreadRadius: -6.0,
+            color: Color(0x1A3B3B3B),
+            offset: Offset(0.0, 10.0),
+            blurRadius: 4.0,
+            spreadRadius: -4.0,
           ),
         ],
       ),
