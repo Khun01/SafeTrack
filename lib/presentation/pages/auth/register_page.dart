@@ -124,7 +124,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 errorText: !state.passwordIsNotEmpty
                                     ? 'Enter your password'
                                     : (!state.isPasswordValid
-                                        ? 'Password should be greater than 6'
+                                        ? 'Password should be greater than 8'
                                         : null),
                                 onChanged: (value) {
                                   log("Password: $value");
@@ -140,7 +140,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 errorText: !state.confirmedPasswordIsNotEmpty
                                     ? 'Enter your password'
                                     : (!state.isConfirmPasswordValid
-                                        ? 'Password should be greater than 6'
+                                        ? 'Confrim password should be greater than 8'
                                         : !state.isPasswordEqualToConfirmedPassword
                                             ? 'Password and confirmed password do not match'
                                             : null),
@@ -170,7 +170,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                   Expanded(
                                     child: Text(
-                                      'By creating this account, you have aggree with Terms and Services',
+                                      'By creating this account, you have agree with Terms and Services',
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                       style: GoogleFonts.nunito(
@@ -187,11 +187,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                 height: 50,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    context
-                                        .read<RegisterBloc>()
-                                        .add(RegisterButtonPressed());
-                                    SystemChannels.textInput
-                                        .invokeMethod('TextInput.hide');
+                                    if (state.isFormValid) {
+                                      context
+                                          .read<RegisterBloc>()
+                                          .add(RegisterButtonPressed());
+                                      SystemChannels.textInput
+                                          .invokeMethod('TextInput.hide');
+                                    }
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: const Color(0xFF023E8A),
@@ -277,7 +279,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                         fontSize: 14,
                                         color: const Color(0xFF023E8A),
                                         decoration: TextDecoration.underline,
-                                        decorationColor: const Color(0xFF023E8A),
+                                        decorationColor:
+                                            const Color(0xFF023E8A),
                                       ),
                                     ),
                                   ),

@@ -94,7 +94,7 @@ class LoginPage extends StatelessWidget {
                           errorText: !state.passwordIsNotEmpty
                               ? 'Enter your password'
                               : (!state.isPasswordValid
-                                  ? 'Password should be greater than 6'
+                                  ? 'Password should be greater than 8'
                                   : null),
                           obscureText: true,
                           onChanged: (value) {
@@ -129,11 +129,13 @@ class LoginPage extends StatelessWidget {
                           height: 50,
                           child: ElevatedButton(
                             onPressed: () {
-                              context
-                                  .read<LoginBloc>()
-                                  .add(LoginButtonPressed());
-                              SystemChannels.textInput
-                                  .invokeMethod('TextInput.hide');
+                              if (state.isFormValid) {
+                                context
+                                    .read<LoginBloc>()
+                                    .add(LoginButtonPressed());
+                                SystemChannels.textInput
+                                    .invokeMethod('TextInput.hide');
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF023E8A),

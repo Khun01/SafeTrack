@@ -90,6 +90,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   bool validatePassword(String password) {
-    return password.length > 6;
+    return password.length > 8;
   }
 }

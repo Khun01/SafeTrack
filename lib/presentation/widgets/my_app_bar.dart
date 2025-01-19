@@ -7,7 +7,7 @@ class MyAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 24, left: 16, right: 16, bottom: 8),
+      padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 8),
       child: Row(
         children: [
           Container(
@@ -43,7 +43,11 @@ class MyAppBar extends StatelessWidget {
           const Spacer(),
           GestureDetector(
             onTap: () {},
-            child: const Icon(Icons.notifications_outlined),
+            child: const Icon(
+              Icons.notifications_none_outlined,
+              size: 32,
+              color: Color(0xFF3B3B3B)
+            ),
           ),
         ],
       ),

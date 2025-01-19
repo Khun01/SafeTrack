@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:safetrack/models/activities.dart';
 import 'package:safetrack/models/announcement.dart';
-import 'package:safetrack/presentation/cards/activities_card.dart';
 import 'package:safetrack/presentation/cards/announcement_card.dart';
+import 'package:safetrack/presentation/pages/features/calendar_page.dart';
+import 'package:safetrack/presentation/pages/features/contacts_page.dart';
+import 'package:safetrack/presentation/pages/features/educational_page.dart';
 import 'package:safetrack/presentation/pages/features/my_report_page.dart';
+import 'package:safetrack/presentation/pages/features/safety_map_page.dart';
 import 'package:safetrack/presentation/widgets/my_app_bar.dart';
 import 'package:safetrack/presentation/widgets/my_home_page_feature_button.dart';
 
@@ -44,35 +46,6 @@ class HomePage extends StatelessWidget {
             'Get ready for a fun and competitive sports festival in our barangay. All residents are welcome to participate!',
         date: '2025-03-10',
       ),
-    ];
-
-    final activities = [
-      Activities(
-        title: 'May nag away HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
-        description:
-            'May nag away raw sabi ni John Brandon Lambino HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
-        status: 'On-process',
-      ),
-      Activities(
-        title: 'May nag away',
-        description: 'May nag away raw sabi ni John Brandon Lambino',
-        status: 'On-process',
-      ),
-      Activities(
-        title: 'May nag away',
-        description: 'May nag away raw sabi ni John Brandon Lambino',
-        status: 'On-process',
-      ),
-      Activities(
-        title: 'May nag away',
-        description: 'May nag away raw sabi ni John Brandon Lambino',
-        status: 'On-process',
-      ),
-      Activities(
-        title: 'May nag away',
-        description: 'May nag away raw sabi ni John Brandon Lambino',
-        status: 'On-process',
-      )
     ];
 
     return Scaffold(
@@ -117,15 +90,10 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            const SliverToBoxAdapter(
-              child: Divider(
-                height: 2,
-                color: Color(0xFFC2C2C2),
-              ),
-            ),
             SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 24),
+                color: const Color(0x4DE5E9F4),
                 child: Row(
                   children: [
                     Expanded(
@@ -142,13 +110,16 @@ class HomePage extends StatelessWidget {
                                           const MyReportPage()));
                             },
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: 24),
                           MyHomePageFeatureButton(
                             name: 'Educational',
                             image: 'assets/icons/educational.png',
                             onTap: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('My Report')));
+                               Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EducationalPage()));
                             },
                           ),
                         ],
@@ -161,17 +132,23 @@ class HomePage extends StatelessWidget {
                             name: 'Safety Map',
                             image: 'assets/icons/map.png',
                             onTap: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('My Report')));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SafetyMapPage()));
                             },
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: 24),
                           MyHomePageFeatureButton(
                             name: 'Contacts',
                             image: 'assets/icons/contact.png',
                             onTap: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('My Report')));
+                               Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ContactsPage()));
                             },
                           ),
                         ],
@@ -184,17 +161,20 @@ class HomePage extends StatelessWidget {
                             name: 'Calendar',
                             image: 'assets/icons/calendar.png',
                             onTap: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('My Report')));
+                               Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CalendarPage()));
                             },
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: 24),
                           MyHomePageFeatureButton(
                             name: 'SOS',
                             image: 'assets/icons/sos.png',
                             onTap: () {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('My Report')));
+                                  const SnackBar(content: Text('SOS')));
                             },
                           ),
                         ],
@@ -204,18 +184,11 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            const SliverToBoxAdapter(
-              child: Divider(
-                height: 2,
-                color: Color(0xFFC2C2C2),
-              ),
-            ),
             SliverToBoxAdapter(
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                padding: const EdgeInsets.only(top: 16, left: 16, bottom: 8),
                 child: Text(
-                  'History',
+                  'Safety Tips',
                   style: GoogleFonts.nunito(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -224,16 +197,16 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            SliverList.builder(
-              itemBuilder: (context, index) {
-                return ActivitiesCard(
-                  activities: activities[index],
-                );
-              },
-              itemCount: activities.length,
-            ),
+            // SliverList.builder(
+            //   itemBuilder: (context, index) {
+            //     return ActivitiesCard(
+            //       activities: activities[index],
+            //     );
+            //   },
+            //   itemCount: activities.length,
+            // ),
             const SliverToBoxAdapter(
-              child: SizedBox(height: 85),
+              child: SizedBox(height: 66),
             )
           ],
         ),

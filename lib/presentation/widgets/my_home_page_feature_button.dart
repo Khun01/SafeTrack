@@ -22,21 +22,29 @@ class MyHomePageFeatureButton extends StatelessWidget {
         children: [
           Container(
             height: 60,
-            width:  60,
+            width: 60,
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(500),
               color: const Color(0xFFE5E9F4),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x1A023E8A),
+                  spreadRadius: 2,
+                  blurRadius: 4,
+                  offset: Offset(0, 4),
+                )
+              ],
             ),
             child: Image.asset(image),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 16),
           Text(
             name,
             style: GoogleFonts.nunito(
               fontSize: 12,
               fontWeight: FontWeight.bold,
-              color: const Color(0xCC3B3B3B),
+              color: const Color(0xFF023E8A),
             ),
           )
         ],

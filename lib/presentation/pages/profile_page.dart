@@ -100,7 +100,7 @@ class ProfilePage extends StatelessWidget {
                             style: GoogleFonts.nunito(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
-                              color: const Color(0x803B3B3B),
+                              color: const Color(0xFF3B3B3B),
                             ),
                           ),
                           const Spacer(),
@@ -134,7 +134,7 @@ class ProfilePage extends StatelessWidget {
                             style: GoogleFonts.nunito(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
-                              color: const Color(0x803B3B3B),
+                              color: const Color(0xFF3B3B3B),
                             ),
                           ),
                           const Spacer(),
@@ -194,7 +194,7 @@ class ProfilePage extends StatelessWidget {
                             style: GoogleFonts.nunito(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
-                              color: const Color(0x803B3B3B),
+                              color: const Color(0xFF3B3B3B),
                             ),
                           ),
                           const Spacer(),

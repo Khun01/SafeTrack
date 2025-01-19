@@ -19,7 +19,7 @@ class AnnouncementCard extends StatelessWidget {
         border: Border.all(color: const Color(0x1A023E8A)),
         boxShadow: const [
           BoxShadow(
-            color: Color(0x1A3B3B3B),
+            color: Color(0x1A023E8A),
             offset: Offset(0.0, 10.0),
             blurRadius: 4.0,
             spreadRadius: -4.0,

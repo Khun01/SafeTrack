@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:safetrack/presentation/pages/features/submit_report.dart';
 import 'package:safetrack/presentation/pages/home_page.dart';
 import 'package:safetrack/presentation/pages/profile_page.dart';
 
@@ -45,6 +46,10 @@ class _WrapperState extends State<Wrapper> {
                     fontWeight: FontWeight.bold,
                     color: const Color(0xFF023E8A),
                   ),
+                  unselectedLabelStyle: GoogleFonts.nunito(
+                    fontSize: 12,
+                    color: const Color(0xFF3B3B3B)
+                  ),
                   items: [
                     BottomNavigationBarItem(
                       label: 'Home',
@@ -69,29 +74,27 @@ class _WrapperState extends State<Wrapper> {
               ),
             ),
             Positioned(
-              bottom: 15,
-              right: MediaQuery.of(context).size.width / 2 - 35,
+              bottom: 5,
+              left: 0,
+              right: 0,
               child: GestureDetector(
                 onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Add Report')));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SubmitReport()));
                 },
-                child: Container(
-                  height: 80,
-                  width: 80,
-                  padding: const EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFCFCFC),
-                    borderRadius: BorderRadius.circular(500),
-                  ),
+                child: Center(
                   child: Container(
+                    height: 50,
+                    width: 50,
                     decoration: BoxDecoration(
                       color: const Color(0xFF023E8A),
-                      borderRadius: BorderRadius.circular(500),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: const Icon(
                       Icons.add,
-                      size: 48,
+                      size: 32,
                       color: Color(0xFFFCFCFC),
                     ),
                   ),

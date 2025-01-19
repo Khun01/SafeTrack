@@ -24,16 +24,17 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       registerFailed: false,
       registerSuccess: false,
     ));
+
+    final response = await authServices.register(
+        state.name, state.email, state.password, state.confirmPassword);
+    final statusCode = response['statusCode'];
+    final body = response['body'];
     try {
       if (state.name.isNotEmpty &&
           state.email.isNotEmpty &&
           state.password.isNotEmpty &&
           state.confirmPassword.isNotEmpty) {
         if (state.isFormValid) {
-          final response = await authServices.register(
-              state.name, state.email, state.password, state.confirmPassword);
-          final statusCode = response['statusCode'];
-          final body = response['body'];
           if (statusCode == 201) {
             log('$statusCode, $body');
             emit(state.copyWith(
@@ -67,6 +68,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         ));
       }
     } catch (e) {
+      log('Registering: $statusCode, $body');
       emit(state.copyWith(
         registerLoading: false,
         registerFailed: true,
@@ -124,11 +126,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   }
 
   bool validatePassword(String password) {
-    return password.length > 6;
+    return password.length > 8;
   }
 
   bool validateConfirmedPassword(String password) {
-    return password.length > 6;
+    return password.length > 8;
   }
 
   bool passwordIsEqualToConfirmedPassword(String confirmedPassword) {
