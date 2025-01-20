@@ -60,7 +60,7 @@ class LoginPage extends StatelessWidget {
                         const SizedBox(height: 16),
                         Text(
                           'Welcome',
-                          style: GoogleFonts.nunito(
+                          style: GoogleFonts.quicksand(
                             fontSize: 40,
                             fontWeight: FontWeight.w700,
                             color: const Color(0xFF3B3B3B),
@@ -68,7 +68,7 @@ class LoginPage extends StatelessWidget {
                         ),
                         Text(
                           'Please sign in to your Account',
-                          style: GoogleFonts.nunito(
+                          style: GoogleFonts.quicksand(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: const Color(0x803B3B3B),
@@ -116,7 +116,7 @@ class LoginPage extends StatelessWidget {
                             },
                             child: Text(
                               'Forgot Password?',
-                              style: GoogleFonts.nunito(
+                              style: GoogleFonts.quicksand(
                                 fontSize: 14,
                                 color: const Color(0xCC3B3B3B),
                               ),
@@ -145,7 +145,7 @@ class LoginPage extends StatelessWidget {
                             ),
                             child: Text(
                               'Login',
-                              style: GoogleFonts.nunito(
+                              style: GoogleFonts.quicksand(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: const Color(0xFFFCFCFC),
@@ -185,7 +185,7 @@ class LoginPage extends StatelessWidget {
                                 const SizedBox(width: 8),
                                 Text(
                                   'Sign in using Google',
-                                  style: GoogleFonts.nunito(
+                                  style: GoogleFonts.quicksand(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                     color: const Color(0xFF3B3B3B),
@@ -201,7 +201,7 @@ class LoginPage extends StatelessWidget {
                           children: [
                             Text(
                               "Don't have an account?",
-                              style: GoogleFonts.nunito(
+                              style: GoogleFonts.quicksand(
                                 fontSize: 14,
                                 color: const Color(0xCC3B3B3B),
                               ),
@@ -217,7 +217,7 @@ class LoginPage extends StatelessWidget {
                               },
                               child: Text(
                                 'Register Now',
-                                style: GoogleFonts.nunito(
+                                style: GoogleFonts.quicksand(
                                   fontSize: 14,
                                   color: const Color(0xFF023E8A),
                                   decoration: TextDecoration.underline,

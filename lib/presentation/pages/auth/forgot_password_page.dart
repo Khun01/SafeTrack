@@ -60,7 +60,7 @@ class ForgotPasswordPage extends StatelessWidget {
                         const SizedBox(height: 16),
                         Text(
                           'Forgot Password',
-                          style: GoogleFonts.nunito(
+                          style: GoogleFonts.quicksand(
                             fontSize: 40,
                             fontWeight: FontWeight.w700,
                             color: const Color(0xFF3B3B3B),
@@ -68,7 +68,7 @@ class ForgotPasswordPage extends StatelessWidget {
                         ),
                         Text(
                           'Please enter your email address',
-                          style: GoogleFonts.nunito(
+                          style: GoogleFonts.quicksand(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: const Color(0x803B3B3B),
@@ -77,7 +77,7 @@ class ForgotPasswordPage extends StatelessWidget {
                         const SizedBox(height: 24),
                         Text(
                           'Forgot your password? Enter your email to reset it and regain access to your account.',
-                          style: GoogleFonts.nunito(
+                          style: GoogleFonts.quicksand(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: const Color(0x803B3B3B),
@@ -118,7 +118,7 @@ class ForgotPasswordPage extends StatelessWidget {
                             ),
                             child: Text(
                               'Forgot Password',
-                              style: GoogleFonts.nunito(
+                              style: GoogleFonts.quicksand(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: const Color(0xFFFCFCFC),

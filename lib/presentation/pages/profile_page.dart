@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:safetrack/presentation/pages/profile_information_page.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  bool isToggled = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +22,7 @@ class ProfilePage extends StatelessWidget {
             children: [
               Text(
                 'My Profile',
-                style: GoogleFonts.nunito(
+                style: GoogleFonts.quicksand(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: const Color(0xFF3B3B3B)),
@@ -37,7 +44,7 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       Text(
                         'John Brandon Lambino',
-                        style: GoogleFonts.nunito(
+                        style: GoogleFonts.quicksand(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xFF3B3B3B),
@@ -45,7 +52,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       Text(
                         'Not verified yet',
-                        style: GoogleFonts.nunito(
+                        style: GoogleFonts.quicksand(
                           fontSize: 12,
                           color: const Color(0xFF3B3B3B),
                         ),
@@ -70,7 +77,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       child: Text(
                         'Account',
-                        style: GoogleFonts.nunito(
+                        style: GoogleFonts.quicksand(
                           fontSize: 16,
                           color: const Color(0x803B3B3B),
                           fontWeight: FontWeight.bold,
@@ -81,34 +88,43 @@ class ProfilePage extends StatelessWidget {
                       height: 2,
                       color: Color(0x1A3B3B3B),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 8,
-                        bottom: 8,
-                        left: 10,
-                        right: 12,
-                      ),
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.person_outline,
-                            color: Color(0x803B3B3B),
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Profile information',
-                            style: GoogleFonts.nunito(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: const Color(0xFF3B3B3B),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const ProfileInformationPage()));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 8,
+                          bottom: 8,
+                          left: 10,
+                          right: 12,
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.person_outline,
+                              color: Color(0x803B3B3B),
                             ),
-                          ),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Color(0x803B3B3B),
-                          )
-                        ],
+                            const SizedBox(width: 8),
+                            Text(
+                              'Profile information',
+                              style: GoogleFonts.quicksand(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: const Color(0xFF3B3B3B),
+                              ),
+                            ),
+                            const Spacer(),
+                            const Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Color(0x803B3B3B),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     const Divider(
@@ -131,7 +147,7 @@ class ProfilePage extends StatelessWidget {
                           const SizedBox(width: 8),
                           Text(
                             'Verify your account',
-                            style: GoogleFonts.nunito(
+                            style: GoogleFonts.quicksand(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                               color: const Color(0xFF3B3B3B),
@@ -164,7 +180,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       child: Text(
                         'Settings',
-                        style: GoogleFonts.nunito(
+                        style: GoogleFonts.quicksand(
                           fontSize: 16,
                           color: const Color(0x803B3B3B),
                           fontWeight: FontWeight.bold,
@@ -185,60 +201,65 @@ class ProfilePage extends StatelessWidget {
                       child: Row(
                         children: [
                           const Icon(
-                            Icons.vpn_key_outlined,
+                            Icons.notifications_none,
                             color: Color(0x803B3B3B),
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            'Change password',
-                            style: GoogleFonts.nunito(
+                            'Notification',
+                            style: GoogleFonts.quicksand(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                               color: const Color(0xFF3B3B3B),
                             ),
                           ),
                           const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Color(0x803B3B3B),
+                          SizedBox(
+                            height: 10,
+                            child: Transform.scale(
+                              scale: .9,
+                              child: Switch(
+                                value: isToggled,
+                                onChanged: (bool value) {
+                                  setState(() {
+                                    isToggled = value;
+                                  });
+                                },
+                              ),
+                            ),
                           )
                         ],
                       ),
                     ),
-                    // const Divider(
-                    //   height: 2,
-                    //   color: Color(0x1A3B3B3B),
-                    // ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(
-                    //     top: 8,
-                    //     bottom: 8,
-                    //     left: 10,
-                    //     right: 12,
-                    //   ),
-                    //   child: Row(
-                    //     children: [
-                    //       const Icon(
-                    //         Icons.check_circle_outline,
-                    //         color: Color(0x803B3B3B),
-                    //       ),
-                    //       const SizedBox(width: 8),
-                    //       Text(
-                    //         'Verify your account',
-                    //         style: GoogleFonts.nunito(
-                    //           fontSize: 14,
-                    //           fontWeight: FontWeight.bold,
-                    //           color: const Color(0x803B3B3B),
-                    //         ),
-                    //       ),
-                    //       const Spacer(),
-                    //       const Icon(
-                    //         Icons.arrow_forward_ios_rounded,
-                    //         color: Color(0x803B3B3B),
-                    //       )
-                    //     ],
-                    //   ),
-                    // ),
+                    const Divider(
+                      height: 2,
+                      color: Color(0x1A3B3B3B),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 8,
+                        bottom: 8,
+                        left: 10,
+                        right: 12,
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.logout,
+                            color: Color(0x803B3B3B),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            'Logout',
+                            style: GoogleFonts.quicksand(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: const Color(0xFF3B3B3B),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

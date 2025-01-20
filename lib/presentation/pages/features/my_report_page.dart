@@ -100,7 +100,7 @@ class MyReportPage extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'My report',
-                        style: GoogleFonts.nunito(
+                        style: GoogleFonts.quicksand(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xFF3B3B3B),
@@ -122,7 +122,7 @@ class MyReportPage extends StatelessWidget {
                   filled: true,
                   fillColor: const Color(0xFFF0F0F0),
                   hintText: 'Search...',
-                  hintStyle: GoogleFonts.nunito(
+                  hintStyle: GoogleFonts.quicksand(
                       fontSize: 16, color: const Color(0x803B3B3B)),
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -197,7 +197,7 @@ class MyReportPage extends StatelessWidget {
         //               child: Center(
         //                 child: Text(
         //                   'My Report',
-        //                   style: GoogleFonts.nunito(
+        //                   style: GoogleFonts.quicksand(
         //                     fontSize: 18,
         //                     fontWeight: FontWeight.bold,
         //                     color: const Color(0xFF3B3B3B),

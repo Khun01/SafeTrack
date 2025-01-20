@@ -60,7 +60,7 @@ class VerificationPage extends StatelessWidget {
                         const SizedBox(height: 16),
                         Text(
                           'Verification',
-                          style: GoogleFonts.nunito(
+                          style: GoogleFonts.quicksand(
                             fontSize: 40,
                             fontWeight: FontWeight.w700,
                             color: const Color(0xFF3B3B3B),
@@ -68,7 +68,7 @@ class VerificationPage extends StatelessWidget {
                         ),
                         Text(
                           'Please wait for the code to be submit',
-                          style: GoogleFonts.nunito(
+                          style: GoogleFonts.quicksand(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: const Color(0x803B3B3B),
@@ -77,7 +77,7 @@ class VerificationPage extends StatelessWidget {
                         const SizedBox(height: 24),
                         Text(
                           'Enter the verification code sent to your email to reset your password.',
-                          style: GoogleFonts.nunito(
+                          style: GoogleFonts.quicksand(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: const Color(0x803B3B3B),
@@ -140,7 +140,7 @@ class VerificationPage extends StatelessWidget {
                             ),
                             child: Text(
                               'Submit',
-                              style: GoogleFonts.nunito(
+                              style: GoogleFonts.quicksand(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: const Color(0xFFFCFCFC),
@@ -154,7 +154,7 @@ class VerificationPage extends StatelessWidget {
                             children: [
                               Text(
                                 "Didn't received the code?",
-                                style: GoogleFonts.nunito(
+                                style: GoogleFonts.quicksand(
                                   fontSize: 14,
                                   color: const Color(0xCC3B3B3B),
                                 ),
@@ -164,7 +164,7 @@ class VerificationPage extends StatelessWidget {
                                 onTap: () {},
                                 child: Text(
                                   'Resend Code',
-                                  style: GoogleFonts.nunito(
+                                  style: GoogleFonts.quicksand(
                                     fontSize: 14,
                                     color: const Color(0xFF023E8A),
                                     decoration: TextDecoration.underline,

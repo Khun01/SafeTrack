@@ -58,7 +58,7 @@ class _MyTextFieldState extends State<MyForm> {
       children: [
         Text(
           widget.label,
-          style: GoogleFonts.nunito(
+          style: GoogleFonts.quicksand(
             fontSize: 16,
             fontWeight: FontWeight.bold,
             color: const Color(0xFF3B3B3B),
@@ -70,7 +70,7 @@ class _MyTextFieldState extends State<MyForm> {
           obscureText: obscureText, // Use the state variable here
           onChanged: widget.onChanged,
           decoration: InputDecoration(
-            labelStyle: GoogleFonts.nunito(
+            labelStyle: GoogleFonts.quicksand(
               color: const Color(0xFF023E8A),
             ),
             errorText: _showError ? widget.errorText : null,

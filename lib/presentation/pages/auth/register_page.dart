@@ -74,7 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               const SizedBox(height: 16),
                               Text(
                                 'Create Account',
-                                style: GoogleFonts.nunito(
+                                style: GoogleFonts.quicksand(
                                   fontSize: 40,
                                   fontWeight: FontWeight.w700,
                                   color: const Color(0xFF3B3B3B),
@@ -82,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                               Text(
                                 'Please fill in the form to continue',
-                                style: GoogleFonts.nunito(
+                                style: GoogleFonts.quicksand(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
                                   color: const Color(0x803B3B3B),
@@ -173,7 +173,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       'By creating this account, you have agree with Terms and Services',
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.nunito(
+                                      style: GoogleFonts.quicksand(
                                         fontSize: 12,
                                         color: const Color(0xCC3B3B3B),
                                       ),
@@ -203,7 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                   child: Text(
                                     'Sign up',
-                                    style: GoogleFonts.nunito(
+                                    style: GoogleFonts.quicksand(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                       color: const Color(0xFFFCFCFC),
@@ -243,7 +243,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       const SizedBox(width: 8),
                                       Text(
                                         'Sign in using Google',
-                                        style: GoogleFonts.nunito(
+                                        style: GoogleFonts.quicksand(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
                                           color: const Color(0xFF3B3B3B),
@@ -259,7 +259,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 children: [
                                   Text(
                                     'Already have an account?',
-                                    style: GoogleFonts.nunito(
+                                    style: GoogleFonts.quicksand(
                                       fontSize: 14,
                                       color: const Color(0xCC3B3B3B),
                                     ),
@@ -275,7 +275,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     },
                                     child: Text(
                                       'Sign In',
-                                      style: GoogleFonts.nunito(
+                                      style: GoogleFonts.quicksand(
                                         fontSize: 14,
                                         color: const Color(0xFF023E8A),
                                         decoration: TextDecoration.underline,

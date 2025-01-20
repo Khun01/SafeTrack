@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 child: Text(
                   'Announcement',
-                  style: GoogleFonts.nunito(
+                  style: GoogleFonts.quicksand(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: const Color(0xFF3B3B3B),
@@ -189,7 +189,7 @@ class HomePage extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 16, left: 16, bottom: 8),
                 child: Text(
                   'Safety Tips',
-                  style: GoogleFonts.nunito(
+                  style: GoogleFonts.quicksand(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: const Color(0xFF3B3B3B),

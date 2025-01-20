@@ -34,7 +34,7 @@ class CalendarPage extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Calendar',
-                        style: GoogleFonts.nunito(
+                        style: GoogleFonts.quicksand(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xFF3B3B3B),

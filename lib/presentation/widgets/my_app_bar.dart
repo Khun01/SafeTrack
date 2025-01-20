@@ -24,7 +24,7 @@ class MyAppBar extends StatelessWidget {
             children: [
               Text(
                 'Welcome',
-                style: GoogleFonts.nunito(
+                style: GoogleFonts.quicksand(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                   color: const Color(0xCC3B3B3B),
@@ -32,7 +32,7 @@ class MyAppBar extends StatelessWidget {
               ),
               Text(
                 'John Brandon Lambino',
-                style: GoogleFonts.nunito(
+                style: GoogleFonts.quicksand(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: const Color(0xFF3B3B3B),

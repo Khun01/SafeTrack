@@ -41,12 +41,12 @@ class _WrapperState extends State<Wrapper> {
                 ]),
                 child: BottomNavigationBar(
                   selectedItemColor: const Color(0xFF023E8A),
-                  selectedLabelStyle: GoogleFonts.nunito(
+                  selectedLabelStyle: GoogleFonts.quicksand(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     color: const Color(0xFF023E8A),
                   ),
-                  unselectedLabelStyle: GoogleFonts.nunito(
+                  unselectedLabelStyle: GoogleFonts.quicksand(
                     fontSize: 12,
                     color: const Color(0xFF3B3B3B)
                   ),

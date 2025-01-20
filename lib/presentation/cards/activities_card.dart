@@ -36,7 +36,7 @@ class ActivitiesCard extends StatelessWidget {
                         activities.title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.nunito(
+                        style: GoogleFonts.quicksand(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                           color: const Color(0xFF3B3B3B),
@@ -46,7 +46,7 @@ class ActivitiesCard extends StatelessWidget {
                         activities.description,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.nunito(
+                        style: GoogleFonts.quicksand(
                           fontSize: 12,
                           color: const Color(0x803B3B3B),
                         ),
@@ -56,14 +56,14 @@ class ActivitiesCard extends StatelessWidget {
                         children: [
                           Text(
                             'Priority:',
-                            style: GoogleFonts.nunito(
+                            style: GoogleFonts.quicksand(
                               fontSize: 12,
                             ),
                           ),
                           const SizedBox(width: 4),
                           Text(
                             activities.priority,
-                            style: GoogleFonts.nunito(
+                            style: GoogleFonts.quicksand(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
                               color: activities.priority == 'High'
@@ -76,7 +76,7 @@ class ActivitiesCard extends StatelessWidget {
                           const Spacer(),
                           Text(
                             activities.status,
-                            style: GoogleFonts.nunito(
+                            style: GoogleFonts.quicksand(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
                               color: activities.status == 'Completed'

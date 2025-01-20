@@ -20,7 +20,7 @@ class MyCircularProgressIndicator extends StatelessWidget {
             const SizedBox(width: 24),
             Text(
               'Processing ...',
-              style: GoogleFonts.nunito(
+              style: GoogleFonts.quicksand(
                 fontSize: 14,
                 color: const Color(0xFF3B3B3B)
               ),

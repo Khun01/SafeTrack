@@ -41,7 +41,7 @@ class MyHomePageFeatureButton extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             name,
-            style: GoogleFonts.nunito(
+            style: GoogleFonts.quicksand(
               fontSize: 12,
               fontWeight: FontWeight.bold,
               color: const Color(0xFF023E8A),

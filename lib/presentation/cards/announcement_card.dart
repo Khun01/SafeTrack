@@ -46,7 +46,7 @@ class AnnouncementCard extends StatelessWidget {
                 children: [
                   Text(
                     'SafeTrack',
-                    style: GoogleFonts.nunito(
+                    style: GoogleFonts.quicksand(
                       fontSize: 16,
                       fontWeight: FontWeight.w800,
                       color: const Color(0xFF3B3B3B),
@@ -54,7 +54,7 @@ class AnnouncementCard extends StatelessWidget {
                   ),
                   Text(
                     announcement.date,
-                    style: GoogleFonts.nunito(
+                    style: GoogleFonts.quicksand(
                       fontSize: 12,
                       color: const Color(0xCC3B3B3B),
                     ),
@@ -66,7 +66,7 @@ class AnnouncementCard extends StatelessWidget {
                 announcement.title,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
-                style: GoogleFonts.nunito(
+                style: GoogleFonts.quicksand(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: const Color(0xFF3B3B3B),
@@ -78,7 +78,7 @@ class AnnouncementCard extends StatelessWidget {
                   announcement.description,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 3,
-                  style: GoogleFonts.nunito(
+                  style: GoogleFonts.quicksand(
                     fontSize: 12,
                     color: const Color(0xCC3B3B3B),
                   ),
@@ -96,7 +96,7 @@ class AnnouncementCard extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   'See Details ...',
-                  style: GoogleFonts.nunito(
+                  style: GoogleFonts.quicksand(
                     fontSize: 12,
                     color: const Color(0xFFFCFCFC),
                   ),

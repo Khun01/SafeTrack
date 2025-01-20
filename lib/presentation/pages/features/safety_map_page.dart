@@ -27,7 +27,7 @@ class _SafetyMapPageState extends State<SafetyMapPage> {
             GoogleMap(
               initialCameraPosition: const CameraPosition(
                 target: LatLng(16.0431, 120.3333), 
-                zoom: 14,
+                zoom: 16,
               ),
               mapType: MapType.terrain,
               onMapCreated: (GoogleMapController controller) {
@@ -62,7 +62,7 @@ class _SafetyMapPageState extends State<SafetyMapPage> {
                   child: Center(
                     child: Text(
                       'Map',
-                      style: GoogleFonts.nunito(
+                      style: GoogleFonts.quicksand(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: const Color(0xFF3B3B3B),

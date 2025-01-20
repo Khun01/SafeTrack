@@ -63,7 +63,7 @@ class ResetPasswordPage extends StatelessWidget {
                         const SizedBox(height: 16),
                         Text(
                           'Reset Password',
-                          style: GoogleFonts.nunito(
+                          style: GoogleFonts.quicksand(
                             fontSize: 40,
                             fontWeight: FontWeight.w700,
                             color: const Color(0xFF3B3B3B),
@@ -71,7 +71,7 @@ class ResetPasswordPage extends StatelessWidget {
                         ),
                         Text(
                           'Enter your new password to open your account',
-                          style: GoogleFonts.nunito(
+                          style: GoogleFonts.quicksand(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: const Color(0x803B3B3B),
@@ -80,7 +80,7 @@ class ResetPasswordPage extends StatelessWidget {
                         const SizedBox(height: 24),
                         Text(
                           'Create your new password to secure your account and get back on track. Make it strong, unique, and ready to keep your data safe!',
-                          style: GoogleFonts.nunito(
+                          style: GoogleFonts.quicksand(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: const Color(0x803B3B3B),
@@ -143,7 +143,7 @@ class ResetPasswordPage extends StatelessWidget {
                             ),
                             child: Text(
                               'Reset Password',
-                              style: GoogleFonts.nunito(
+                              style: GoogleFonts.quicksand(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: const Color(0xFFFCFCFC),
