@@ -37,6 +37,10 @@
 	<string>We need your location to show the map.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>We need your location to show the map.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library to select images.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to your camera to take photos.</string>
 
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
