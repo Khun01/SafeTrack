@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/pages/profile_information_page.dart';
+import 'package:safetrack/presentation/pages/verify_account_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -131,34 +132,43 @@ class _ProfilePageState extends State<ProfilePage> {
                       height: 2,
                       color: Color(0x1A3B3B3B),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 8,
-                        bottom: 8,
-                        left: 10,
-                        right: 12,
-                      ),
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.check_circle_outline,
-                            color: Color(0x803B3B3B),
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Verify your account',
-                            style: GoogleFonts.quicksand(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                              color: const Color(0xFF3B3B3B),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const VerifyAccountPage()));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 8,
+                          bottom: 8,
+                          left: 10,
+                          right: 12,
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.check_circle_outline,
+                              color: Color(0x803B3B3B),
                             ),
-                          ),
-                          const Spacer(),
-                          const Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Color(0x803B3B3B),
-                          )
-                        ],
+                            const SizedBox(width: 8),
+                            Text(
+                              'Verify your account',
+                              style: GoogleFonts.quicksand(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: const Color(0xFF3B3B3B),
+                              ),
+                            ),
+                            const Spacer(),
+                            const Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Color(0x803B3B3B),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],

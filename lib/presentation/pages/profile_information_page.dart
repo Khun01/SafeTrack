@@ -8,6 +8,7 @@ class ProfileInformationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFFCFCFC),
       body: SafeArea(
         child: Stack(
           children: [

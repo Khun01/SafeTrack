@@ -49,6 +49,7 @@ class HomePage extends StatelessWidget {
     ];
 
     return Scaffold(
+      backgroundColor: const Color(0xFFFCFCFC),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -115,7 +116,7 @@ class HomePage extends StatelessWidget {
                             name: 'Educational',
                             image: 'assets/icons/educational.png',
                             onTap: () {
-                               Navigator.push(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
@@ -144,7 +145,7 @@ class HomePage extends StatelessWidget {
                             name: 'Contacts',
                             image: 'assets/icons/contact.png',
                             onTap: () {
-                               Navigator.push(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
@@ -161,7 +162,7 @@ class HomePage extends StatelessWidget {
                             name: 'Calendar',
                             image: 'assets/icons/calendar.png',
                             onTap: () {
-                               Navigator.push(
+                              Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>

@@ -10,69 +10,60 @@ class MyReportPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final activities = [
       Activities(
-        title: 'May nag away HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
-        description:
-            'May nag away raw sabi ni John Brandon Lambino HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
-        status: 'Completed',
-        priority: 'High'
-      ),
+          title: 'May nag away HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
+          description:
+              'May nag away raw sabi ni John Brandon Lambino HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
+          status: 'Completed',
+          priority: 'High'),
       Activities(
-        title: 'May nag away',
-        description: 'May nag away raw sabi ni John Brandon Lambino',
-        status: 'Completed',
-        priority: 'Low'
-      ),
+          title: 'May nag away',
+          description: 'May nag away raw sabi ni John Brandon Lambino',
+          status: 'Completed',
+          priority: 'Low'),
       Activities(
-        title: 'May nag away',
-        description: 'May nag away raw sabi ni John Brandon Lambino',
-        status: 'In-progress',
-        priority: 'Low'
-      ),
+          title: 'May nag away',
+          description: 'May nag away raw sabi ni John Brandon Lambino',
+          status: 'In-progress',
+          priority: 'Low'),
       Activities(
-        title: 'May nag away',
-        description: 'May nag away raw sabi ni John Brandon Lambino',
-        status: 'Completed',
-        priority: 'High'
-      ),
+          title: 'May nag away',
+          description: 'May nag away raw sabi ni John Brandon Lambino',
+          status: 'Completed',
+          priority: 'High'),
       Activities(
-        title: 'May nag away',
-        description: 'May nag away raw sabi ni John Brandon Lambino',
-        status: 'Completed',
-        priority: 'High'
-      ),
+          title: 'May nag away',
+          description: 'May nag away raw sabi ni John Brandon Lambino',
+          status: 'Completed',
+          priority: 'High'),
       Activities(
-        title: 'May nag away HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
-        description:
-            'May nag away raw sabi ni John Brandon Lambino HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
-        status: 'Completed',
-        priority: 'Low'
-      ),
+          title: 'May nag away HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
+          description:
+              'May nag away raw sabi ni John Brandon Lambino HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
+          status: 'Completed',
+          priority: 'Low'),
       Activities(
-        title: 'May nag away',
-        description: 'May nag away raw sabi ni John Brandon Lambino',
-        status: 'Pending',
-        priority: 'Medium'
-      ),
+          title: 'May nag away',
+          description: 'May nag away raw sabi ni John Brandon Lambino',
+          status: 'Pending',
+          priority: 'Medium'),
       Activities(
-        title: 'May nag away',
-        description: 'May nag away raw sabi ni John Brandon Lambino',
-        status: 'Pending',
-        priority: 'High'
-      ),
+          title: 'May nag away',
+          description: 'May nag away raw sabi ni John Brandon Lambino',
+          status: 'Pending',
+          priority: 'High'),
       Activities(
-        title: 'May nag away',
-        description: 'May nag away raw sabi ni John Brandon Lambino',
-        status: 'Completed',
-        priority: 'Medium'
-      ),
+          title: 'May nag away',
+          description: 'May nag away raw sabi ni John Brandon Lambino',
+          status: 'Completed',
+          priority: 'Medium'),
       Activities(
-        title: 'May nag away',
-        description: 'May nag away raw sabi ni John Brandon Lambino',
-        status: 'Completed',
-        priority: 'Low'
-      ),
+          title: 'May nag away',
+          description: 'May nag away raw sabi ni John Brandon Lambino',
+          status: 'Completed',
+          priority: 'Low'),
     ];
     return Scaffold(
+      backgroundColor: const Color(0xFFFCFCFC),
       body: SafeArea(
         child: Column(
           children: [
