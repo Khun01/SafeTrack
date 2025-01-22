@@ -4,8 +4,8 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:safetrack/presentation/bloc/features/verification_of_user/proof_of_id/image_picker_event.dart';
-import 'package:safetrack/presentation/bloc/features/verification_of_user/proof_of_id/image_picker_state.dart';
+import 'package:safetrack/presentation/bloc/profile/proof_of_id/image_picker_event.dart';
+import 'package:safetrack/presentation/bloc/profile/proof_of_id/image_picker_state.dart';
 
 class ImagePickerBloc extends Bloc<ImagePickerEvent, ImagePickerState> {
   final ImagePicker imagePicker;
