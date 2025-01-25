@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:safetrack/presentation/bloc/auth/login/login_event.dart';
 import 'package:safetrack/presentation/bloc/auth/login/login_state.dart';
 import 'package:safetrack/services/auth_services.dart';
+import 'package:safetrack/services/storage.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AuthServices authServices;
@@ -25,14 +26,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             state.password,
           );
           final statusCode = response['statusCode'];
+          final responseData = response['data'];
           if (statusCode == 200) {
-            log('Login successful');
+            final String id = responseData['id'].toString();
+            final String token = responseData['token'];
+            await Storage.saveData(id: id, token: token);
+            log('$id, $token');
             emit(state.copyWith(
-              loginFailed: false,
-              loginLoading: false,
-              loginSuccess: true,
-              submitting: false
-            ));
+                loginFailed: false,
+                loginLoading: false,
+                loginSuccess: true,
+                submitting: false));
           } else if (statusCode == 401) {
             emit(state.copyWith(
               loginLoading: false,
@@ -101,7 +105,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     return password.length > 8;
   }
 
-  FutureOr<void> loginFailedReset(LoginFailedReset event, Emitter<LoginState> emit) {
+  FutureOr<void> loginFailedReset(
+      LoginFailedReset event, Emitter<LoginState> emit) {
     emit(state.copyWith(loginFailed: false));
   }
 }

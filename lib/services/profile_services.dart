@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:safetrack/services/storage.dart';
 
 class ProfileServices {
   final String baseUrl;
@@ -18,22 +19,18 @@ class ProfileServices {
     String relationship,
     String barangayIdPath,
   ) async {
-    // Convert the string (file path) into a File object
+    final user = await Storage.getData();
+    String? token = user['token'];
     final barangayIdFile = File(barangayIdPath);
-
-    // Check if the file exists
     if (!barangayIdFile.existsSync()) {
       return {
         'statusCode': 400,
         'data': {'error': 'Barangay ID file does not exist.'},
       };
     }
-
-    // Create a multipart request
     final uri = Uri.parse('$baseUrl/verification-request');
     final request = http.MultipartRequest('POST', uri)
-      ..headers['Authorization'] =
-          'Bearer 2|W3Nn5xZ7GfUDyNk7cZddsWR5WN44iTfNuGICmF9R559b5398'
+      ..headers['Authorization'] = 'Bearer $token'
       ..fields['full_name'] = name
       ..fields['gender'] = gender
       ..fields['phone_number'] = phoneNo
@@ -46,8 +43,6 @@ class ProfileServices {
         'barangay_id_image',
         barangayIdFile.path,
       ));
-
-    // Send the request and get the response
     final response = await request.send();
     final responseBody = await response.stream.bytesToString();
     final Map<String, dynamic> responseData = jsonDecode(responseBody);
