@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,11 +25,19 @@ class LoginPage extends StatelessWidget {
       child: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
           if (state.loginFailed) {
-            log('Ngek error');
             toast(context, state.errorMessage);
+            Future.delayed(const Duration(milliseconds: 300), () {
+               // ignore: use_build_context_synchronously
+               context.read<LoginBloc>().add(LoginFailedReset());
+            });
           } else if (state.loginSuccess) {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const Wrapper()));
+            toast(context, 'Login successfully');
+          } else if (state.loginLoading) {
+            FocusScope.of(context).unfocus();
+          }else if((state.email.isEmpty && state.password.isEmpty)){
+            toast(context, state.errorMessage);
           }
         },
         builder: (context, state) {
@@ -129,13 +135,11 @@ class LoginPage extends StatelessWidget {
                           height: 50,
                           child: ElevatedButton(
                             onPressed: () {
-                              if (state.isFormValid) {
-                                context
-                                    .read<LoginBloc>()
-                                    .add(LoginButtonPressed());
-                                SystemChannels.textInput
-                                    .invokeMethod('TextInput.hide');
-                              }
+                              context
+                                  .read<LoginBloc>()
+                                  .add(LoginButtonPressed());
+                              SystemChannels.textInput
+                                  .invokeMethod('TextInput.hide');
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF023E8A),

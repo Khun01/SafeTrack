@@ -6,6 +6,7 @@ class LoginState {
   final bool loginSuccess;
   final bool loginFailed;
   final bool loginLoading;
+  final bool submitting;
   final bool isEmailValid;
   final bool isPasswordValid;
   final String errorMessage;
@@ -20,6 +21,7 @@ class LoginState {
     required this.loginSuccess,
     required this.loginFailed,
     required this.loginLoading,
+    required this.submitting,
     required this.isEmailValid,
     required this.isPasswordValid,
     required this.errorMessage,
@@ -34,6 +36,7 @@ class LoginState {
       loginSuccess: false,
       loginFailed: false,
       loginLoading: false,
+      submitting: false,
       isEmailValid: true,
       isPasswordValid: true,
       errorMessage: '',
@@ -48,6 +51,7 @@ class LoginState {
     bool? loginSuccess,
     bool? loginFailed,
     bool? loginLoading,
+    bool? submitting,
     bool? isEmailValid,
     bool? isPasswordValid,
     String? errorMessage,
@@ -60,6 +64,7 @@ class LoginState {
       loginSuccess: loginSuccess?? this.loginSuccess,
       loginFailed: loginFailed?? this.loginFailed,
       loginLoading: loginLoading?? this.loginLoading,
+      submitting: submitting?? this.submitting,
       isEmailValid: isEmailValid?? this.isEmailValid,
       isPasswordValid: isPasswordValid?? this.isPasswordValid,
       errorMessage: errorMessage?? this.errorMessage,
