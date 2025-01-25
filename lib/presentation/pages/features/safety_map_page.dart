@@ -36,6 +36,7 @@ class _SafetyMapPageState extends State<SafetyMapPage> {
               compassEnabled: false,
               cameraTargetBounds: CameraTargetBounds(_restrictedBounds),
               myLocationEnabled: true,
+              zoomGesturesEnabled: false,
               zoomControlsEnabled: false,
             ),
             Positioned(

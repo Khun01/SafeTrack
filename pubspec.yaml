@@ -49,6 +49,8 @@ dependencies:
   mobkit_dashed_border: ^0.0.7
   intl: ^0.20.1
   image_picker: ^1.1.2
+  tutorial_coach_mark: ^1.2.12
+  flutter_secure_storage: ^9.2.4
 
 dev_dependencies:
   flutter_test:
