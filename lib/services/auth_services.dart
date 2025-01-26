@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:http/http.dart' as http;
+import 'package:safetrack/services/storage.dart';
 
 class AuthServices {
   final String baseUrl;
@@ -82,6 +83,24 @@ class AuthServices {
         'password': password,
         'password_confirmation': confirmPassword
       }),
+    );
+    final Map<String, dynamic> responseData = jsonDecode(response.body);
+    return {
+      'statusCode': response.statusCode,
+      'data': responseData,
+    };
+  }
+
+  Future<Map<String, dynamic>> logout() async {
+    final user = await Storage.getData();
+    String? token = user['token'];
+    final response = await http.post(
+      Uri.parse('$baseUrl/logout'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
     );
     final Map<String, dynamic> responseData = jsonDecode(response.body);
     return {
