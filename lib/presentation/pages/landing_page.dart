@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/bloc/auth/check_login_status/check_login_status_bloc.dart';
+import 'package:safetrack/presentation/bloc/auth/check_login_status/check_login_status_event.dart';
 import 'package:safetrack/presentation/bloc/auth/check_login_status/check_login_status_state.dart';
 import 'package:safetrack/presentation/pages/auth/login_page.dart';
 import 'package:safetrack/presentation/pages/auth/register_page.dart';
@@ -94,7 +95,11 @@ class LandingPage extends StatelessWidget {
                           width: double.infinity,
                           height: 50,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              context
+                                  .read<CheckLoginStatusBloc>()
+                                  .add(CheckLoginStatusEventToken());
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF023E8A),
                               shape: RoundedRectangleBorder(
