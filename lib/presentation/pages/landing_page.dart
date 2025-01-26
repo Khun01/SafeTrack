@@ -8,6 +8,7 @@ import 'package:safetrack/presentation/pages/auth/login_page.dart';
 import 'package:safetrack/presentation/pages/auth/register_page.dart';
 import 'package:safetrack/presentation/pages/wrapper.dart';
 import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.dart';
+import 'package:safetrack/services/auth_services.dart';
 import 'package:safetrack/services/global.dart';
 
 class LandingPage extends StatelessWidget {
@@ -15,7 +16,7 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CheckLoginStatusBloc checkLoginStatusBloc = CheckLoginStatusBloc();
+    final CheckLoginStatusBloc checkLoginStatusBloc = CheckLoginStatusBloc(authServices: AuthServices(baseUrl: baseUrl));
     return BlocProvider(
       create: (context) => checkLoginStatusBloc,
       child: BlocConsumer<CheckLoginStatusBloc, CheckLoginStatusState>(

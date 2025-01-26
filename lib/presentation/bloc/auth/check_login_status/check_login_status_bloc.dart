@@ -4,11 +4,13 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:safetrack/presentation/bloc/auth/check_login_status/check_login_status_event.dart';
 import 'package:safetrack/presentation/bloc/auth/check_login_status/check_login_status_state.dart';
+import 'package:safetrack/services/auth_services.dart';
 import 'package:safetrack/services/storage.dart';
 
 class CheckLoginStatusBloc
     extends Bloc<CheckLoginStatusEvent, CheckLoginStatusState> {
-  CheckLoginStatusBloc() : super(CheckLoginStatusInitial()) {
+      final AuthServices authServices;
+  CheckLoginStatusBloc({required this.authServices}) : super(CheckLoginStatusInitial()) {
     on<CheckLoginStatusEventToken>(checkLoginStatusEventToken);
   }
 
@@ -20,8 +22,13 @@ class CheckLoginStatusBloc
       String? token = user['token'];
       await Future.delayed(const Duration(seconds: 2));
       if(token != null){
-        log(token);
-        emit(CheckLoginStatusLoggedIn());
+        final response = await authServices.checkToken(token);
+        if(response['statusCode'] == 200){
+          emit(CheckLoginStatusLoggedIn());
+        }else{
+          log('The message foe checking token is: ${response['statusCode']}, ${response['data']['message']}}');
+          emit(CheckLoginStatusLoggedOut());
+        }
       }else{
         log('No token');
         emit(CheckLoginStatusLoggedOut());

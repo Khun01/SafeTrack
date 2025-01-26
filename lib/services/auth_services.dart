@@ -108,4 +108,21 @@ class AuthServices {
       'data': responseData,
     };
   }
+
+  Future<Map<String, dynamic>> checkToken(String token) async {
+    final response = await http.get(
+      Uri.parse('$baseUrl/check-token'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+    final Map<String, dynamic> responseData = jsonDecode(response.body);
+    return {
+      'statusCode': response.statusCode,
+      'data': responseData,
+    };
+  } 
+
 }
