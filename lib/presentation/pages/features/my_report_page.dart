@@ -1,62 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:safetrack/models/activities.dart';
-import 'package:safetrack/presentation/cards/activities_card.dart';
+import 'package:safetrack/models/my_report.dart';
+import 'package:safetrack/presentation/cards/my_report_card.dart';
 
 class MyReportPage extends StatelessWidget {
   const MyReportPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final activities = [
-      Activities(
+    final myReport = [
+      MyReport(
           title: 'May nag away HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
           description:
               'May nag away raw sabi ni John Brandon Lambino HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
           status: 'Completed',
           priority: 'High'),
-      Activities(
+      MyReport(
           title: 'May nag away',
           description: 'May nag away raw sabi ni John Brandon Lambino',
           status: 'Completed',
           priority: 'Low'),
-      Activities(
+      MyReport(
           title: 'May nag away',
           description: 'May nag away raw sabi ni John Brandon Lambino',
           status: 'In-progress',
           priority: 'Low'),
-      Activities(
+      MyReport(
           title: 'May nag away',
           description: 'May nag away raw sabi ni John Brandon Lambino',
           status: 'Completed',
           priority: 'High'),
-      Activities(
+      MyReport(
           title: 'May nag away',
           description: 'May nag away raw sabi ni John Brandon Lambino',
           status: 'Completed',
           priority: 'High'),
-      Activities(
+      MyReport(
           title: 'May nag away HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
           description:
               'May nag away raw sabi ni John Brandon Lambino HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
           status: 'Completed',
           priority: 'Low'),
-      Activities(
+      MyReport(
           title: 'May nag away',
           description: 'May nag away raw sabi ni John Brandon Lambino',
           status: 'Pending',
           priority: 'Medium'),
-      Activities(
+      MyReport(
           title: 'May nag away',
           description: 'May nag away raw sabi ni John Brandon Lambino',
           status: 'Pending',
           priority: 'High'),
-      Activities(
+      MyReport(
           title: 'May nag away',
           description: 'May nag away raw sabi ni John Brandon Lambino',
           status: 'Completed',
           priority: 'Medium'),
-      Activities(
+      MyReport(
           title: 'May nag away',
           description: 'May nag away raw sabi ni John Brandon Lambino',
           status: 'Completed',
@@ -137,10 +137,10 @@ class MyReportPage extends StatelessWidget {
             const SizedBox(height: 16),
             Expanded(
               child: ListView.builder(
-                itemCount: activities.length,
+                itemCount: myReport.length,
                 itemBuilder: (context, index) {
-                  return ActivitiesCard(
-                    activities: activities[index],
+                  return MyReportCard(
+                    myReport: myReport[index],
                   );
                 },
               ),

@@ -1,10 +1,10 @@
-class Activities {
+class MyReport {
   final String title;
   final String description;
   final String status;
   final String priority;
 
-  Activities({
+  MyReport({
     required this.title,
     required this.description,
     required this.status,

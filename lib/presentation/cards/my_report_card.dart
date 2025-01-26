@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:safetrack/models/activities.dart';
+import 'package:safetrack/models/my_report.dart';
 
-class ActivitiesCard extends StatelessWidget {
-  final Activities activities;
-  const ActivitiesCard({super.key, required this.activities});
+class MyReportCard extends StatelessWidget {
+  final MyReport myReport;
+  const MyReportCard({super.key, required this.myReport});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class ActivitiesCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        activities.title,
+                        myReport.title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.quicksand(
@@ -43,7 +43,7 @@ class ActivitiesCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        activities.description,
+                        myReport.description,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.quicksand(
@@ -62,26 +62,26 @@ class ActivitiesCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            activities.priority,
+                            myReport.priority,
                             style: GoogleFonts.quicksand(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
-                              color: activities.priority == 'High'
+                              color: myReport.priority == 'High'
                                   ? const Color(0xFFB00003)
-                                  : activities.priority == 'Medium'
+                                  : myReport.priority == 'Medium'
                                       ? const Color(0xFFBCB000)
                                       : const Color(0xFF0060B0),
                             ),
                           ),
                           const Spacer(),
                           Text(
-                            activities.status,
+                            myReport.status,
                             style: GoogleFonts.quicksand(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
-                              color: activities.status == 'Completed'
+                              color: myReport.status == 'Completed'
                                   ? const Color(0xFF4CAF50)
-                                  : activities.status == 'Pending'
+                                  : myReport.status == 'Pending'
                                       ? const Color(0xFFFFAE00)
                                       : const Color(0xFF2196F3),
                             ),
