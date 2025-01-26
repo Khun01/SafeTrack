@@ -89,8 +89,8 @@ class _HomePageState extends State<HomePage> {
       },
       builder: (context, state) {
         //pang reset lang
-        // if(state is UserGuideHasSeenState){
-        //    context.read<UserGuideBloc>().add(UserGuideResetEvent());
+        // if (state is UserGuideHasSeenState) {
+        //   context.read<UserGuideBloc>().add(UserGuideResetEvent());
         // }
         // para makita
         return Scaffold(
@@ -314,6 +314,7 @@ class _HomePageState extends State<HomePage> {
       },
       onSkip: () {
         log("skip");
+        context.read<UserGuideBloc>().add(UserGuideCompleteEvent());
         return true;
       },
     );
@@ -336,9 +337,19 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    'My report',
+                    style: GoogleFonts.quicksand(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w800,
+                      color: const Color(0xFFFCFCFC),
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
                     "Here you can view and manage all the reports you've submitted. Stay updated on the status of your reports and track your community's safety.",
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
+                      fontWeight: FontWeight.w500,
                       color: const Color(0xFFFCFCFC),
                     ),
                   ),
@@ -363,9 +374,19 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    'Safety Map',
+                    style: GoogleFonts.quicksand(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w800,
+                      color: const Color(0xFFFCFCFC),
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
                     "The Safety Map shows real-time incidents happening around your community. Use this map to stay informed and take necessary actions when needed.",
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
+                      fontWeight: FontWeight.w500,
                       color: const Color(0xFFFCFCFC),
                     ),
                   ),
@@ -390,9 +411,19 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    'Calendar',
+                    style: GoogleFonts.quicksand(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w800,
+                      color: const Color(0xFFFCFCFC),
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
                     "Use the calendar to keep track of important community events and updates. Stay informed on safety-related activities and deadlines.",
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
+                      fontWeight: FontWeight.w500,
                       color: const Color(0xFFFCFCFC),
                     ),
                   ),
@@ -417,9 +448,19 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    'Educational',
+                    style: GoogleFonts.quicksand(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w800,
+                      color: const Color(0xFFFCFCFC),
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
                     "Access educational resources and safety tips to learn more about community safety, emergency protocols, and how you can contribute to a safer environment.",
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
+                      fontWeight: FontWeight.w500,
                       color: const Color(0xFFFCFCFC),
                     ),
                   ),
@@ -444,9 +485,19 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    'Contacts',
+                    style: GoogleFonts.quicksand(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w800,
+                      color: const Color(0xFFFCFCFC),
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
                     "Quick access to important contacts for emergencies or community support. Reach out to local authorities or safety teams directly when needed.",
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
+                      fontWeight: FontWeight.w500,
                       color: const Color(0xFFFCFCFC),
                     ),
                   ),
@@ -471,9 +522,19 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    'SOS',
+                    style: GoogleFonts.quicksand(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w800,
+                      color: const Color(0xFFFCFCFC),
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
                     "In case of an emergency, use the SOS feature to quickly send alerts and request help from community responders or local authorities",
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
+                      fontWeight: FontWeight.w500,
                       color: const Color(0xFFFCFCFC),
                     ),
                   ),
@@ -488,7 +549,7 @@ class _HomePageState extends State<HomePage> {
       TargetFocus(
         identify: "addReport",
         keyTarget: addReport,
-        alignSkip: Alignment.topRight,
+        alignSkip: Alignment.bottomRight,
         contents: [
           TargetContent(
             align: ContentAlign.top,
@@ -498,12 +559,22 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Report any incidents or safety concerns in your community. Use this feature to share details about incidents and contribute to improving safety in your area.",
+                    'Report Incidents',
                     style: GoogleFonts.quicksand(
-                      fontSize: 14,
+                      fontSize: 32,
+                      fontWeight: FontWeight.w800,
                       color: const Color(0xFFFCFCFC),
                     ),
                   ),
+                  Text(
+                    "Report any incidents or safety concerns in your community. Use this feature to share details about incidents and contribute to improving safety in your area.",
+                    style: GoogleFonts.quicksand(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xFFFCFCFC),
+                    ),
+                  ),
+                  const SizedBox(height: 80),
                 ],
               );
             },
