@@ -11,12 +11,11 @@ class MyAppBar extends StatelessWidget {
       padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 8),
       child: Row(
         children: [
-          Container(
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(500),
-              border: Border.all(color: LightColor.blackPrimaryTextColor),
+          const Center(
+            child: Icon(
+              Icons.account_circle,
+              color: LightColor.primaryColor,
+              size: 50,
             ),
           ),
           const SizedBox(width: 8),
@@ -44,11 +43,8 @@ class MyAppBar extends StatelessWidget {
           const Spacer(),
           GestureDetector(
             onTap: () {},
-            child: const Icon(
-              Icons.notifications,
-              size: 28,
-              color: LightColor.primaryColor
-            ),
+            child: const Icon(Icons.notifications,
+                size: 28, color: LightColor.primaryColor),
           ),
         ],
       ),

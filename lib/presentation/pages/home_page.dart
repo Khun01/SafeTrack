@@ -17,6 +17,7 @@ import 'package:safetrack/presentation/pages/features/safety_map_page.dart';
 import 'package:safetrack/presentation/widgets/my_app_bar.dart';
 import 'package:safetrack/presentation/widgets/my_home_page_feature_button.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
+import 'package:safetrack/services/global.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class HomePage extends StatefulWidget {
@@ -146,26 +147,14 @@ class _HomePageState extends State<HomePage> {
                                 key: myReport,
                                 name: 'My Report',
                                 image: 'assets/icons/document.png',
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const MyReportPage()));
-                                },
+                                onTap: const MyReportPage(),
                               ),
                               const SizedBox(height: 24),
                               MyHomePageFeatureButton(
                                 key: educational,
                                 name: 'Educational',
                                 image: 'assets/icons/educational.png',
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const EducationalPage()));
-                                },
+                                onTap: const EducationalPage(),
                               ),
                             ],
                           ),
@@ -177,26 +166,14 @@ class _HomePageState extends State<HomePage> {
                                 key: safetyMap,
                                 name: 'Safety Map',
                                 image: 'assets/icons/map.png',
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const SafetyMapPage()));
-                                },
+                                onTap: const SafetyMapPage(),
                               ),
                               const SizedBox(height: 24),
                               MyHomePageFeatureButton(
                                 key: contacts,
                                 name: 'Contacts',
                                 image: 'assets/icons/contact.png',
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ContactsPage()));
-                                },
+                                onTap: const ContactsPage(),
                               ),
                             ],
                           ),
@@ -208,24 +185,46 @@ class _HomePageState extends State<HomePage> {
                                 key: calendar,
                                 name: 'Calendar',
                                 image: 'assets/icons/calendar.png',
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const CalendarPage()));
-                                },
+                                onTap: const CalendarPage(),
                               ),
                               const SizedBox(height: 24),
-                              MyHomePageFeatureButton(
-                                key: sos,
-                                name: 'SOS',
-                                image: 'assets/icons/sos.png',
-                                onTap: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('SOS')));
+                              GestureDetector(
+                                onTap: (){
+                                  toast(context, "SOS");
                                 },
-                              ),
+                                child: Column(
+                                  key: sos,
+                                  children: [
+                                    Container(
+                                      height: 60,
+                                      width: 60,
+                                      padding: const EdgeInsets.all(16),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(500),
+                                        color: const Color(0xFFE5E9F4),
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            color: Color(0x1A023E8A),
+                                            spreadRadius: 1,
+                                            blurRadius: 4,
+                                            offset: Offset(0, 4),
+                                          )
+                                        ],
+                                      ),
+                                      child: Image.asset('assets/icons/sos.png'),
+                                    ),
+                                    const SizedBox(height: 16),
+                                    Text(
+                                      'SOS',
+                                      style: GoogleFonts.quicksand(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        color: LightColor.primaryColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
                             ],
                           ),
                         ),

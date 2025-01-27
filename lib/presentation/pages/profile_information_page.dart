@@ -52,13 +52,11 @@ class ProfileInformationPage extends StatelessWidget {
                                   AnimatedOpacity(
                                     opacity: scrolled ? 0 : 1,
                                     duration: const Duration(milliseconds: 300),
-                                    child: Container(
-                                      height: 100,
-                                      width: 100,
-                                      decoration: BoxDecoration(
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.account_circle,
                                         color: LightColor.whitePrimaryTextColor,
-                                        borderRadius:
-                                            BorderRadius.circular(500),
+                                        size: 110,
                                       ),
                                     ),
                                   ),
@@ -107,20 +105,20 @@ class ProfileInformationPage extends StatelessWidget {
                               ),
                             ),
                             Positioned(
-                                top: 24,
-                                right: 16,
-                                child: AnimatedOpacity(
-                                  opacity: scrolled ? 1 : 0,
-                                  duration: const Duration(milliseconds: 300),
-                                  child: Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: LightColor.whitePrimaryTextColor,
-                                        borderRadius:
-                                            BorderRadius.circular(500)),
+                              top: 24,
+                              right: 16,
+                              child: AnimatedOpacity(
+                                opacity: scrolled ? 1 : 0,
+                                duration: const Duration(milliseconds: 300),
+                                child: const Center(
+                                  child: Icon(
+                                    Icons.account_circle,
+                                    color: LightColor.whitePrimaryTextColor,
+                                    size: 30,
                                   ),
-                                )),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),

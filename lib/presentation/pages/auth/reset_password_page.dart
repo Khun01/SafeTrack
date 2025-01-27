@@ -139,7 +139,7 @@ class ResetPasswordPage extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: LightColor.primaryColor,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(24),
+                                borderRadius: BorderRadius.circular(16),
                               ),
                             ),
                             child: Text(

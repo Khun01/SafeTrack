@@ -48,8 +48,10 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
 
   FutureOr<void> disposeCameraEvent(
       DisposeCameraEvent event, Emitter<CameraState> emit) async {
-    await controller?.dispose();
-    controller = null;
+    if (controller != null) {
+      await controller?.dispose();
+      controller = null;
+    }
     emit(CameraInitial());
   }
 

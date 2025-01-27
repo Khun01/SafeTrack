@@ -145,7 +145,7 @@ class LoginPage extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: LightColor.primaryColor,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(24),
+                                borderRadius: BorderRadius.circular(16),
                               ),
                             ),
                             child: Text(
@@ -174,7 +174,7 @@ class LoginPage extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.transparent,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(24),
+                                  borderRadius: BorderRadius.circular(16),
                                   side: const BorderSide(
                                     color: LightColor.blackPrimaryTextColor,
                                   ),
