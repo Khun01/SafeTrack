@@ -10,6 +10,7 @@ import 'package:safetrack/presentation/pages/wrapper.dart';
 import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.dart';
 import 'package:safetrack/services/auth_services.dart';
 import 'package:safetrack/services/global.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -34,7 +35,7 @@ class LandingPage extends StatelessWidget {
         },
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: const Color(0xFFFCFCFC),
+            backgroundColor: LightColor.backgroundColor,
             body: SafeArea(
               child: Stack(
                 children: [
@@ -57,7 +58,7 @@ class LandingPage extends StatelessWidget {
                           style: GoogleFonts.quicksand(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: const Color(0xFF3B3B3B),
+                            color: LightColor.blackPrimaryTextColor,
                           ),
                         ),
                         Text(
@@ -65,7 +66,7 @@ class LandingPage extends StatelessWidget {
                           style: GoogleFonts.quicksand(
                             fontSize: 40,
                             fontWeight: FontWeight.w800,
-                            color: const Color(0xFF023E8A),
+                            color: LightColor.primaryColor,
                           ),
                         ),
                         const Spacer(),
@@ -86,7 +87,7 @@ class LandingPage extends StatelessWidget {
                             style: GoogleFonts.quicksand(
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
-                              color: const Color(0xFF3B3B3B),
+                              color: LightColor.blackPrimaryTextColor,
                             ),
                           ),
                         ),
@@ -101,7 +102,7 @@ class LandingPage extends StatelessWidget {
                                   .add(CheckLoginStatusEventToken());
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF023E8A),
+                              backgroundColor: LightColor.primaryColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(24),
                               ),
@@ -111,7 +112,7 @@ class LandingPage extends StatelessWidget {
                               style: GoogleFonts.quicksand(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: const Color(0xFFFCFCFC),
+                                color: LightColor.whitePrimaryTextColor,
                               ),
                             ),
                           ),
@@ -124,7 +125,7 @@ class LandingPage extends StatelessWidget {
                               "Don't have an account?",
                               style: GoogleFonts.quicksand(
                                 fontSize: 14,
-                                color: const Color(0xCC3B3B3B),
+                                color: LightColor.blackSecondaryTextColor
                               ),
                             ),
                             const SizedBox(width: 4),
@@ -140,9 +141,9 @@ class LandingPage extends StatelessWidget {
                                 'Register Now',
                                 style: GoogleFonts.quicksand(
                                   fontSize: 14,
-                                  color: const Color(0xFF023E8A),
+                                  color: LightColor.primaryColor,
                                   decoration: TextDecoration.underline,
-                                  decorationColor: const Color(0xFF023E8A),
+                                  decorationColor: LightColor.primaryColor,
                                 ),
                               ),
                             ),
