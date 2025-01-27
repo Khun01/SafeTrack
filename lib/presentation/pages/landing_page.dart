@@ -102,6 +102,7 @@ class LandingPage extends StatelessWidget {
                                   .add(CheckLoginStatusEventToken());
                             },
                             style: ElevatedButton.styleFrom(
+                              elevation: 0,
                               backgroundColor: LightColor.primaryColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(24),

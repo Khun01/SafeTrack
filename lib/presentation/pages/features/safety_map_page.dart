@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class SafetyMapPage extends StatefulWidget {
   const SafetyMapPage({super.key});
@@ -12,7 +13,7 @@ class SafetyMapPage extends StatefulWidget {
 class _SafetyMapPageState extends State<SafetyMapPage> {
   final LatLngBounds _restrictedBounds = LatLngBounds(
     southwest: const LatLng(16.0260, 120.3121),
-    northeast: const LatLng(16.0713, 120.3594), 
+    northeast: const LatLng(16.0713, 120.3594),
   );
 
   // ignore: unused_field
@@ -21,12 +22,13 @@ class _SafetyMapPageState extends State<SafetyMapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: LightColor.backgroundColor,
       body: SafeArea(
         child: Stack(
-          children: [    
+          children: [
             GoogleMap(
               initialCameraPosition: const CameraPosition(
-                target: LatLng(16.0431, 120.3333), 
+                target: LatLng(16.0431, 120.3333),
                 zoom: 16,
               ),
               mapType: MapType.terrain,
@@ -48,7 +50,7 @@ class _SafetyMapPageState extends State<SafetyMapPage> {
                   height: 50,
                   width: 100,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFFCFCFC),
+                    color: LightColor.whitePrimaryTextColor,
                     borderRadius: BorderRadius.circular(500),
                     border: Border.all(color: const Color(0x1A023E8A)),
                     boxShadow: const [
@@ -66,7 +68,7 @@ class _SafetyMapPageState extends State<SafetyMapPage> {
                       style: GoogleFonts.quicksand(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xFF3B3B3B),
+                        color: LightColor.blackPrimaryTextColor,
                       ),
                     ),
                   ),
@@ -85,7 +87,7 @@ class _SafetyMapPageState extends State<SafetyMapPage> {
                   width: 50,
                   padding: const EdgeInsets.only(left: 8),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFFCFCFC),
+                    color: LightColor.whitePrimaryTextColor,
                     borderRadius: BorderRadius.circular(500),
                     border: Border.all(color: const Color(0x1A023E8A)),
                     boxShadow: const [
@@ -97,7 +99,10 @@ class _SafetyMapPageState extends State<SafetyMapPage> {
                       ),
                     ],
                   ),
-                  child: const Icon(Icons.arrow_back_ios),
+                  child: const Icon(
+                    Icons.arrow_back_ios,
+                    color: LightColor.blackPrimaryTextColor,
+                  ),
                 ),
               ),
             ),

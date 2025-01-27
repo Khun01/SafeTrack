@@ -12,6 +12,7 @@ import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.da
 import 'package:safetrack/presentation/widgets/my_form.dart';
 import 'package:safetrack/services/auth_services.dart';
 import 'package:safetrack/services/global.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -48,7 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
         builder: (context, state) {
           return Scaffold(
             resizeToAvoidBottomInset: false,
-            backgroundColor: Colors.white,
+            backgroundColor: LightColor.backgroundColor,
             body: SafeArea(
               child: Stack(
                 children: [
@@ -56,7 +57,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 24, horizontal: 16),
+                          vertical: 24,
+                          horizontal: 16,
+                        ),
                         child: Center(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 child: const Icon(
                                   Icons.arrow_back,
                                   size: 24,
-                                  color: Color(0xFF3B3B3B),
+                                  color: LightColor.blackPrimaryTextColor,
                                 ),
                               ),
                               const SizedBox(height: 16),
@@ -77,7 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 style: GoogleFonts.quicksand(
                                   fontSize: 40,
                                   fontWeight: FontWeight.w700,
-                                  color: const Color(0xFF3B3B3B),
+                                  color: LightColor.blackPrimaryTextColor,
                                 ),
                               ),
                               Text(
@@ -85,7 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 style: GoogleFonts.quicksand(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
-                                  color: const Color(0x803B3B3B),
+                                  color: LightColor.blackSecondaryTextColor,
                                 ),
                               ),
                               const SizedBox(height: 24),
@@ -157,13 +160,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                   Checkbox(
                                     side: const BorderSide(
                                       width: 1.5,
-                                      color: Color(0xFF3B3B3B),
+                                      color: LightColor.blackPrimaryTextColor,
                                     ),
                                     materialTapTargetSize:
                                         MaterialTapTargetSize.shrinkWrap,
                                     value: valueCheckBox,
                                     onChanged: onChanged,
-                                    activeColor: const Color(0xFF023E8A),
+                                    activeColor: LightColor.primaryColor,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(500),
                                     ),
@@ -175,7 +178,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                       overflow: TextOverflow.ellipsis,
                                       style: GoogleFonts.quicksand(
                                         fontSize: 12,
-                                        color: const Color(0xCC3B3B3B),
+                                        color:
+                                            LightColor.blackSecondaryTextColor,
                                       ),
                                     ),
                                   )
@@ -196,7 +200,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     }
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color(0xFF023E8A),
+                                    backgroundColor: LightColor.primaryColor,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(24),
                                     ),
@@ -206,7 +210,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     style: GoogleFonts.quicksand(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
-                                      color: const Color(0xFFFCFCFC),
+                                      color: LightColor.whitePrimaryTextColor,
                                     ),
                                   ),
                                 ),
@@ -229,7 +233,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(24),
                                         side: const BorderSide(
-                                          color: Color(0xFF023E8A),
+                                          color:
+                                              LightColor.blackPrimaryTextColor,
                                         ),
                                       ),
                                       elevation: 0),
@@ -246,7 +251,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                         style: GoogleFonts.quicksand(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
-                                          color: const Color(0xFF3B3B3B),
+                                          color:
+                                              LightColor.blackPrimaryTextColor,
                                         ),
                                       ),
                                     ],
@@ -261,7 +267,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     'Already have an account?',
                                     style: GoogleFonts.quicksand(
                                       fontSize: 14,
-                                      color: const Color(0xCC3B3B3B),
+                                      color: LightColor.blackSecondaryTextColor,
                                     ),
                                   ),
                                   const SizedBox(width: 4),
@@ -277,10 +283,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                       'Sign In',
                                       style: GoogleFonts.quicksand(
                                         fontSize: 14,
-                                        color: const Color(0xFF023E8A),
+                                        color: LightColor.primaryColor,
                                         decoration: TextDecoration.underline,
                                         decorationColor:
-                                            const Color(0xFF023E8A),
+                                            LightColor.primaryColor,
                                       ),
                                     ),
                                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/models/my_report.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class MyReportCard extends StatelessWidget {
   final MyReport myReport;
@@ -39,7 +40,7 @@ class MyReportCard extends StatelessWidget {
                         style: GoogleFonts.quicksand(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
-                          color: const Color(0xFF3B3B3B),
+                          color: LightColor.blackPrimaryTextColor,
                         ),
                       ),
                       Text(
@@ -48,7 +49,7 @@ class MyReportCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.quicksand(
                           fontSize: 12,
-                          color: const Color(0x803B3B3B),
+                          color: LightColor.blackSecondaryTextColor,
                         ),
                       ),
                       const Spacer(),
@@ -58,6 +59,7 @@ class MyReportCard extends StatelessWidget {
                             'Priority:',
                             style: GoogleFonts.quicksand(
                               fontSize: 12,
+                              color: LightColor.blackSecondaryTextColor,
                             ),
                           ),
                           const SizedBox(width: 4),
@@ -95,7 +97,7 @@ class MyReportCard extends StatelessWidget {
               const SizedBox(width: 12),
               const Icon(
                 Icons.more_vert,
-                color: Color(0xFF3B3b3B),
+                color: LightColor.blackSecondaryTextColor,
               ),
             ],
           ),

@@ -16,6 +16,7 @@ import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.da
 import 'package:safetrack/presentation/widgets/my_verification_form.dart';
 import 'package:safetrack/services/global.dart';
 import 'package:safetrack/services/profile_services.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class VerifyAccountPage extends StatefulWidget {
   const VerifyAccountPage({super.key});
@@ -95,9 +96,9 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
       child: BlocConsumer<VerificationOfUserBloc, VerificationOfUserState>(
         bloc: verificationOfUserBloc,
         listener: (context, verificationOfUserState) {
-          if(verificationOfUserState is VerificationOfUserSuccess){
+          if (verificationOfUserState is VerificationOfUserSuccess) {
             log('THe verification of user is success');
-          }else if(verificationOfUserState is VerificationOfUserError){
+          } else if (verificationOfUserState is VerificationOfUserError) {
             log('The erorr in verification of user is: ${verificationOfUserState.errorMessage}');
           }
         },
@@ -140,7 +141,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                         style: GoogleFonts.quicksand(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: const Color(0xFF3B3B3B),
+                          color: LightColor.blackPrimaryTextColor,
                         ),
                       ),
                     ),
@@ -162,14 +163,14 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                       style: GoogleFonts.quicksand(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xFF3B3B3B),
+                        color: LightColor.blackPrimaryTextColor,
                       ),
                     ),
                   ],
                 );
               }
               return Scaffold(
-                backgroundColor: const Color(0xFFFCFCFC),
+                backgroundColor: LightColor.backgroundColor,
                 body: SafeArea(
                   child: Stack(
                     children: [
@@ -204,7 +205,8 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                           style: GoogleFonts.quicksand(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
-                                            color: const Color(0xFF3B3B3B),
+                                            color: LightColor
+                                                .blackPrimaryTextColor,
                                           ),
                                         ),
                                       ),
@@ -220,7 +222,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                   style: GoogleFonts.quicksand(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: const Color(0xFF3B3B3B),
+                                    color: LightColor.blackPrimaryTextColor,
                                   ),
                                 ),
                                 const SizedBox(height: 8),
@@ -237,7 +239,8 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                             style: GoogleFonts.quicksand(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
-                                              color: const Color(0xFF3B3B3B),
+                                              color: LightColor
+                                                  .blackPrimaryTextColor,
                                             ),
                                           ),
                                           const SizedBox(height: 4),
@@ -264,7 +267,8 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                             style: GoogleFonts.quicksand(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
-                                              color: const Color(0xFF3B3B3B),
+                                              color: LightColor
+                                                  .blackPrimaryTextColor,
                                             ),
                                           ),
                                           const SizedBox(height: 4),
@@ -274,13 +278,14 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                               style: GoogleFonts.quicksand(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.bold,
-                                                color: const Color(0x333B3B3B),
+                                                color:
+                                                    LightColor.blackAccentColor,
                                               ),
                                             ),
                                             iconDisabledColor:
-                                                const Color(0xFF023E8A),
+                                                LightColor.primaryColor,
                                             iconEnabledColor:
-                                                const Color(0xFF023E8A),
+                                                LightColor.primaryColor,
                                             onChanged: (value) {
                                               setState(() {
                                                 selectedOption = value;
@@ -298,10 +303,10 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                               hintStyle: GoogleFonts.quicksand(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.bold,
-                                                color: const Color(0x333B3B3B),
+                                                color:
+                                                    LightColor.blackAccentColor,
                                               ),
-                                              fillColor:
-                                                  const Color(0x1A023E8A),
+                                              fillColor: LightColor.inputField,
                                               filled: true,
                                               border: OutlineInputBorder(
                                                 borderRadius:
@@ -331,8 +336,8 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                                           fontSize: 14,
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          color: const Color(
-                                                              0xFF3B3B3B),
+                                                          color: LightColor
+                                                              .blackPrimaryTextColor,
                                                         ),
                                                       ),
                                                     ))
@@ -351,7 +356,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                       style: GoogleFonts.quicksand(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
-                                        color: const Color(0xFF3B3B3B),
+                                        color: LightColor.blackPrimaryTextColor,
                                       ),
                                     ),
                                     const SizedBox(width: 4),
@@ -360,7 +365,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                       style: GoogleFonts.quicksand(
                                         fontSize: 12,
                                         fontWeight: FontWeight.bold,
-                                        color: const Color(0x803B3B3B),
+                                        color: LightColor.blackAccentColor,
                                       ),
                                     ),
                                   ],
@@ -407,7 +412,8 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                             style: GoogleFonts.quicksand(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
-                                              color: const Color(0xFF3B3B3B),
+                                              color: LightColor
+                                                  .blackPrimaryTextColor,
                                             ),
                                           ),
                                           const SizedBox(height: 4),
@@ -420,7 +426,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                                   width: double.infinity,
                                                   decoration: BoxDecoration(
                                                     color:
-                                                        const Color(0x1A023E8A),
+                                                        LightColor.inputField,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             12),
@@ -433,8 +439,8 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                                         fontSize: 14,
                                                         fontWeight:
                                                             FontWeight.bold,
-                                                        color: const Color(
-                                                            0xFF3B3B3B),
+                                                        color: LightColor
+                                                            .blackPrimaryTextColor,
                                                       ),
                                                     ),
                                                   ),
@@ -470,7 +476,8 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                             style: GoogleFonts.quicksand(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
-                                              color: const Color(0xFF3B3B3B),
+                                              color: LightColor
+                                                  .blackPrimaryTextColor,
                                             ),
                                           ),
                                           const SizedBox(height: 4),
@@ -497,7 +504,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                               height: 48,
                                               width: double.infinity,
                                               decoration: BoxDecoration(
-                                                color: const Color(0x1A023E8A),
+                                                color: LightColor.inputField,
                                                 borderRadius:
                                                     BorderRadius.circular(12),
                                               ),
@@ -532,7 +539,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                   style: GoogleFonts.quicksand(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: const Color(0xFF3B3B3B),
+                                    color: LightColor.blackPrimaryTextColor,
                                   ),
                                 ),
                                 const SizedBox(height: 8),
@@ -541,7 +548,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                   style: GoogleFonts.quicksand(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    color: const Color(0xFF3B3B3B),
+                                    color: LightColor.blackPrimaryTextColor,
                                   ),
                                 ),
                                 const SizedBox(height: 4),
@@ -566,7 +573,8 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                             style: GoogleFonts.quicksand(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
-                                              color: const Color(0xFF3B3B3B),
+                                              color: LightColor
+                                                  .blackPrimaryTextColor,
                                             ),
                                           ),
                                           const SizedBox(height: 4),
@@ -581,7 +589,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                                   width: double.infinity,
                                                   decoration: BoxDecoration(
                                                     color:
-                                                        const Color(0x1A023E8A),
+                                                        LightColor.inputField,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             12),
@@ -594,8 +602,8 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                                         fontSize: 14,
                                                         fontWeight:
                                                             FontWeight.bold,
-                                                        color: const Color(
-                                                            0xFF3B3B3B),
+                                                        color: LightColor
+                                                            .blackPrimaryTextColor,
                                                       ),
                                                     ),
                                                   ),
@@ -631,7 +639,8 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                             style: GoogleFonts.quicksand(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
-                                              color: const Color(0xFF3B3B3B),
+                                              color: LightColor
+                                                  .blackPrimaryTextColor,
                                             ),
                                           ),
                                           const SizedBox(height: 4),
@@ -653,7 +662,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                   style: GoogleFonts.quicksand(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: const Color(0xFF3B3B3B),
+                                    color: LightColor.blackPrimaryTextColor,
                                   ),
                                 ),
                                 const SizedBox(height: 8),
@@ -662,7 +671,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                   style: GoogleFonts.quicksand(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    color: const Color(0xFF3B3B3B),
+                                    color: LightColor.blackPrimaryTextColor,
                                   ),
                                 ),
                                 const SizedBox(height: 4),
@@ -677,7 +686,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                     width: double.infinity,
                                     padding: const EdgeInsets.all(12),
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFFFCFCFC),
+                                      color: LightColor.backgroundColor,
                                       borderRadius: BorderRadius.circular(12),
                                       border: const DashedBorder.fromBorderSide(
                                         side: BorderSide(
@@ -723,7 +732,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                           },
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor:
-                                                const Color(0xFF023E8A),
+                                                LightColor.primaryColor,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(12),
@@ -734,7 +743,8 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                             style: GoogleFonts.quicksand(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
-                                              color: const Color(0xFFFCFCFC),
+                                              color: LightColor
+                                                  .whitePrimaryTextColor,
                                             ),
                                           ),
                                         ),
@@ -754,8 +764,10 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                           padding: const EdgeInsets.only(
                               left: 16, right: 16, top: 4),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFFCFCFC),
-                            border: Border.all(color: const Color(0x333B3B3B)),
+                            color: LightColor.whitePrimaryTextColor,
+                            border: Border.all(
+                              color: LightColor.dividerColor,
+                            ),
                             boxShadow: const [
                               BoxShadow(
                                 color: Color(0x1A023E8A),
@@ -773,7 +785,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                 style: GoogleFonts.quicksand(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
-                                  color: const Color(0xFF3B3B3B),
+                                  color: LightColor.blackPrimaryTextColor,
                                 ),
                               ),
                               const SizedBox(height: 4),
@@ -789,7 +801,8 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                           ),
                         ),
                       ),
-                      if (verificationOfUserState is VerificationOfUserLoading) ...[
+                      if (verificationOfUserState
+                          is VerificationOfUserLoading) ...[
                         Positioned(
                           top: 0,
                           left: 0,

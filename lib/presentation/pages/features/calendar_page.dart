@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class CalendarPage extends StatelessWidget {
   const CalendarPage({super.key});
@@ -7,7 +8,7 @@ class CalendarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFCFCFC),
+      backgroundColor: LightColor.backgroundColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -27,7 +28,10 @@ class CalendarPage extends StatelessWidget {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: const Icon(Icons.arrow_back),
+                        child: const Icon(
+                          Icons.arrow_back,
+                          color: LightColor.blackPrimaryTextColor,
+                        ),
                       ),
                     ),
                   ),
@@ -38,7 +42,7 @@ class CalendarPage extends StatelessWidget {
                         style: GoogleFonts.quicksand(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: const Color(0xFF3B3B3B),
+                          color: LightColor.blackPrimaryTextColor,
                         ),
                       ),
                     ),

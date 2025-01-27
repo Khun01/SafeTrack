@@ -6,6 +6,7 @@ import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_bl
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_event.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_state.dart';
 import 'package:safetrack/presentation/pages/features/submit_report/submit_report_page.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class PhotoPreviewPage extends StatelessWidget {
   final String photo;
@@ -52,7 +53,7 @@ class PhotoPreviewPage extends StatelessWidget {
                               },
                               child: const Icon(
                                 Icons.close_rounded,
-                                color: Color(0xFFFCFCFC),
+                                color: LightColor.whitePrimaryTextColor,
                               ),
                             ),
                           ),
@@ -84,7 +85,7 @@ class PhotoPreviewPage extends StatelessWidget {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF023E8A),
+                          backgroundColor: LightColor.primaryColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -94,7 +95,7 @@ class PhotoPreviewPage extends StatelessWidget {
                           style: GoogleFonts.quicksand(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: const Color(0xFFFCFCFC),
+                            color: LightColor.blackPrimaryTextColor,
                           ),
                         ),
                       ),

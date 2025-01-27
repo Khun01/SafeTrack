@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class MyHomePageFeatureButton extends StatelessWidget {
   final String name;
@@ -44,7 +45,7 @@ class MyHomePageFeatureButton extends StatelessWidget {
             style: GoogleFonts.quicksand(
               fontSize: 12,
               fontWeight: FontWeight.bold,
-              color: const Color(0xFF023E8A),
+              color: LightColor.primaryColor,
             ),
           )
         ],

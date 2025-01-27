@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class MyVerificationForm extends StatelessWidget {
   final TextEditingController controller;
   final VoidCallback onChanged;
   final String hintText;
   final TextInputType keyboardType;
+
   const MyVerificationForm({
     super.key,
     required this.hintText,
     required this.controller,
     required this.onChanged,
-    this.keyboardType = TextInputType.text
+    this.keyboardType = TextInputType.text,
   });
 
   @override
@@ -25,7 +27,7 @@ class MyVerificationForm extends StatelessWidget {
         style: GoogleFonts.quicksand(
           fontSize: 14,
           fontWeight: FontWeight.bold,
-          color: const Color(0xFF3B3B3B),
+          color: LightColor.blackPrimaryTextColor,
         ),
         decoration: InputDecoration(
           hintText: hintText,
@@ -38,9 +40,9 @@ class MyVerificationForm extends StatelessWidget {
           hintStyle: GoogleFonts.quicksand(
             fontSize: 14,
             fontWeight: FontWeight.bold,
-            color: const Color(0x333B3B3B),
+            color: LightColor.blackAccentColor,
           ),
-          fillColor: const Color(0x1A023E8A),
+          fillColor: LightColor.inputField,
           filled: true,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),

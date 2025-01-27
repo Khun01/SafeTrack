@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class MyAppBar extends StatelessWidget {
   const MyAppBar({super.key});
@@ -15,7 +16,7 @@ class MyAppBar extends StatelessWidget {
             width: 50,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(500),
-              border: Border.all(color: const Color(0xFF3B3B3B)),
+              border: Border.all(color: LightColor.blackPrimaryTextColor),
             ),
           ),
           const SizedBox(width: 8),
@@ -27,7 +28,7 @@ class MyAppBar extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
-                  color: const Color(0xCC3B3B3B),
+                  color: LightColor.blackSecondaryTextColor,
                 ),
               ),
               Text(
@@ -35,7 +36,7 @@ class MyAppBar extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: const Color(0xFF3B3B3B),
+                  color: LightColor.blackPrimaryTextColor,
                 ),
               ),
             ],
@@ -44,9 +45,9 @@ class MyAppBar extends StatelessWidget {
           GestureDetector(
             onTap: () {},
             child: const Icon(
-              Icons.notifications_none_outlined,
-              size: 32,
-              color: Color(0xFF3B3B3B)
+              Icons.notifications,
+              size: 28,
+              color: LightColor.primaryColor
             ),
           ),
         ],

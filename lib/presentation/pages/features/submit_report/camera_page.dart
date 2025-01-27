@@ -6,6 +6,7 @@ import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_ev
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_state.dart';
 import 'package:safetrack/presentation/pages/features/submit_report/photo_preview_page.dart';
 import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({super.key});
@@ -85,14 +86,12 @@ class _SubmitReportState extends State<CameraPage> {
                                   },
                                   child: const Icon(
                                     Icons.arrow_back,
-                                    color: Color(0xFFFCFCFC),
+                                    color: LightColor.whitePrimaryTextColor,
                                   ),
                                 ),
                               ),
                             ),
-                            Expanded(
-                              child: Container()
-                            ),
+                            Expanded(child: Container()),
                             Expanded(
                               child: Container(),
                             )
@@ -115,7 +114,7 @@ class _SubmitReportState extends State<CameraPage> {
                                   height: 40,
                                   width: 40,
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFFFCFCFC),
+                                    color: LightColor.whitePrimaryTextColor,
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
                                       color: const Color(0xFF3B3B3B),
@@ -152,12 +151,12 @@ class _SubmitReportState extends State<CameraPage> {
                                     width: 70,
                                     padding: const EdgeInsets.all(2),
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFFFCFCFC),
+                                      color: LightColor.whitePrimaryTextColor,
                                       borderRadius: BorderRadius.circular(500),
                                     ),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFFFCFCFC),
+                                        color: LightColor.whitePrimaryTextColor,
                                         border: Border.all(
                                           color: const Color(0xFF3B3B3B),
                                           width: 2,
@@ -182,7 +181,7 @@ class _SubmitReportState extends State<CameraPage> {
                                 child: const Center(
                                   child: Icon(
                                     Icons.cameraswitch_outlined,
-                                    color: Color(0xFFFCFCFC),
+                                    color: LightColor.whitePrimaryTextColor,
                                   ),
                                 ),
                               ),

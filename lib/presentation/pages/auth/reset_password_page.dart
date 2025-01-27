@@ -11,6 +11,7 @@ import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.da
 import 'package:safetrack/presentation/widgets/my_form.dart';
 import 'package:safetrack/services/auth_services.dart';
 import 'package:safetrack/services/global.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class ResetPasswordPage extends StatelessWidget {
   final String token;
@@ -40,7 +41,7 @@ class ResetPasswordPage extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             resizeToAvoidBottomInset: false,
-            backgroundColor: Colors.white,
+            backgroundColor: LightColor.backgroundColor,
             body: SafeArea(
               child: Stack(
                 children: [
@@ -57,7 +58,7 @@ class ResetPasswordPage extends StatelessWidget {
                           child: const Icon(
                             Icons.arrow_back,
                             size: 24,
-                            color: Color(0xFF3B3B3B),
+                            color: LightColor.blackPrimaryTextColor,
                           ),
                         ),
                         const SizedBox(height: 16),
@@ -66,7 +67,7 @@ class ResetPasswordPage extends StatelessWidget {
                           style: GoogleFonts.quicksand(
                             fontSize: 40,
                             fontWeight: FontWeight.w700,
-                            color: const Color(0xFF3B3B3B),
+                            color: LightColor.blackPrimaryTextColor,
                           ),
                         ),
                         Text(
@@ -74,7 +75,7 @@ class ResetPasswordPage extends StatelessWidget {
                           style: GoogleFonts.quicksand(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: const Color(0x803B3B3B),
+                            color: LightColor.blackSecondaryTextColor,
                           ),
                         ),
                         const SizedBox(height: 24),
@@ -83,7 +84,7 @@ class ResetPasswordPage extends StatelessWidget {
                           style: GoogleFonts.quicksand(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: const Color(0x803B3B3B),
+                            color: LightColor.blackSecondaryTextColor,
                           ),
                         ),
                         const SizedBox(height: 16),
@@ -136,7 +137,7 @@ class ResetPasswordPage extends StatelessWidget {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF023E8A),
+                              backgroundColor: LightColor.primaryColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(24),
                               ),
@@ -146,7 +147,7 @@ class ResetPasswordPage extends StatelessWidget {
                               style: GoogleFonts.quicksand(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: const Color(0xFFFCFCFC),
+                                color: LightColor.whitePrimaryTextColor,
                               ),
                             ),
                           ),

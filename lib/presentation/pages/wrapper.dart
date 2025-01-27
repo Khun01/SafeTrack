@@ -7,6 +7,7 @@ import 'package:safetrack/presentation/bloc/features/user_guide/user_guide_bloc.
 import 'package:safetrack/presentation/pages/features/submit_report/camera_page.dart';
 import 'package:safetrack/presentation/pages/home_page.dart';
 import 'package:safetrack/presentation/pages/profile_page.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({super.key});
@@ -60,14 +61,18 @@ class _WrapperState extends State<Wrapper> {
                         ),
                       ]),
                       child: BottomNavigationBar(
-                        selectedItemColor: const Color(0xFF023E8A),
+                        selectedItemColor: LightColor.primaryColor,
                         selectedLabelStyle: GoogleFonts.quicksand(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: const Color(0xFF023E8A),
+                          color: LightColor.primaryColor,
                         ),
                         unselectedLabelStyle: GoogleFonts.quicksand(
-                            fontSize: 12, color: const Color(0xFF3B3B3B)),
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: LightColor.blackPrimaryTextColor,
+                        ),
+                        unselectedItemColor: LightColor.blackPrimaryTextColor,
                         items: [
                           BottomNavigationBarItem(
                             label: 'Home',
@@ -112,13 +117,13 @@ class _WrapperState extends State<Wrapper> {
                           height: 50,
                           width: 50,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF023E8A),
+                            color: LightColor.primaryColor,
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: const Icon(
                             Icons.add,
                             size: 32,
-                            color: Color(0xFFFCFCFC),
+                            color: LightColor.whitePrimaryTextColor,
                           ),
                         ),
                       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class MyForm extends StatefulWidget {
   final String label;
@@ -61,20 +62,20 @@ class _MyTextFieldState extends State<MyForm> {
           style: GoogleFonts.quicksand(
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            color: const Color(0xFF3B3B3B),
+            color: LightColor.blackPrimaryTextColor,
           ),
         ),
         const SizedBox(height: 8),
         TextFormField(
           focusNode: _focusNode,
-          obscureText: obscureText, // Use the state variable here
+          obscureText: obscureText,
           onChanged: widget.onChanged,
           decoration: InputDecoration(
             labelStyle: GoogleFonts.quicksand(
-              color: const Color(0xFF023E8A),
+              color: LightColor.primaryColor,
             ),
             errorText: _showError ? widget.errorText : null,
-            fillColor: const Color(0xFFF0F0F0),
+            fillColor: LightColor.inputField,
             filled: true,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(24),
@@ -94,10 +95,9 @@ class _MyTextFieldState extends State<MyForm> {
                       obscureText
                           ? Icons.visibility_outlined
                           : Icons.visibility_off_outlined,
-                      color: const Color(0xFF3B3B3B),
+                      color: LightColor.blackPrimaryTextColor,
                     ),
-                    onPressed:
-                        _toggleObscureText,
+                    onPressed: _toggleObscureText,
                   )
                 : null,
           ),

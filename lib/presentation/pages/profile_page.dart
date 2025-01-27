@@ -12,6 +12,7 @@ import 'package:safetrack/presentation/pages/verify_account_page.dart';
 import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.dart';
 import 'package:safetrack/services/auth_services.dart';
 import 'package:safetrack/services/global.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -42,21 +43,25 @@ class _ProfilePageState extends State<ProfilePage> {
         },
         builder: (context, state) {
           return Scaffold(
+            backgroundColor: LightColor.backgroundColor,
             body: SafeArea(
               child: Stack(
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 24, horizontal: 16),
+                      vertical: 24,
+                      horizontal: 16,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'My Profile',
                           style: GoogleFonts.quicksand(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: const Color(0xFF3B3B3B)),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: LightColor.blackPrimaryTextColor,
+                          ),
                         ),
                         const SizedBox(height: 16),
                         Row(
@@ -66,7 +71,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               width: 50,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(500),
-                                color: Colors.yellow,
+                                color: LightColor.primaryColor,
                               ),
                             ),
                             const SizedBox(width: 12),
@@ -78,14 +83,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                   style: GoogleFonts.quicksand(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                    color: const Color(0xFF3B3B3B),
+                                    color: LightColor.blackPrimaryTextColor,
                                   ),
                                 ),
                                 Text(
                                   'Not verified yet',
                                   style: GoogleFonts.quicksand(
                                     fontSize: 12,
-                                    color: const Color(0xFF3B3B3B),
+                                    fontWeight: FontWeight.w500,
+                                    color: LightColor.blackSecondaryTextColor,
                                   ),
                                 ),
                               ],
@@ -96,7 +102,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16),
-                            border: Border.all(color: const Color(0x1A3B3B3B)),
+                            border: Border.all(
+                              color: LightColor.dividerColor,
+                            ),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,14 +118,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                   'Account',
                                   style: GoogleFonts.quicksand(
                                     fontSize: 16,
-                                    color: const Color(0x803B3B3B),
+                                    color: LightColor.blackAccentColor,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
                               const Divider(
                                 height: 2,
-                                color: Color(0x1A3B3B3B),
+                                color: LightColor.dividerColor,
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -138,7 +146,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     children: [
                                       const Icon(
                                         Icons.person_outline,
-                                        color: Color(0x803B3B3B),
+                                        color: LightColor.blackAccentColor,
                                       ),
                                       const SizedBox(width: 8),
                                       Text(
@@ -146,13 +154,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                         style: GoogleFonts.quicksand(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
-                                          color: const Color(0xFF3B3B3B),
+                                          color:
+                                              LightColor.blackPrimaryTextColor,
                                         ),
                                       ),
                                       const Spacer(),
                                       const Icon(
                                         Icons.arrow_forward_ios_rounded,
-                                        color: Color(0x803B3B3B),
+                                        color: LightColor.blackAccentColor,
                                       )
                                     ],
                                   ),
@@ -160,7 +169,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                               const Divider(
                                 height: 2,
-                                color: Color(0x1A3B3B3B),
+                                color: LightColor.dividerColor,
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -181,7 +190,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     children: [
                                       const Icon(
                                         Icons.check_circle_outline,
-                                        color: Color(0x803B3B3B),
+                                        color: LightColor.blackAccentColor,
                                       ),
                                       const SizedBox(width: 8),
                                       Text(
@@ -189,13 +198,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                         style: GoogleFonts.quicksand(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
-                                          color: const Color(0xFF3B3B3B),
+                                          color:
+                                              LightColor.blackPrimaryTextColor,
                                         ),
                                       ),
                                       const Spacer(),
                                       const Icon(
                                         Icons.arrow_forward_ios_rounded,
-                                        color: Color(0x803B3B3B),
+                                        color: LightColor.blackAccentColor,
                                       )
                                     ],
                                   ),
@@ -208,7 +218,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16),
-                            border: Border.all(color: const Color(0x1A3B3B3B)),
+                            border: Border.all(
+                              color: LightColor.dividerColor,
+                            ),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -222,14 +234,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                   'Settings',
                                   style: GoogleFonts.quicksand(
                                     fontSize: 16,
-                                    color: const Color(0x803B3B3B),
+                                    color: LightColor.blackAccentColor,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
                               const Divider(
                                 height: 2,
-                                color: Color(0x1A3B3B3B),
+                                color: LightColor.dividerColor,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
@@ -242,7 +254,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   children: [
                                     const Icon(
                                       Icons.notifications_none,
-                                      color: Color(0x803B3B3B),
+                                      color: LightColor.blackAccentColor,
                                     ),
                                     const SizedBox(width: 8),
                                     Text(
@@ -250,7 +262,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       style: GoogleFonts.quicksand(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
-                                        color: const Color(0xFF3B3B3B),
+                                        color: LightColor.blackPrimaryTextColor,
                                       ),
                                     ),
                                     const Spacer(),
@@ -273,7 +285,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                               const Divider(
                                 height: 2,
-                                color: Color(0x1A3B3B3B),
+                                color: LightColor.dividerColor,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
@@ -292,7 +304,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     children: [
                                       const Icon(
                                         Icons.logout,
-                                        color: Color(0x803B3B3B),
+                                        color: LightColor.blackAccentColor,
                                       ),
                                       const SizedBox(width: 8),
                                       Text(
@@ -300,7 +312,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                         style: GoogleFonts.quicksand(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
-                                          color: const Color(0xFF3B3B3B),
+                                          color:
+                                              LightColor.blackPrimaryTextColor,
                                         ),
                                       ),
                                     ],

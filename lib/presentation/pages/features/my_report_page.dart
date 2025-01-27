@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/models/my_report.dart';
 import 'package:safetrack/presentation/cards/my_report_card.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class MyReportPage extends StatelessWidget {
   const MyReportPage({super.key});
@@ -63,7 +64,7 @@ class MyReportPage extends StatelessWidget {
           priority: 'Low'),
     ];
     return Scaffold(
-      backgroundColor: const Color(0xFFFCFCFC),
+      backgroundColor: LightColor.backgroundColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -94,7 +95,7 @@ class MyReportPage extends StatelessWidget {
                         style: GoogleFonts.quicksand(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: const Color(0xFF3B3B3B),
+                          color: LightColor.blackPrimaryTextColor,
                         ),
                       ),
                     ),
@@ -111,10 +112,12 @@ class MyReportPage extends StatelessWidget {
                 onChanged: (query) {},
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: const Color(0xFFF0F0F0),
+                  fillColor: LightColor.inputField,
                   hintText: 'Search...',
                   hintStyle: GoogleFonts.quicksand(
-                      fontSize: 16, color: const Color(0x803B3B3B)),
+                    fontSize: 16,
+                    color: LightColor.blackSecondaryTextColor,
+                  ),
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   border: OutlineInputBorder(
@@ -129,8 +132,10 @@ class MyReportPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                     borderSide: BorderSide.none,
                   ),
-                  suffixIcon:
-                      const Icon(Icons.search, color: Color(0xFF3B3B3B)),
+                  suffixIcon: const Icon(
+                    Icons.search,
+                    color: LightColor.blackSecondaryTextColor,
+                  ),
                 ),
               ),
             ),

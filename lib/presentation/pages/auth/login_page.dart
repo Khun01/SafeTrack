@@ -12,6 +12,7 @@ import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.da
 import 'package:safetrack/presentation/widgets/my_form.dart';
 import 'package:safetrack/services/auth_services.dart';
 import 'package:safetrack/services/global.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -27,8 +28,8 @@ class LoginPage extends StatelessWidget {
           if (state.loginFailed) {
             toast(context, state.errorMessage);
             Future.delayed(const Duration(milliseconds: 300), () {
-               // ignore: use_build_context_synchronously
-               context.read<LoginBloc>().add(LoginFailedReset());
+              // ignore: use_build_context_synchronously
+              context.read<LoginBloc>().add(LoginFailedReset());
             });
           } else if (state.loginSuccess) {
             Navigator.push(context,
@@ -36,14 +37,14 @@ class LoginPage extends StatelessWidget {
             toast(context, 'Login successfully');
           } else if (state.loginLoading) {
             FocusScope.of(context).unfocus();
-          }else if((state.email.isEmpty && state.password.isEmpty)){
+          } else if ((state.email.isEmpty && state.password.isEmpty)) {
             toast(context, state.errorMessage);
           }
         },
         builder: (context, state) {
           return Scaffold(
             resizeToAvoidBottomInset: false,
-            backgroundColor: Colors.white,
+            backgroundColor: LightColor.backgroundColor,
             body: SafeArea(
               child: Stack(
                 children: [
@@ -69,7 +70,7 @@ class LoginPage extends StatelessWidget {
                           style: GoogleFonts.quicksand(
                             fontSize: 40,
                             fontWeight: FontWeight.w700,
-                            color: const Color(0xFF3B3B3B),
+                            color: LightColor.blackPrimaryTextColor,
                           ),
                         ),
                         Text(
@@ -77,7 +78,7 @@ class LoginPage extends StatelessWidget {
                           style: GoogleFonts.quicksand(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: const Color(0x803B3B3B),
+                            color: LightColor.blackSecondaryTextColor,
                           ),
                         ),
                         const SizedBox(height: 24),
@@ -124,7 +125,7 @@ class LoginPage extends StatelessWidget {
                               'Forgot Password?',
                               style: GoogleFonts.quicksand(
                                 fontSize: 14,
-                                color: const Color(0xCC3B3B3B),
+                                color: LightColor.blackPrimaryTextColor,
                               ),
                             ),
                           ),
@@ -142,7 +143,7 @@ class LoginPage extends StatelessWidget {
                                   .invokeMethod('TextInput.hide');
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF023E8A),
+                              backgroundColor: LightColor.primaryColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(24),
                               ),
@@ -152,7 +153,7 @@ class LoginPage extends StatelessWidget {
                               style: GoogleFonts.quicksand(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: const Color(0xFFFCFCFC),
+                                color: LightColor.whitePrimaryTextColor,
                               ),
                             ),
                           ),
@@ -175,7 +176,7 @@ class LoginPage extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(24),
                                   side: const BorderSide(
-                                    color: Color(0xFF023E8A),
+                                    color: LightColor.blackPrimaryTextColor,
                                   ),
                                 ),
                                 elevation: 0),
@@ -192,7 +193,7 @@ class LoginPage extends StatelessWidget {
                                   style: GoogleFonts.quicksand(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                    color: const Color(0xFF3B3B3B),
+                                    color: LightColor.blackPrimaryTextColor,
                                   ),
                                 ),
                               ],
@@ -207,7 +208,7 @@ class LoginPage extends StatelessWidget {
                               "Don't have an account?",
                               style: GoogleFonts.quicksand(
                                 fontSize: 14,
-                                color: const Color(0xCC3B3B3B),
+                                color: LightColor.blackSecondaryTextColor,
                               ),
                             ),
                             const SizedBox(width: 4),
@@ -223,9 +224,9 @@ class LoginPage extends StatelessWidget {
                                 'Register Now',
                                 style: GoogleFonts.quicksand(
                                   fontSize: 14,
-                                  color: const Color(0xFF023E8A),
+                                  color: LightColor.primaryColor,
                                   decoration: TextDecoration.underline,
-                                  decorationColor: const Color(0xFF023E8A),
+                                  decorationColor: LightColor.primaryColor,
                                 ),
                               ),
                             ),

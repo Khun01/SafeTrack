@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class MyProfileInformation extends StatelessWidget {
   final String title;
@@ -28,9 +29,10 @@ class MyProfileInformation extends StatelessWidget {
           Text(
             title,
             style: GoogleFonts.quicksand(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xFF3B3B3B)),
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: LightColor.blackPrimaryTextColor,
+            ),
           ),
           const SizedBox(height: 8),
           Row(
@@ -43,10 +45,10 @@ class MyProfileInformation extends StatelessWidget {
                 ),
                 child: Icon(
                   icon,
-                  color: const Color(0xFF023E8A),
+                  color: LightColor.primaryColor,
                 ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -55,7 +57,7 @@ class MyProfileInformation extends StatelessWidget {
                     style: GoogleFonts.quicksand(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
-                      color: const Color(0x803B3B3B),
+                      color: LightColor.blackAccentColor,
                     ),
                   ),
                   Text(
@@ -63,7 +65,7 @@ class MyProfileInformation extends StatelessWidget {
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: const Color(0xFF3B3B3B),
+                      color: LightColor.blackPrimaryTextColor,
                     ),
                   ),
                 ],
@@ -73,7 +75,7 @@ class MyProfileInformation extends StatelessWidget {
           const SizedBox(height: 12),
           const Divider(
             height: 3,
-            color: Color(0x1A023E8A),
+            color: LightColor.dividerColor,
           ),
         ],
       ),

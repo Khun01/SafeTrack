@@ -16,6 +16,7 @@ import 'package:safetrack/presentation/pages/features/my_report_page.dart';
 import 'package:safetrack/presentation/pages/features/safety_map_page.dart';
 import 'package:safetrack/presentation/widgets/my_app_bar.dart';
 import 'package:safetrack/presentation/widgets/my_home_page_feature_button.dart';
+import 'package:safetrack/theme/colors.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class HomePage extends StatefulWidget {
@@ -92,9 +93,8 @@ class _HomePageState extends State<HomePage> {
         // if (state is UserGuideHasSeenState) {
         //   context.read<UserGuideBloc>().add(UserGuideResetEvent());
         // }
-        // para makita
         return Scaffold(
-          backgroundColor: const Color(0xFFFCFCFC),
+          backgroundColor: LightColor.backgroundColor,
           body: SafeArea(
             child: CustomScrollView(
               slivers: [
@@ -102,10 +102,7 @@ class _HomePageState extends State<HomePage> {
                   child: MyAppBar(),
                 ),
                 const SliverToBoxAdapter(
-                  child: Divider(
-                    height: 2,
-                    color: Color(0xFFC2C2C2),
-                  ),
+                  child: Divider(height: 2, color: LightColor.dividerColor),
                 ),
                 SliverToBoxAdapter(
                   child: Padding(
@@ -116,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                       style: GoogleFonts.quicksand(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xFF3B3B3B),
+                        color: LightColor.blackPrimaryTextColor,
                       ),
                     ),
                   ),
@@ -245,7 +242,7 @@ class _HomePageState extends State<HomePage> {
                       style: GoogleFonts.quicksand(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xFF3B3B3B),
+                        color: LightColor.blackPrimaryTextColor,
                       ),
                     ),
                   ),
@@ -288,12 +285,12 @@ class _HomePageState extends State<HomePage> {
   void createTutorial() {
     tutorialCoachMark = TutorialCoachMark(
       targets: _createTargets(),
-      colorShadow: const Color(0xFF023E8A),
+      colorShadow: LightColor.primaryColor,
       textSkip: "SKIP",
       textStyleSkip: GoogleFonts.quicksand(
         fontSize: 16,
         fontWeight: FontWeight.bold,
-        color: const Color(0xFFFCFCFC),
+        color: LightColor.whitePrimaryTextColor,
       ),
       paddingFocus: 10,
       opacityShadow: 0.5,
@@ -341,7 +338,7 @@ class _HomePageState extends State<HomePage> {
                     style: GoogleFonts.quicksand(
                       fontSize: 32,
                       fontWeight: FontWeight.w800,
-                      color: const Color(0xFFFCFCFC),
+                      color: LightColor.whitePrimaryTextColor,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -349,8 +346,7 @@ class _HomePageState extends State<HomePage> {
                     "Here you can view and manage all the reports you've submitted. Stay updated on the status of your reports and track your community's safety.",
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(0xFFFCFCFC),
+                      color: LightColor.whitePrimaryTextColor,
                     ),
                   ),
                 ],
@@ -378,7 +374,7 @@ class _HomePageState extends State<HomePage> {
                     style: GoogleFonts.quicksand(
                       fontSize: 32,
                       fontWeight: FontWeight.w800,
-                      color: const Color(0xFFFCFCFC),
+                      color: LightColor.whitePrimaryTextColor,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -386,8 +382,7 @@ class _HomePageState extends State<HomePage> {
                     "The Safety Map shows real-time incidents happening around your community. Use this map to stay informed and take necessary actions when needed.",
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(0xFFFCFCFC),
+                      color: LightColor.whitePrimaryTextColor,
                     ),
                   ),
                 ],
@@ -415,7 +410,7 @@ class _HomePageState extends State<HomePage> {
                     style: GoogleFonts.quicksand(
                       fontSize: 32,
                       fontWeight: FontWeight.w800,
-                      color: const Color(0xFFFCFCFC),
+                      color: LightColor.whitePrimaryTextColor,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -423,8 +418,7 @@ class _HomePageState extends State<HomePage> {
                     "Use the calendar to keep track of important community events and updates. Stay informed on safety-related activities and deadlines.",
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(0xFFFCFCFC),
+                      color: LightColor.whitePrimaryTextColor,
                     ),
                   ),
                 ],
@@ -452,7 +446,7 @@ class _HomePageState extends State<HomePage> {
                     style: GoogleFonts.quicksand(
                       fontSize: 32,
                       fontWeight: FontWeight.w800,
-                      color: const Color(0xFFFCFCFC),
+                      color: LightColor.whitePrimaryTextColor,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -460,8 +454,7 @@ class _HomePageState extends State<HomePage> {
                     "Access educational resources and safety tips to learn more about community safety, emergency protocols, and how you can contribute to a safer environment.",
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(0xFFFCFCFC),
+                      color: LightColor.whitePrimaryTextColor,
                     ),
                   ),
                 ],
@@ -489,7 +482,7 @@ class _HomePageState extends State<HomePage> {
                     style: GoogleFonts.quicksand(
                       fontSize: 32,
                       fontWeight: FontWeight.w800,
-                      color: const Color(0xFFFCFCFC),
+                      color: LightColor.whitePrimaryTextColor,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -497,8 +490,7 @@ class _HomePageState extends State<HomePage> {
                     "Quick access to important contacts for emergencies or community support. Reach out to local authorities or safety teams directly when needed.",
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(0xFFFCFCFC),
+                      color: LightColor.whitePrimaryTextColor,
                     ),
                   ),
                 ],
@@ -526,7 +518,7 @@ class _HomePageState extends State<HomePage> {
                     style: GoogleFonts.quicksand(
                       fontSize: 32,
                       fontWeight: FontWeight.w800,
-                      color: const Color(0xFFFCFCFC),
+                      color: LightColor.whitePrimaryTextColor,
                     ),
                   ),
                   const SizedBox(height: 6),
@@ -534,8 +526,7 @@ class _HomePageState extends State<HomePage> {
                     "In case of an emergency, use the SOS feature to quickly send alerts and request help from community responders or local authorities",
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(0xFFFCFCFC),
+                      color: LightColor.whitePrimaryTextColor,
                     ),
                   ),
                 ],
@@ -563,15 +554,14 @@ class _HomePageState extends State<HomePage> {
                     style: GoogleFonts.quicksand(
                       fontSize: 32,
                       fontWeight: FontWeight.w800,
-                      color: const Color(0xFFFCFCFC),
+                      color: LightColor.whitePrimaryTextColor,
                     ),
                   ),
                   Text(
                     "Report any incidents or safety concerns in your community. Use this feature to share details about incidents and contribute to improving safety in your area.",
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(0xFFFCFCFC),
+                      color: LightColor.whitePrimaryTextColor,
                     ),
                   ),
                   const SizedBox(height: 80),

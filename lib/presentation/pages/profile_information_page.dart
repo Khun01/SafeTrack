@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/widgets/my_profile_information.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class ProfileInformationPage extends StatelessWidget {
   const ProfileInformationPage({super.key});
@@ -8,7 +9,7 @@ class ProfileInformationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFCFCFC),
+      backgroundColor: LightColor.backgroundColor,
       body: SafeArea(
         child: Stack(
           children: [
@@ -26,7 +27,7 @@ class ProfileInformationPage extends StatelessWidget {
                         duration: const Duration(milliseconds: 300),
                         height: 250,
                         decoration: BoxDecoration(
-                          color: const Color(0xFF023E8A),
+                          color: LightColor.primaryColor,
                           boxShadow: scrolled
                               ? [
                                   BoxShadow(
@@ -55,7 +56,7 @@ class ProfileInformationPage extends StatelessWidget {
                                       height: 100,
                                       width: 100,
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFFFCFCFC),
+                                        color: LightColor.whitePrimaryTextColor,
                                         borderRadius:
                                             BorderRadius.circular(500),
                                       ),
@@ -68,9 +69,10 @@ class ProfileInformationPage extends StatelessWidget {
                                     child: Text(
                                       'John Brandon Lambino',
                                       style: GoogleFonts.quicksand(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: const Color(0xFFFCFCFC)),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: LightColor.whitePrimaryTextColor,
+                                      ),
                                     ),
                                   ),
                                   AnimatedOpacity(
@@ -79,8 +81,11 @@ class ProfileInformationPage extends StatelessWidget {
                                     child: Text(
                                       'Not verified yet',
                                       style: GoogleFonts.quicksand(
-                                          fontSize: 14,
-                                          color: const Color(0xCCFCFCFC)),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color:
+                                            LightColor.whiteSecondaryTextColor,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -96,7 +101,7 @@ class ProfileInformationPage extends StatelessWidget {
                                   style: GoogleFonts.quicksand(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
-                                    color: const Color(0xFFFCFCFC),
+                                    color: LightColor.whitePrimaryTextColor,
                                   ),
                                 ),
                               ),
@@ -111,7 +116,7 @@ class ProfileInformationPage extends StatelessWidget {
                                     height: 30,
                                     width: 30,
                                     decoration: BoxDecoration(
-                                        color: const Color(0xFFFCFCFC),
+                                        color: LightColor.whitePrimaryTextColor,
                                         borderRadius:
                                             BorderRadius.circular(500)),
                                   ),
@@ -133,7 +138,7 @@ class ProfileInformationPage extends StatelessWidget {
                       style: GoogleFonts.quicksand(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xFF3B3B3B),
+                        color: LightColor.blackPrimaryTextColor,
                       ),
                     ),
                   ),
@@ -189,7 +194,7 @@ class ProfileInformationPage extends StatelessWidget {
                       style: GoogleFonts.quicksand(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: const Color(0xFF3B3B3B),
+                        color: LightColor.blackPrimaryTextColor,
                       ),
                     ),
                   ),
@@ -232,7 +237,7 @@ class ProfileInformationPage extends StatelessWidget {
                 },
                 child: const Icon(
                   Icons.arrow_back,
-                  color: Color(0xFFFCFCFC),
+                  color: LightColor.whitePrimaryTextColor,
                 ),
               ),
             )

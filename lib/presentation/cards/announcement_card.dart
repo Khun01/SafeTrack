@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/models/announcement.dart';
+import 'package:safetrack/theme/colors.dart';
 
 class AnnouncementCard extends StatelessWidget {
   final Announcement announcement;
@@ -49,14 +50,14 @@ class AnnouncementCard extends StatelessWidget {
                     style: GoogleFonts.quicksand(
                       fontSize: 16,
                       fontWeight: FontWeight.w800,
-                      color: const Color(0xFF3B3B3B),
+                      color: LightColor.blackPrimaryTextColor,
                     ),
                   ),
                   Text(
                     announcement.date,
                     style: GoogleFonts.quicksand(
                       fontSize: 12,
-                      color: const Color(0xCC3B3B3B),
+                      color: LightColor.blackSecondaryTextColor,
                     ),
                   ),
                 ],
@@ -69,7 +70,7 @@ class AnnouncementCard extends StatelessWidget {
                 style: GoogleFonts.quicksand(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: const Color(0xFF3B3B3B),
+                  color: LightColor.blackPrimaryTextColor,
                 ),
               ),
               SizedBox(
@@ -80,7 +81,8 @@ class AnnouncementCard extends StatelessWidget {
                   maxLines: 3,
                   style: GoogleFonts.quicksand(
                     fontSize: 12,
-                    color: const Color(0xCC3B3B3B),
+                    fontWeight: FontWeight.w500,
+                    color: LightColor.blackSecondaryTextColor,
                   ),
                 ),
               ),
@@ -88,7 +90,7 @@ class AnnouncementCard extends StatelessWidget {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   elevation: 5,
-                  backgroundColor: const Color(0xFF023E8A),
+                  backgroundColor: LightColor.primaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(32),
                   ),
@@ -98,7 +100,7 @@ class AnnouncementCard extends StatelessWidget {
                   'See Details ...',
                   style: GoogleFonts.quicksand(
                     fontSize: 12,
-                    color: const Color(0xFFFCFCFC),
+                    color: LightColor.whitePrimaryTextColor,
                   ),
                 ),
               )
