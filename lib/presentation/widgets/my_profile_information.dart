@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:safetrack/theme/colors.dart';
+import 'package:safetrack/presentation/theme/colors.dart';
 
 class MyProfileInformation extends StatelessWidget {
   final String title;

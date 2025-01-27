@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/models/my_report.dart';
-import 'package:safetrack/theme/colors.dart';
+import 'package:safetrack/presentation/theme/colors.dart';
 
 class MyReportCard extends StatelessWidget {
   final MyReport myReport;

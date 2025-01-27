@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_bloc.dart';
-import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_event.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_state.dart';
 import 'package:safetrack/presentation/pages/features/submit_report/submit_report_page.dart';
-import 'package:safetrack/theme/colors.dart';
+import 'package:safetrack/presentation/theme/colors.dart';
 
 class PhotoPreviewPage extends StatelessWidget {
   final String photo;
@@ -59,9 +58,7 @@ class PhotoPreviewPage extends StatelessWidget {
                           ),
                         ),
                         Expanded(child: Container()),
-                        Expanded(
-                          child: Container(),
-                        )
+                        Expanded(child: Container())
                       ],
                     ),
                   ),
@@ -76,11 +73,11 @@ class PhotoPreviewPage extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          context.read<CameraBloc>().add(DisposeCameraEvent());
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => SubmitReportPage(photo: photo),
+                              builder: (context) =>
+                                  SubmitReportPage(photo: photo),
                             ),
                           );
                         },
@@ -95,7 +92,7 @@ class PhotoPreviewPage extends StatelessWidget {
                           style: GoogleFonts.quicksand(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: LightColor.blackPrimaryTextColor,
+                            color: LightColor.whitePrimaryTextColor,
                           ),
                         ),
                       ),

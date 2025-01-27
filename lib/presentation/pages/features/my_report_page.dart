@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/models/my_report.dart';
 import 'package:safetrack/presentation/cards/my_report_card.dart';
-import 'package:safetrack/theme/colors.dart';
+import 'package:safetrack/presentation/theme/colors.dart';
 
 class MyReportPage extends StatelessWidget {
   const MyReportPage({super.key});

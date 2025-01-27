@@ -7,7 +7,7 @@ import 'package:safetrack/presentation/bloc/features/user_guide/user_guide_bloc.
 import 'package:safetrack/presentation/pages/features/submit_report/camera_page.dart';
 import 'package:safetrack/presentation/pages/home_page.dart';
 import 'package:safetrack/presentation/pages/profile_page.dart';
-import 'package:safetrack/theme/colors.dart';
+import 'package:safetrack/presentation/theme/colors.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({super.key});

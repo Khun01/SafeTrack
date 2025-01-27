@@ -16,7 +16,7 @@ import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.da
 import 'package:safetrack/presentation/widgets/my_verification_form.dart';
 import 'package:safetrack/services/global.dart';
 import 'package:safetrack/services/profile_services.dart';
-import 'package:safetrack/theme/colors.dart';
+import 'package:safetrack/presentation/theme/colors.dart';
 
 class VerifyAccountPage extends StatefulWidget {
   const VerifyAccountPage({super.key});

@@ -10,7 +10,7 @@ import 'package:safetrack/presentation/pages/wrapper.dart';
 import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.dart';
 import 'package:safetrack/services/auth_services.dart';
 import 'package:safetrack/services/global.dart';
-import 'package:safetrack/theme/colors.dart';
+import 'package:safetrack/presentation/theme/colors.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});

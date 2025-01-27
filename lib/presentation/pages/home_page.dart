@@ -16,7 +16,7 @@ import 'package:safetrack/presentation/pages/features/my_report_page.dart';
 import 'package:safetrack/presentation/pages/features/safety_map_page.dart';
 import 'package:safetrack/presentation/widgets/my_app_bar.dart';
 import 'package:safetrack/presentation/widgets/my_home_page_feature_button.dart';
-import 'package:safetrack/theme/colors.dart';
+import 'package:safetrack/presentation/theme/colors.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class HomePage extends StatefulWidget {

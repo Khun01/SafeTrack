@@ -6,7 +6,7 @@ import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_ev
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_state.dart';
 import 'package:safetrack/presentation/pages/features/submit_report/photo_preview_page.dart';
 import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.dart';
-import 'package:safetrack/theme/colors.dart';
+import 'package:safetrack/presentation/theme/colors.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({super.key});

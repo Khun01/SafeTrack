@@ -9,7 +9,7 @@ import 'package:safetrack/presentation/bloc/auth/verification/verification_event
 import 'package:safetrack/presentation/bloc/auth/verification/verification_state.dart';
 import 'package:safetrack/presentation/pages/auth/reset_password_page.dart';
 import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.dart';
-import 'package:safetrack/theme/colors.dart';
+import 'package:safetrack/presentation/theme/colors.dart';
 
 class VerificationPage extends StatelessWidget {
   final String email;

@@ -11,7 +11,7 @@ import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.da
 import 'package:safetrack/presentation/widgets/my_form.dart';
 import 'package:safetrack/services/auth_services.dart';
 import 'package:safetrack/services/global.dart';
-import 'package:safetrack/theme/colors.dart';
+import 'package:safetrack/presentation/theme/colors.dart';
 
 class ResetPasswordPage extends StatelessWidget {
   final String token;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/widgets/my_profile_information.dart';
-import 'package:safetrack/theme/colors.dart';
+import 'package:safetrack/presentation/theme/colors.dart';
 
 class ProfileInformationPage extends StatelessWidget {
   const ProfileInformationPage({super.key});
