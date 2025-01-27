@@ -76,8 +76,10 @@ class PhotoPreviewPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  SubmitReportPage(photo: photo),
+                              builder: (_) => BlocProvider.value(
+                                value: context.read<CameraBloc>(),
+                                child: SubmitReportPage(photo: photo),
+                              ),
                             ),
                           );
                         },
