@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_bloc.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_event.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_state.dart';
-import 'package:safetrack/presentation/pages/wrapper.dart';
+import 'package:safetrack/presentation/pages/features/submit_report/confirmation_report_page.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
 
 class SubmitReportPage extends StatelessWidget {
@@ -203,7 +203,8 @@ class SubmitReportPage extends StatelessWidget {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Wrapper(),
+                            builder: (context) =>
+                                const ConfirmationReportPage(),
                           ),
                           (Route<dynamic> route) => false,
                         );

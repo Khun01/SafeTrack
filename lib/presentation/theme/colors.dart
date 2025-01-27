@@ -13,6 +13,7 @@ class LightColor {
   static const whiteAccentColor = Color(0x61FFFFFF);
 
   static const primaryColor = Color(0xFF023E8A);
+  static const accentColor = Color(0x1F023E8A);
 
   static const backgroundColor = Color(0xFFFCFCFC);
 
