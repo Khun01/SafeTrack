@@ -13,54 +13,70 @@ class ForgotPasswordBloc
       : super(ForgotPasswordState.initial()) {
     on<ForgotPasswordButtonPressed>(forgotPasswordButtonPressed);
     on<ForgotPasswordEmailChanged>(forgotPasswordEmailChanged);
+    on<ForgotPasswordFailedReset>(forgotPasswordFailedReset);
   }
 
   FutureOr<void> forgotPasswordButtonPressed(ForgotPasswordButtonPressed event,
       Emitter<ForgotPasswordState> emit) async {
+    log('Register button is clicked');
+
+    if (state.email.isEmpty) {
+      emit(state.copyWith(
+        forgotPasswordFailed: true,
+        forgotPasswordLoading: false,
+        forgotPasswordSuccess: false,
+        errorMessage: 'Enter your email',
+      ));
+      return;
+    }
+
+    if (!state.isFormValid) {
+      emit(state.copyWith(
+        forgotPasswordFailed: true,
+        forgotPasswordLoading: false,
+        forgotPasswordSuccess: false,
+        errorMessage: 'Please correct the errors in the form',
+      ));
+      return;
+    }
+
     emit(state.copyWith(
       forgotPasswordFailed: false,
       forgotPasswordLoading: true,
       forgotPasswordSuccess: false,
     ));
+
     final response = await authServices.forgotPassword(state.email);
-    final statuCode = response['statusCode'];
+    final statusCode = response['statusCode'];
     final body = response['body'];
+
     try {
-      await Future.delayed(const Duration(seconds: 1));
-      if (state.email.isNotEmpty) {
-        if (state.isFormValid) {
-          if (statuCode == 200) {
-            emit(state.copyWith(
-              forgotPasswordFailed: false,
-              forgotPasswordLoading: false,
-              forgotPasswordSuccess: true,
-            ));
-          } else {
-            log('Forgot Password: $statuCode, $body');
-            emit(state.copyWith(
-              forgotPasswordFailed: false,
-              forgotPasswordLoading: false,
-              forgotPasswordSuccess: false,
-              errorMessage: 'Email is not found',
-            ));
-          }
-        } else {
-          emit(state.copyWith(
-              forgotPasswordFailed: true,
-              forgotPasswordLoading: false,
-              forgotPasswordSuccess: false,
-              errorMessage: 'Invalid Email'));
-        }
-      } else {
+      if (statusCode == 200) {
+        log('the registration is success: $statusCode, $body');
+        emit(state.copyWith(
+          forgotPasswordFailed: false,
+          forgotPasswordLoading: false,
+          forgotPasswordSuccess: true,
+          successMessage: 'A verification code was sent to your email.',
+        ));
+      } else if (statusCode == 500) {
         emit(state.copyWith(
           forgotPasswordFailed: true,
           forgotPasswordLoading: false,
           forgotPasswordSuccess: false,
-          errorMessage: 'Enter your email',
+          errorMessage: 'Network Error',
+        ));
+      } else {
+        log('$statusCode, $body');
+        emit(state.copyWith(
+          forgotPasswordFailed: true,
+          forgotPasswordLoading: false,
+          forgotPasswordSuccess: false,
+          errorMessage: 'Email is not found',
         ));
       }
     } catch (e) {
-      log('Forgot Password: $statuCode, $body');
+      log('Registering: $statusCode, $body');
       emit(state.copyWith(
         forgotPasswordFailed: true,
         forgotPasswordLoading: false,
@@ -85,5 +101,13 @@ class ForgotPasswordBloc
     final regex = RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
         caseSensitive: false);
     return regex.hasMatch(email);
+  }
+
+  FutureOr<void> forgotPasswordFailedReset(
+      ForgotPasswordFailedReset event, Emitter<ForgotPasswordState> emit) {
+    emit(state.copyWith(
+      forgotPasswordFailed: false,
+      email: '',
+    ));
   }
 }

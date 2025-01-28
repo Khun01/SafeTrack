@@ -6,6 +6,7 @@ class ForgotPasswordState {
   final bool forgotPasswordFailed;
   final bool forgotPasswordLoading;
   final String errorMessage;
+  final String successMessage;
 
   bool get isFormValid => isEmailValid;
 
@@ -17,6 +18,7 @@ class ForgotPasswordState {
     this.forgotPasswordFailed = false,
     this.forgotPasswordLoading = false,
     this.errorMessage = '',
+    this.successMessage = '',
   });
 
   factory ForgotPasswordState.initial() {
@@ -28,6 +30,7 @@ class ForgotPasswordState {
       forgotPasswordFailed: false,
       forgotPasswordLoading: false,
       errorMessage: '',
+      successMessage: '',
     );
   }
 
@@ -39,6 +42,7 @@ class ForgotPasswordState {
     bool? forgotPasswordFailed,
     bool? forgotPasswordLoading,
     String? errorMessage,
+    String? successMessage,
   }) {
     return ForgotPasswordState(
       email: email ?? this.email,
@@ -48,6 +52,7 @@ class ForgotPasswordState {
       forgotPasswordFailed: forgotPasswordFailed?? this.forgotPasswordFailed,
       forgotPasswordLoading: forgotPasswordLoading?? this.forgotPasswordLoading,
       errorMessage: errorMessage?? this.errorMessage,
+      successMessage: successMessage?? this.successMessage,
     );
   }
 }

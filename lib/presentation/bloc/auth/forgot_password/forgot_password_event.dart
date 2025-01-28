@@ -7,3 +7,5 @@ class ForgotPasswordEmailChanged extends ForgotPasswordEvent{
 
   ForgotPasswordEmailChanged({required this.email});
 }
+
+class ForgotPasswordFailedReset extends ForgotPasswordEvent{}
