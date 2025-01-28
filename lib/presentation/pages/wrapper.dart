@@ -35,6 +35,9 @@ class _WrapperState extends State<Wrapper> {
           child: const HomePage(),
         );
       case 1:
+        return const SizedBox.shrink();
+
+      case 2:
         return BlocProvider(
           create: (context) => logoutBloc,
           child: const ProfilePage(),
@@ -81,9 +84,11 @@ class _WrapperState extends State<Wrapper> {
                             ),
                           ]),
                           child: BottomNavigationBar(
+                            showUnselectedLabels: false,
+                            iconSize: 28,
                             selectedItemColor: LightColor.primaryColor,
                             selectedLabelStyle: GoogleFonts.quicksand(
-                              fontSize: 14,
+                              fontSize: 12,
                               fontWeight: FontWeight.bold,
                               color: LightColor.primaryColor,
                             ),
@@ -103,10 +108,12 @@ class _WrapperState extends State<Wrapper> {
                                       : Icons.home_outlined,
                                 ),
                               ),
+                              const BottomNavigationBarItem(
+                                  label: '', icon: SizedBox.shrink()),
                               BottomNavigationBarItem(
                                 label: "Profile",
                                 icon: Icon(
-                                  selectedIndex == 1
+                                  selectedIndex == 2
                                       ? Icons.person
                                       : Icons.person_outline,
                                 ),

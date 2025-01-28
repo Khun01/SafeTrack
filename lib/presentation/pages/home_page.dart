@@ -38,6 +38,8 @@ class _HomePageState extends State<HomePage> {
   GlobalKey sos = GlobalKey();
 
   GlobalKey addReport = GlobalKey();
+  GlobalKey home = GlobalKey();
+  GlobalKey profile = GlobalKey();
 
   @override
   void initState() {
@@ -189,7 +191,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               const SizedBox(height: 24),
                               GestureDetector(
-                                onTap: (){
+                                onTap: () {
                                   toast(context, "SOS");
                                 },
                                 child: Column(
@@ -200,7 +202,8 @@ class _HomePageState extends State<HomePage> {
                                       width: 60,
                                       padding: const EdgeInsets.all(16),
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(500),
+                                        borderRadius:
+                                            BorderRadius.circular(500),
                                         color: const Color(0xFFE5E9F4),
                                         boxShadow: const [
                                           BoxShadow(
@@ -211,7 +214,8 @@ class _HomePageState extends State<HomePage> {
                                           )
                                         ],
                                       ),
-                                      child: Image.asset('assets/icons/sos.png'),
+                                      child:
+                                          Image.asset('assets/icons/sos.png'),
                                     ),
                                     const SizedBox(height: 16),
                                     Text(
@@ -260,13 +264,30 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SliverToBoxAdapter(
-                  child: Center(
-                    child: Container(
-                      key: addReport,
-                      height: 50,
-                      width: 50,
-                      color: Colors.amber,
-                    ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          key: home,
+                          height: 60,
+                          color: Colors.blue,
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          key: addReport,
+                          height: 60,
+                          color: Colors.amber,
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          key: profile,
+                          height: 60,
+                          color: Colors.green,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -333,7 +354,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'My report',
+                    'My Report',
                     style: GoogleFonts.quicksand(
                       fontSize: 32,
                       fontWeight: FontWeight.w800,
@@ -537,6 +558,42 @@ class _HomePageState extends State<HomePage> {
     );
     targets.add(
       TargetFocus(
+        identify: "home",
+        keyTarget: home,
+        alignSkip: Alignment.bottomRight,
+        contents: [
+          TargetContent(
+            align: ContentAlign.top,
+            builder: (context, controller) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Home Page',
+                    style: GoogleFonts.quicksand(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w800,
+                      color: LightColor.whitePrimaryTextColor,
+                    ),
+                  ),
+                  Text(
+                    "Stay updated with the latest events, incidents, and updates happening in your area. Use this page as your gateway to explore community safety and resources.",
+                    style: GoogleFonts.quicksand(
+                      fontSize: 14,
+                      color: LightColor.whitePrimaryTextColor,
+                    ),
+                  ),
+                  const SizedBox(height: 80),
+                ],
+              );
+            },
+          ),
+        ],
+      ),
+    );
+    targets.add(
+      TargetFocus(
         identify: "addReport",
         keyTarget: addReport,
         alignSkip: Alignment.bottomRight,
@@ -558,6 +615,42 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Text(
                     "Report any incidents or safety concerns in your community. Use this feature to share details about incidents and contribute to improving safety in your area.",
+                    style: GoogleFonts.quicksand(
+                      fontSize: 14,
+                      color: LightColor.whitePrimaryTextColor,
+                    ),
+                  ),
+                  const SizedBox(height: 80),
+                ],
+              );
+            },
+          ),
+        ],
+      ),
+    );
+    targets.add(
+      TargetFocus(
+        identify: "profile",
+        keyTarget: profile,
+        alignSkip: Alignment.bottomRight,
+        contents: [
+          TargetContent(
+            align: ContentAlign.top,
+            builder: (context, controller) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Profile Page',
+                    style: GoogleFonts.quicksand(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w800,
+                      color: LightColor.whitePrimaryTextColor,
+                    ),
+                  ),
+                  Text(
+                    "View and update your personal information, manage your preferences, and ensure your account is always up to date for a personalized experience.",
                     style: GoogleFonts.quicksand(
                       fontSize: 14,
                       color: LightColor.whitePrimaryTextColor,
