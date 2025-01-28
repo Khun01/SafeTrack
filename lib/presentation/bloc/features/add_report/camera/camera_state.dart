@@ -23,3 +23,8 @@ class CameraPhotoCapturedState extends CameraState {
 
   CameraPhotoCapturedState(this.imagePath);
 }
+
+class CameraFlashToggledState extends CameraState {
+  final FlashMode flashMode;
+  CameraFlashToggledState(this.flashMode);
+}

@@ -109,7 +109,9 @@ class _WrapperState extends State<Wrapper> {
                                 ),
                               ),
                               const BottomNavigationBarItem(
-                                  label: '', icon: SizedBox.shrink()),
+                                label: '',
+                                icon: SizedBox.shrink(),
+                              ),
                               BottomNavigationBarItem(
                                 label: "Profile",
                                 icon: Icon(

@@ -15,6 +15,7 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
     on<DisposeCameraEvent>(disposeCameraEvent);
     on<CapturePhotoEvent>(capturePhotoEvent);
     on<SwitchCameraEvent>(switchCameraEvent);
+    on<ToggleFlashEvent>(toggleFlashEvent);
   }
 
   FutureOr<void> initializeCameraEvent(
@@ -37,7 +38,7 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
     try {
       controller = CameraController(
         cameras[currentCameraIndex],
-        ResolutionPreset.high,
+        ResolutionPreset.veryHigh,
       );
       await controller!.initialize();
       emit(CameraInitializedState(controller!));
@@ -85,5 +86,30 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
   Future<void> close() {
     controller?.dispose();
     return super.close();
+  }
+
+  FutureOr<void> toggleFlashEvent(
+      ToggleFlashEvent event, Emitter<CameraState> emit) async {
+        log('the toggle flash is clicked');
+    if (controller == null || !controller!.value.isInitialized) {
+      emit(CameraErrorState("Camera not initialized"));
+      return;
+    }
+    try {
+      FlashMode currentFlashMode = controller!.value.flashMode;
+      FlashMode newFlashMode;
+      if (currentFlashMode == FlashMode.off) {
+        newFlashMode = FlashMode.auto;
+      } else if (currentFlashMode == FlashMode.auto) {
+        newFlashMode = FlashMode.always;
+      } else {
+        newFlashMode = FlashMode.off;
+      }
+
+      await controller!.setFlashMode(newFlashMode);
+      emit(CameraFlashToggledState(newFlashMode));
+    } catch (e) {
+      emit(CameraErrorState("Error toggling flash: $e"));
+    }
   }
 }

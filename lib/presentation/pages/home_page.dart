@@ -99,171 +99,178 @@ class _HomePageState extends State<HomePage> {
         return Scaffold(
           backgroundColor: LightColor.backgroundColor,
           body: SafeArea(
-            child: CustomScrollView(
-              slivers: [
-                const SliverToBoxAdapter(
-                  child: MyAppBar(),
-                ),
-                const SliverToBoxAdapter(
-                  child: Divider(height: 2, color: LightColor.dividerColor),
-                ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                    child: Text(
-                      'Announcement',
-                      style: GoogleFonts.quicksand(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: LightColor.blackPrimaryTextColor,
+            child: Stack(
+              children: [
+                CustomScrollView(
+                  slivers: [
+                    const SliverToBoxAdapter(
+                      child: MyAppBar(),
+                    ),
+                    const SliverToBoxAdapter(
+                      child: Divider(height: 2, color: LightColor.dividerColor),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 16),
+                        child: Text(
+                          'Announcement',
+                          style: GoogleFonts.quicksand(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: LightColor.blackPrimaryTextColor,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: Container(
-                    height: 240,
-                    padding: const EdgeInsets.only(right: 16),
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: announcement.length,
-                      itemBuilder: (context, index) {
-                        return AnnouncementCard(
-                          announcement: announcement[index],
-                        );
-                      },
-                    ),
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 24),
-                    color: const Color(0x4DE5E9F4),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: [
-                              MyHomePageFeatureButton(
-                                key: myReport,
-                                name: 'My Report',
-                                image: 'assets/icons/document.png',
-                                onTap: const MyReportPage(),
-                              ),
-                              const SizedBox(height: 24),
-                              MyHomePageFeatureButton(
-                                key: educational,
-                                name: 'Educational',
-                                image: 'assets/icons/educational.png',
-                                onTap: const EducationalPage(),
-                              ),
-                            ],
-                          ),
+                    SliverToBoxAdapter(
+                      child: Container(
+                        height: 240,
+                        padding: const EdgeInsets.only(right: 16),
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: announcement.length,
+                          itemBuilder: (context, index) {
+                            return AnnouncementCard(
+                              announcement: announcement[index],
+                            );
+                          },
                         ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              MyHomePageFeatureButton(
-                                key: safetyMap,
-                                name: 'Safety Map',
-                                image: 'assets/icons/map.png',
-                                onTap: const SafetyMapPage(),
-                              ),
-                              const SizedBox(height: 24),
-                              MyHomePageFeatureButton(
-                                key: contacts,
-                                name: 'Contacts',
-                                image: 'assets/icons/contact.png',
-                                onTap: const ContactsPage(),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              MyHomePageFeatureButton(
-                                key: calendar,
-                                name: 'Calendar',
-                                image: 'assets/icons/calendar.png',
-                                onTap: const CalendarPage(),
-                              ),
-                              const SizedBox(height: 24),
-                              GestureDetector(
-                                onTap: () {
-                                  toast(context, "SOS");
-                                },
-                                child: Column(
-                                  key: sos,
-                                  children: [
-                                    Container(
-                                      height: 60,
-                                      width: 60,
-                                      padding: const EdgeInsets.all(16),
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(500),
-                                        color: const Color(0xFFE5E9F4),
-                                        boxShadow: const [
-                                          BoxShadow(
-                                            color: Color(0x1A023E8A),
-                                            spreadRadius: 1,
-                                            blurRadius: 4,
-                                            offset: Offset(0, 4),
-                                          )
-                                        ],
-                                      ),
-                                      child:
-                                          Image.asset('assets/icons/sos.png'),
-                                    ),
-                                    const SizedBox(height: 16),
-                                    Text(
-                                      'SOS',
-                                      style: GoogleFonts.quicksand(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: LightColor.primaryColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 16, left: 16, bottom: 8),
-                    child: Text(
-                      'Safety Tips',
-                      style: GoogleFonts.quicksand(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: LightColor.blackPrimaryTextColor,
                       ),
                     ),
-                  ),
+                    SliverToBoxAdapter(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 24),
+                        color: const Color(0x4DE5E9F4),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  MyHomePageFeatureButton(
+                                    key: myReport,
+                                    name: 'My Report',
+                                    image: 'assets/icons/document.png',
+                                    onTap: const MyReportPage(),
+                                  ),
+                                  const SizedBox(height: 24),
+                                  MyHomePageFeatureButton(
+                                    key: educational,
+                                    name: 'Educational',
+                                    image: 'assets/icons/educational.png',
+                                    onTap: const EducationalPage(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  MyHomePageFeatureButton(
+                                    key: safetyMap,
+                                    name: 'Safety Map',
+                                    image: 'assets/icons/map.png',
+                                    onTap: const SafetyMapPage(),
+                                  ),
+                                  const SizedBox(height: 24),
+                                  MyHomePageFeatureButton(
+                                    key: contacts,
+                                    name: 'Contacts',
+                                    image: 'assets/icons/contact.png',
+                                    onTap: const ContactsPage(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  MyHomePageFeatureButton(
+                                    key: calendar,
+                                    name: 'Calendar',
+                                    image: 'assets/icons/calendar.png',
+                                    onTap: const CalendarPage(),
+                                  ),
+                                  const SizedBox(height: 24),
+                                  GestureDetector(
+                                    onTap: () {
+                                      toast(context, "SOS");
+                                    },
+                                    child: Column(
+                                      key: sos,
+                                      children: [
+                                        Container(
+                                          height: 60,
+                                          width: 60,
+                                          padding: const EdgeInsets.all(16),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(500),
+                                            color: const Color(0xFFE5E9F4),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Color(0x1A023E8A),
+                                                spreadRadius: 1,
+                                                blurRadius: 4,
+                                                offset: Offset(0, 4),
+                                              )
+                                            ],
+                                          ),
+                                          child: Image.asset(
+                                              'assets/icons/sos.png'),
+                                        ),
+                                        const SizedBox(height: 16),
+                                        Text(
+                                          'SOS',
+                                          style: GoogleFonts.quicksand(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            color: LightColor.primaryColor,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.only(top: 16, left: 16, bottom: 8),
+                        child: Text(
+                          'Safety Tips',
+                          style: GoogleFonts.quicksand(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: LightColor.blackPrimaryTextColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                    // SliverList.builder(
+                    //   itemBuilder: (context, index) {
+                    //     return ActivitiesCard(
+                    //       activities: activities[index],
+                    //     );
+                    //   },
+                    //   itemCount: activities.length,
+                    // ),
+                    SliverToBoxAdapter(
+                      child: Container(
+                        height: 80,
+                      ),
+                    ),
+                  ],
                 ),
-                // SliverList.builder(
-                //   itemBuilder: (context, index) {
-                //     return ActivitiesCard(
-                //       activities: activities[index],
-                //     );
-                //   },
-                //   itemCount: activities.length,
-                // ),
-                SliverToBoxAdapter(
-                  child: Container(
-                    height: 80,
-                  ),
-                ),
-                SliverToBoxAdapter(
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
                   child: Row(
                     children: [
                       Expanded(
@@ -289,7 +296,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-                ),
+                )
               ],
             ),
           ),

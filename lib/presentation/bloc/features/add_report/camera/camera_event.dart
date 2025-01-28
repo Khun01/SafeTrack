@@ -13,3 +13,5 @@ class SwitchCameraEvent extends CameraEvent {
 
   SwitchCameraEvent({required this.controller});
 }
+
+class ToggleFlashEvent extends CameraEvent {}

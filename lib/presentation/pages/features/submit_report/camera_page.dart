@@ -5,8 +5,8 @@ import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_bl
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_event.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_state.dart';
 import 'package:safetrack/presentation/pages/features/submit_report/photo_preview_page.dart';
-import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
+import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({super.key});
@@ -70,7 +70,7 @@ class _SubmitReportState extends State<CameraPage> {
                       left: 0,
                       right: 0,
                       child: Container(
-                        padding: const EdgeInsets.only(left: 16, top: 24),
+                        padding: const EdgeInsets.only(left: 16, top: 24, right: 16),
                         width: double.infinity,
                         child: Row(
                           children: [
@@ -93,7 +93,20 @@ class _SubmitReportState extends State<CameraPage> {
                             ),
                             Expanded(child: Container()),
                             Expanded(
-                              child: Container(),
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    context
+                                        .read<CameraBloc>()
+                                        .add(ToggleFlashEvent());
+                                  },
+                                  child: const Icon(
+                                    Icons.electric_bolt_sharp,
+                                    color: LightColor.whitePrimaryTextColor,
+                                  ),
+                                ),
+                              ),
                             )
                           ],
                         ),
@@ -139,12 +152,6 @@ class _SubmitReportState extends State<CameraPage> {
                                     context
                                         .read<CameraBloc>()
                                         .add(CapturePhotoEvent());
-                                    // Navigator.push(
-                                    //   context,
-                                    //   MaterialPageRoute(
-                                    //     builder: (context) => const SafetyMapPage()
-                                    //   ),
-                                    // );
                                   },
                                   child: Container(
                                     height: 70,
