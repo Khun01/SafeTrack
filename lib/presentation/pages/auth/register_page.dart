@@ -28,6 +28,12 @@ class _RegisterPageState extends State<RegisterPage>
   late final AnimationController controller;
 
   @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(vsync: this);
+  }
+
+  @override
   void dispose() {
     controller.dispose();
     super.dispose();
@@ -48,7 +54,6 @@ class _RegisterPageState extends State<RegisterPage>
       child: BlocConsumer<RegisterBloc, RegisterState>(
         listener: (context, state) {
           if (state.registerSuccess && !state.registerLoading) {
-            controller = AnimationController(vsync: this);
             controller.addStatusListener((status) {
               if (status == AnimationStatus.completed) {
                 snackBar(context, state.successMessage);

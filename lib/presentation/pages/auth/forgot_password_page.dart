@@ -24,6 +24,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
     with SingleTickerProviderStateMixin {
   late final AnimationController controller;
 
+   @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(vsync: this);
+  }
+
   @override
   void dispose() {
     controller.dispose();
@@ -47,7 +53,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
                   .add(ForgotPasswordFailedReset());
             });
           } else if (state.forgotPasswordSuccess) {
-            controller = AnimationController(vsync: this);
             controller.addStatusListener((status) {
               if (status == AnimationStatus.completed) {
                 snackBar(context, state.successMessage);
