@@ -9,3 +9,5 @@ class ForgotPasswordEmailChanged extends ForgotPasswordEvent{
 }
 
 class ForgotPasswordFailedReset extends ForgotPasswordEvent{}
+
+class ForgotPasswordSuccessReset extends ForgotPasswordEvent{}

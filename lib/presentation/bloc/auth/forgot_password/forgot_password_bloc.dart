@@ -14,6 +14,7 @@ class ForgotPasswordBloc
     on<ForgotPasswordButtonPressed>(forgotPasswordButtonPressed);
     on<ForgotPasswordEmailChanged>(forgotPasswordEmailChanged);
     on<ForgotPasswordFailedReset>(forgotPasswordFailedReset);
+    on<ForgotPasswordSuccessReset>(forgotPasswordSuccessReset);
   }
 
   FutureOr<void> forgotPasswordButtonPressed(ForgotPasswordButtonPressed event,
@@ -107,6 +108,13 @@ class ForgotPasswordBloc
       ForgotPasswordFailedReset event, Emitter<ForgotPasswordState> emit) {
     emit(state.copyWith(
       forgotPasswordFailed: false,
+      email: '',
+    ));
+  }
+
+  FutureOr<void> forgotPasswordSuccessReset(ForgotPasswordSuccessReset event, Emitter<ForgotPasswordState> emit) {
+     emit(state.copyWith(
+      forgotPasswordSuccess: false,
       email: '',
     ));
   }
