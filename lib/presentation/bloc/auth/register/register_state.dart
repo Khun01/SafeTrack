@@ -15,6 +15,7 @@ class RegisterState {
   final bool isConfirmPasswordValid;
   final bool isPasswordEqualToConfirmedPassword;
   final String errorMessage;
+  final String successMessage;
 
   bool get isFormValid =>
       isEmailValid &&
@@ -39,6 +40,7 @@ class RegisterState {
     required this.isConfirmPasswordValid,
     required this.isPasswordEqualToConfirmedPassword,
     required this.errorMessage,
+    required this.successMessage,
   });
 
   factory RegisterState.initial() {
@@ -59,6 +61,7 @@ class RegisterState {
       isConfirmPasswordValid: false,
       isPasswordEqualToConfirmedPassword: false,
       errorMessage: '',
+      successMessage: '',
     );
   }
 
@@ -79,6 +82,7 @@ class RegisterState {
     bool? isConfirmPasswordValid,
     bool? isPasswordEqualToConfirmedPassword,
     String? errorMessage,
+    String? successMessage,
   }) {
     return RegisterState(
       name: name ?? this.name,
@@ -100,6 +104,7 @@ class RegisterState {
       isPasswordEqualToConfirmedPassword: isPasswordEqualToConfirmedPassword ??
           this.isPasswordEqualToConfirmedPassword,
       errorMessage: errorMessage ?? this.errorMessage,
+      successMessage: successMessage?? this.successMessage,
     );
   }
 }

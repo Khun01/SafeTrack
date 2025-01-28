@@ -14,57 +14,70 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     on<RegisterEmailChanged>(registerEmailChanged);
     on<RegisterPasswordChanged>(registerPasswordChanged);
     on<RegisterConfirmPasswordChanged>(registerConfirmPasswordChanged);
+    on<RegisterFailedReset>(registerFailedReset);
   }
 
   FutureOr<void> registerButtonPressed(
       RegisterButtonPressed event, Emitter<RegisterState> emit) async {
     log('Register button is clicked');
+
+    if (state.name.isEmpty ||
+        state.email.isEmpty ||
+        state.password.isEmpty ||
+        state.confirmPassword.isEmpty) {
+      emit(state.copyWith(
+        registerLoading: false,
+        registerFailed: true,
+        registerSuccess: false,
+        errorMessage: 'Fill out all the fields before submitting',
+      ));
+      return; 
+    }
+
+    if (!state.isFormValid) {
+      emit(state.copyWith(
+        registerLoading: false,
+        registerFailed: true,
+        registerSuccess: false,
+        errorMessage: 'Please correct the errors in the form',
+      ));
+      return; 
+    }
+
     emit(state.copyWith(
       registerLoading: true,
       registerFailed: false,
       registerSuccess: false,
     ));
 
+    await Future.delayed(const Duration(seconds: 2));
     final response = await authServices.register(
         state.name, state.email, state.password, state.confirmPassword);
     final statusCode = response['statusCode'];
     final body = response['body'];
+
     try {
-      if (state.name.isNotEmpty &&
-          state.email.isNotEmpty &&
-          state.password.isNotEmpty &&
-          state.confirmPassword.isNotEmpty) {
-        if (state.isFormValid) {
-          if (statusCode == 201) {
-            log('$statusCode, $body');
-            emit(state.copyWith(
-              registerLoading: false,
-              registerFailed: false,
-              registerSuccess: true,
-            ));
-          } else {
-            log('$statusCode, $body');
-            emit(state.copyWith(
-              registerLoading: false,
-              registerFailed: true,
-              registerSuccess: false,
-              errorMessage: body,
-            ));
-          }
-        } else {
-          emit(state.copyWith(
+      if (statusCode == 201) {
+        log('the registration is success: $statusCode, $body');
+        emit(state.copyWith(
             registerLoading: false,
-            registerFailed: true,
-            registerSuccess: false,
-            errorMessage: 'Your form is not valid',
-          ));
-        }
-      } else {
+            registerFailed: false,
+            registerSuccess: true,
+            successMessage: 'Registration Completed'));
+      } else if (statusCode == 500) {
         emit(state.copyWith(
           registerLoading: false,
           registerFailed: true,
           registerSuccess: false,
-          errorMessage: 'Fill out the form',
+          errorMessage: 'Network Error',
+        ));
+      } else {
+        log('$statusCode, $body');
+        emit(state.copyWith(
+          registerLoading: false,
+          registerFailed: true,
+          registerSuccess: false,
+          errorMessage: body,
         ));
       }
     } catch (e) {
@@ -137,5 +150,16 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     log("Password in bloc: ${state.password}");
     log("Confirmed Password: $confirmedPassword");
     return state.password.trim() == confirmedPassword.trim();
+  }
+
+  FutureOr<void> registerFailedReset(
+      RegisterFailedReset event, Emitter<RegisterState> emit) {
+    emit(state.copyWith(
+      registerFailed: false,
+      email: '',
+      name: '',
+      password: '',
+      confirmPassword: '',
+    ));
   }
 }
