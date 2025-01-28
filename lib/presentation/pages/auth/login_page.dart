@@ -37,8 +37,6 @@ class LoginPage extends StatelessWidget {
             toast(context, 'Login successfully');
           } else if (state.loginLoading) {
             FocusScope.of(context).unfocus();
-          } else if ((state.email.isEmpty && state.password.isEmpty)) {
-            toast(context, state.errorMessage);
           }
         },
         builder: (context, state) {
@@ -50,7 +48,9 @@ class LoginPage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 24, horizontal: 16),
+                      vertical: 24,
+                      horizontal: 16,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -244,6 +244,7 @@ class LoginPage extends StatelessWidget {
                       child: Container(
                         width: double.infinity,
                         height: double.infinity,
+                        // ignore: deprecated_member_use
                         color: Colors.black.withOpacity(0.5),
                       ),
                     ),

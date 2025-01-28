@@ -13,55 +13,78 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
     on<ResetPasswordButtonPressed>(resetPasswordButtonPressed);
     on<ResetPasswordChanged>(resetPasswordChanged);
     on<ResetConfirmPasswordChanged>(resetConfirmPasswordChanged);
+    on<ResetPasswordFailedReset>(resetPasswordFailedReset);
+    on<ResetPasswordSuccessReset>(resetPasswordSuccessReset);
   }
 
-  FutureOr<void> resetPasswordButtonPressed(ResetPasswordButtonPressed event,
-      Emitter<ResetPasswordState> emit) async {
-    log('${event.email}, ${event.token}, ${state.password}, ${state.confirmPassword}');
+  FutureOr<void> resetPasswordButtonPressed(
+    ResetPasswordButtonPressed event,
+    Emitter<ResetPasswordState> emit,
+  ) async {
+    log('ResetPassword event: email=${event.email}, token=${event.token}, '
+        'password=${state.password}, confirmPassword=${state.confirmPassword}');
+
     emit(state.copyWith(
       resetPasswordLoading: true,
       resetPasswordFailed: false,
       resetPasswordSuccess: false,
+      errorMessage: null,
     ));
+
     try {
-      await Future.delayed(const Duration(seconds: 1));
-      if (state.password.isNotEmpty && state.confirmPassword.isNotEmpty) {
-        if (state.isFormValid) {
-          final response = await authServices.resetPassword(
-              event.email, event.token, state.password, state.confirmPassword);
-          final statuCode = response['statusCode'];
-          final body = response['body'];
-          if (statuCode == 200) {
-            emit(state.copyWith(
-              resetPasswordLoading: false,
-              resetPasswordFailed: false,
-              resetPasswordSuccess: true,
-            ));
-          } else {
-            log('Reset Password: $statuCode, $body');
-            emit(state.copyWith(
-              resetPasswordLoading: false,
-              resetPasswordFailed: true,
-              resetPasswordSuccess: false,
-              errorMessage: 'Email is not found',
-            ));
-          }
-        }
-      } else {
+      if (state.password.isEmpty || state.confirmPassword.isEmpty) {
         emit(state.copyWith(
           resetPasswordLoading: false,
           resetPasswordFailed: true,
           resetPasswordSuccess: false,
-          errorMessage: 'Put your new password',
+          errorMessage: 'Password fields cannot be empty.',
+        ));
+        return;
+      }
+
+      if (!state.isFormValid) {
+        emit(state.copyWith(
+          resetPasswordLoading: false,
+          resetPasswordFailed: true,
+          resetPasswordSuccess: false,
+          errorMessage: 'Password confirmation does not match.',
+        ));
+        return;
+      }
+      await Future.delayed(const Duration(seconds: 1));
+      final response = await authServices.resetPassword(
+        event.email,
+        event.token,
+        state.password,
+        state.confirmPassword,
+      );
+
+      final statusCode = response['statusCode'];
+      final body = response['body'];
+
+      if (statusCode == 200) {
+        emit(state.copyWith(
+          resetPasswordLoading: false,
+          resetPasswordFailed: false,
+          resetPasswordSuccess: true,
+          successMessage: 'Password reset successfully'
+        ));
+      } else {
+        log('Reset Password failed: statusCode=$statusCode, body=$body');
+        emit(state.copyWith(
+          resetPasswordLoading: false,
+          resetPasswordFailed: true,
+          resetPasswordSuccess: false,
+          errorMessage: body['message'] ?? 'Reset password failed.',
         ));
       }
-    } catch (e) {
-      log('Reset Password: $e');
+    } catch (error, stackTrace) {
+      log('Reset Password error: $error', error: error, stackTrace: stackTrace);
       emit(state.copyWith(
         resetPasswordLoading: false,
         resetPasswordFailed: true,
         resetPasswordSuccess: false,
-        errorMessage: 'Network Error',
+        errorMessage: 'Network error occurred. Please try again.',
       ));
     }
   }
@@ -101,5 +124,22 @@ class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
     log("Password in bloc: ${state.password}");
     log("Confirmed Password: $confirmedPassword");
     return state.password.trim() == confirmedPassword.trim();
+  }
+
+  FutureOr<void> resetPasswordFailedReset(
+      ResetPasswordFailedReset event, Emitter<ResetPasswordState> emit) {
+    emit(state.copyWith(
+      resetPasswordFailed: false,
+      password: '',
+      confirmPassword: '',
+    ));
+  }
+
+  FutureOr<void> resetPasswordSuccessReset(ResetPasswordSuccessReset event, Emitter<ResetPasswordState> emit) {
+    emit(state.copyWith(
+      resetPasswordSuccess: false,
+      password: '',
+      confirmPassword: '',
+    ));
   }
 }

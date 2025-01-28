@@ -10,6 +10,7 @@ class ResetPasswordState {
   final bool resetPasswordFailed;
   final bool resetPasswordLoading;
   final String errorMessage;
+  final String successMessage;
 
   
   bool get isFormValid =>
@@ -30,6 +31,7 @@ class ResetPasswordState {
     required this.resetPasswordFailed,
     required this.resetPasswordLoading,
     required this.errorMessage,
+    required this.successMessage,
   });
 
   factory ResetPasswordState.initial(){
@@ -45,6 +47,7 @@ class ResetPasswordState {
       resetPasswordFailed: false,
       resetPasswordLoading: false,
       errorMessage: '',
+      successMessage: '',
     );
   }
 
@@ -60,6 +63,7 @@ class ResetPasswordState {
     bool? resetPasswordFailed,
     bool? resetPasswordLoading,
     String? errorMessage,
+    String? successMessage,
   }){
     return ResetPasswordState(
       password: password?? this.password,
@@ -73,6 +77,7 @@ class ResetPasswordState {
       resetPasswordFailed: resetPasswordFailed?? this.resetPasswordFailed,
       resetPasswordLoading: resetPasswordLoading?? this.resetPasswordLoading,
       errorMessage: errorMessage ?? this.errorMessage,
+      successMessage: successMessage?? this.successMessage,
     );
   }
 

@@ -20,7 +20,6 @@ class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
     try {
       emit(VerificationLoadingState());
       if (token.isNotEmpty) {
-        await Future.delayed(const Duration(seconds: 1));
         log('The token is: $token');
         emit(VerificationSuccessState(token: token));
       } else {

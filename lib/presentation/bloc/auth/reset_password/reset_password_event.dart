@@ -18,3 +18,8 @@ class ResetConfirmPasswordChanged extends ResetPasswordEvent {
 
   ResetConfirmPasswordChanged({required this.confirmPassword});
 }
+
+
+class ResetPasswordFailedReset extends ResetPasswordEvent{}
+
+class ResetPasswordSuccessReset extends ResetPasswordEvent{}

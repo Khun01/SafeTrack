@@ -853,7 +853,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                           child: Container(
                             width: double.infinity,
                             height: double.infinity,
-                            color: Colors.black.withOpacity(0.5),
+                            color: Colors.black.withValues(),
                           ),
                         ),
                         const Center(
