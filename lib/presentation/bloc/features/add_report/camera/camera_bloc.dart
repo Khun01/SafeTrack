@@ -53,6 +53,8 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
       await controller?.dispose();
       controller = null;
     }
+    currentCameraIndex = 0;
+    cameras = [];
     emit(CameraInitial());
   }
 
@@ -90,7 +92,7 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
 
   FutureOr<void> toggleFlashEvent(
       ToggleFlashEvent event, Emitter<CameraState> emit) async {
-        log('the toggle flash is clicked');
+    log('the toggle flash is clicked');
     if (controller == null || !controller!.value.isInitialized) {
       emit(CameraErrorState("Camera not initialized"));
       return;

@@ -32,15 +32,20 @@ class _SubmitReportState extends State<CameraPage> {
           );
         }
         if (state is CameraPhotoCapturedState) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => BlocProvider.value(
-                value: context.read<CameraBloc>(),
-                child: PhotoPreviewPage(photo: state.imagePath),
+          Future.delayed(const Duration(seconds: 1), () {
+            Navigator.push(
+              // ignore: use_build_context_synchronously
+              context,
+              MaterialPageRoute(
+                builder: (_) => BlocProvider.value(
+                  value: context.read<CameraBloc>(),
+                  child: PhotoPreviewPage(photo: state.imagePath),
+                ),
               ),
-            ),
-          );
+            );
+            // ignore: use_build_context_synchronously
+            context.read<CameraBloc>().add(DisposeCameraEvent());
+          });
         }
       },
       buildWhen: (previous, current) {
@@ -70,7 +75,8 @@ class _SubmitReportState extends State<CameraPage> {
                       left: 0,
                       right: 0,
                       child: Container(
-                        padding: const EdgeInsets.only(left: 16, top: 24, right: 16),
+                        padding:
+                            const EdgeInsets.only(left: 16, top: 24, right: 16),
                         width: double.infinity,
                         child: Row(
                           children: [

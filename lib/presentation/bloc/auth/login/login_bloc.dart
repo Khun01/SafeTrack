@@ -50,7 +50,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               loginLoading: false,
               loginFailed: true,
               loginSuccess: false,
-              errorMessage: response['data']['message'],
+              errorMessage: 'Network Error',
             ));
           }
         } catch (e) {
