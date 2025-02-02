@@ -35,7 +35,7 @@ class CheckLoginStatusBloc
       }
     } catch (e) {
       log(e.toString());
-      emit(CheckLoginStatusFailed(error: e.toString()));
+      emit(CheckLoginStatusFailed(error: 'Please check your internet connection.'));
     }
   }
 }

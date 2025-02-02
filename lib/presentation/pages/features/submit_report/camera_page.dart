@@ -1,6 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_bloc.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_event.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_state.dart';
@@ -8,19 +10,8 @@ import 'package:safetrack/presentation/pages/features/submit_report/photo_previe
 import 'package:safetrack/presentation/theme/colors.dart';
 import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.dart';
 
-class CameraPage extends StatefulWidget {
+class CameraPage extends StatelessWidget {
   const CameraPage({super.key});
-
-  @override
-  State<CameraPage> createState() => _SubmitReportState();
-}
-
-class _SubmitReportState extends State<CameraPage> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<CameraBloc>().add(InitializeCameraEvent());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +23,8 @@ class _SubmitReportState extends State<CameraPage> {
           );
         }
         if (state is CameraPhotoCapturedState) {
-          Future.delayed(const Duration(seconds: 1), () {
+          Future.delayed(const Duration(milliseconds: 300), () {
             Navigator.push(
-              // ignore: use_build_context_synchronously
               context,
               MaterialPageRoute(
                 builder: (_) => BlocProvider.value(
@@ -43,8 +33,8 @@ class _SubmitReportState extends State<CameraPage> {
                 ),
               ),
             );
-            // ignore: use_build_context_synchronously
             context.read<CameraBloc>().add(DisposeCameraEvent());
+            context.read<CameraBloc>().add(ResetCameraStateEvent());
           });
         }
       },
@@ -108,7 +98,7 @@ class _SubmitReportState extends State<CameraPage> {
                                         .add(ToggleFlashEvent());
                                   },
                                   child: const Icon(
-                                    Icons.electric_bolt_sharp,
+                                     Icons.electric_bolt_sharp,
                                     color: LightColor.whitePrimaryTextColor,
                                   ),
                                 ),
@@ -136,7 +126,7 @@ class _SubmitReportState extends State<CameraPage> {
                                     color: LightColor.whitePrimaryTextColor,
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
-                                      color: const Color(0xFF3B3B3B),
+                                      color: LightColor.primaryColor,
                                       width: 2,
                                     ),
                                     boxShadow: const [
@@ -171,8 +161,8 @@ class _SubmitReportState extends State<CameraPage> {
                                       decoration: BoxDecoration(
                                         color: LightColor.whitePrimaryTextColor,
                                         border: Border.all(
-                                          color: const Color(0xFF3B3B3B),
-                                          width: 2,
+                                          color: LightColor.primaryColor,
+                                          width: 3,
                                         ),
                                         borderRadius:
                                             BorderRadius.circular(500),
@@ -211,7 +201,14 @@ class _SubmitReportState extends State<CameraPage> {
         } else if (state is CameraErrorState) {
           return Center(child: Text(state.errorMessage));
         } else {
-          return const SizedBox.shrink();
+          return Center(
+            child: Text(
+              'Error hahahahahah',
+              style: GoogleFonts.quicksand(
+                color: Colors.white,
+              ),
+            ),
+          );
         }
       },
     );

@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_bloc.dart';
+import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_event.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_state.dart';
 import 'package:safetrack/presentation/pages/features/submit_report/submit_report_page.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
@@ -16,63 +16,69 @@ class PhotoPreviewPage extends StatelessWidget {
     return BlocConsumer<CameraBloc, CameraState>(
       listener: (context, state) {},
       builder: (context, state) {
-        return Scaffold(
-          body: SafeArea(
-            child: Stack(
-              children: [
-                Positioned(
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Center(
-                    child: Image.file(
-                      File(photo),
-                      fit: BoxFit.cover,
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
+        // ignore: deprecated_member_use
+        return WillPopScope(
+          onWillPop: () async {
+            context.read<CameraBloc>().add(InitializeCameraEvent());
+            return true;
+          },
+          child: Scaffold(
+            body: SafeArea(
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 0,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Image.file(
+                        File(photo),
+                        fit: BoxFit.cover,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height,
+                      ),
                     ),
                   ),
-                ),
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 16, top: 24),
-                    width: double.infinity,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Icon(
-                                Icons.close_rounded,
-                                color: LightColor.whitePrimaryTextColor,
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      padding: const EdgeInsets.only(left: 16, top: 24),
+                      width: double.infinity,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                  context
+                                      .read<CameraBloc>()
+                                      .add(InitializeCameraEvent());
+                                },
+                                child: const Icon(
+                                  Icons.close_rounded,
+                                  color: LightColor.whitePrimaryTextColor,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Expanded(child: Container()),
-                        Expanded(child: Container())
-                      ],
+                          Expanded(child: Container()),
+                          Expanded(child: Container())
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Positioned(
-                  left: 16,
-                  right: 16,
-                  bottom: 24,
-                  child: Center(
-                    child: SizedBox(
-                      height: 50,
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
+                  Positioned(
+                    left: 16,
+                    right: 16,
+                    bottom: 24,
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -83,25 +89,38 @@ class PhotoPreviewPage extends StatelessWidget {
                             ),
                           );
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: LightColor.primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                        ),
-                        child: Text(
-                          'Next',
-                          style: GoogleFonts.quicksand(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                        child: Container(
+                          height: 70,
+                          width: 70,
+                          padding: const EdgeInsets.all(2),
+                          decoration: BoxDecoration(
                             color: LightColor.whitePrimaryTextColor,
+                            borderRadius: BorderRadius.circular(500),
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: LightColor.whitePrimaryTextColor,
+                              border: Border.all(
+                                color: LightColor.primaryColor,
+                                width: 3,
+                              ),
+                              borderRadius: BorderRadius.circular(500),
+                            ),
+                            child: const Center(
+                              child: Icon(
+                                Icons.check_rounded,
+                                color: LightColor.primaryColor,
+                                size: 48,
+                                weight: 3,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         );

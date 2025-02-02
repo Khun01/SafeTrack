@@ -30,7 +30,7 @@ class LandingPage extends StatelessWidget {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const LoginPage()));
           } else if (state is CheckLoginStatusFailed) {
-            toast(context, state.error);
+            snackBar(context, state.error);
           }
         },
         builder: (context, state) {
