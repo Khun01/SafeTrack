@@ -18,6 +18,7 @@ class SubmitReportBloc extends Bloc<SubmitReportEvent, SubmitReportState> {
     emit(SubmitReportLoadingState());
     log('The submit button is clicked');
     try {
+      log('The data is = Image: ${event.reportImage}, Title: ${event.title}, Description: ${event.description}, Location: ${event.location}');
       emit(SubmitReportSuccessState());
     } catch (e) {
       log('The error in submitting report is: ${e.toString()}');

@@ -1,5 +1,5 @@
+// ignore_for_file: deprecated_member_use
 import 'dart:io';
-
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,9 +12,21 @@ import 'package:safetrack/presentation/theme/colors.dart';
 import 'package:safetrack/services/feature_services.dart';
 import 'package:safetrack/services/global.dart';
 
-class SubmitReportPage extends StatelessWidget {
+class SubmitReportPage extends StatefulWidget {
   final String photo;
-  const SubmitReportPage({super.key, required this.photo});
+  const SubmitReportPage({
+    super.key,
+    required this.photo,
+  });
+
+  @override
+  State<SubmitReportPage> createState() => _SubmitReportPageState();
+}
+
+class _SubmitReportPageState extends State<SubmitReportPage> {
+  final TextEditingController title = TextEditingController();
+  final TextEditingController description = TextEditingController();
+  final TextEditingController location = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +46,16 @@ class SubmitReportPage extends StatelessWidget {
         },
         builder: (context, state) {
           return Scaffold(
+            resizeToAvoidBottomInset: false,
             backgroundColor: LightColor.backgroundColor,
             body: SafeArea(
               child: Container(
                 padding: const EdgeInsets.only(
-                    left: 16, top: 24, right: 16, bottom: 24),
+                  left: 16,
+                  top: 24,
+                  right: 16,
+                  bottom: 24,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -85,7 +102,7 @@ class SubmitReportPage extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Image.file(
-                          File(photo),
+                          File(widget.photo),
                           fit: BoxFit.cover,
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height,
@@ -94,6 +111,7 @@ class SubmitReportPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      controller: title,
                       style: GoogleFonts.quicksand(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -128,6 +146,7 @@ class SubmitReportPage extends StatelessWidget {
                       height: 150,
                       width: double.infinity,
                       child: TextFormField(
+                        controller: description,
                         textAlignVertical: TextAlignVertical.top,
                         maxLines: null,
                         expands: true,
@@ -181,28 +200,34 @@ class SubmitReportPage extends StatelessWidget {
                           color: LightColor.primaryColor,
                         ),
                         const SizedBox(width: 8),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Location',
-                              style: GoogleFonts.quicksand(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: LightColor.blackPrimaryTextColor,
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Location',
+                                style: GoogleFonts.quicksand(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: LightColor.blackPrimaryTextColor,
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              '#123 San Vicente, San Jacinto, Pangasinan',
-                              style: GoogleFonts.quicksand(
-                                fontSize: 13,
-                                color: LightColor.blackSecondaryTextColor,
+                              const SizedBox(height: 4),
+                              SizedBox(
+                                height: 20,
+                                child: TextFormField(
+                                  controller: location,
+                                  style: GoogleFonts.quicksand(
+                                    fontSize: 14,
+                                  ),
+                                  decoration: const InputDecoration(
+                                    contentPadding: EdgeInsets.only(bottom: 16),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                        const Spacer(),
                         const Icon(
                           Icons.arrow_forward_ios_rounded,
                           size: 20,
@@ -218,7 +243,12 @@ class SubmitReportPage extends StatelessWidget {
                         onPressed: () {
                           context
                               .read<SubmitReportBloc>()
-                              .add(SubmitButtonEvent());
+                              .add(SubmitButtonEvent(
+                                reportImage: widget.photo,
+                                title: title.text,
+                                description: description.text,
+                                location: location.text,
+                              ));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: LightColor.primaryColor,
