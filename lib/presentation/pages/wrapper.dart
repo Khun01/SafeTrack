@@ -39,8 +39,15 @@ class _WrapperState extends State<Wrapper> {
   Widget buildPage() {
     switch (selectedIndex) {
       case 0:
-        return BlocProvider(
-          create: (context) => UserGuideBloc(),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => userInformationBloc,
+            ),
+            BlocProvider(
+              create: (context) => UserGuideBloc(),
+            )
+          ],
           child: const HomePage(),
         );
       case 1:
