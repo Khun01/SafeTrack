@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,12 +25,10 @@ class SubmitReportPage extends StatelessWidget {
       child: BlocConsumer<SubmitReportBloc, SubmitReportState>(
         listener: (context, state) {
           if (state is SubmitReportSuccessState) {
-            Navigator.pushAndRemoveUntil(
+            navigationAnimation(
               context,
-              MaterialPageRoute(
-                builder: (context) => const ConfirmationReportPage(),
-              ),
-              (Route<dynamic> route) => false,
+              const ConfirmationReportPage(),
+              SharedAxisTransitionType.horizontal,
             );
           }
         },

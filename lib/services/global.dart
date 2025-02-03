@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,6 +38,28 @@ void snackBar(BuildContext context, String message) {
         ),
       ),
       padding: const EdgeInsets.all(16),
+    ),
+  );
+}
+
+void navigationAnimation(
+  BuildContext context,
+  Widget page,
+  SharedAxisTransitionType transitionType,
+) {
+  Navigator.push(
+    context,
+    PageRouteBuilder(
+      transitionDuration: const Duration(milliseconds: 300),
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return SharedAxisTransition(
+          animation: animation,
+          secondaryAnimation: secondaryAnimation,
+          transitionType: transitionType,
+          child: child,
+        );
+      },
     ),
   );
 }

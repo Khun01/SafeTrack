@@ -16,7 +16,6 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
     on<CapturePhotoEvent>(capturePhotoEvent);
     on<SwitchCameraEvent>(switchCameraEvent);
     on<ToggleFlashEvent>(toggleFlashEvent);
-    on<ResetCameraStateEvent>(resetCameraStateEvent);
   }
 
   FutureOr<void> initializeCameraEvent(
@@ -111,15 +110,6 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
     } catch (e) {
       emit(CameraErrorState("Error toggling flash: $e"));
     }
-  }
-
-  FutureOr<void> resetCameraStateEvent(
-      ResetCameraStateEvent event, Emitter<CameraState> emit) async {
-    await controller?.dispose();
-    controller = null;
-    currentCameraIndex = 0;
-    cameras = [];
-    emit(CameraInitial());
   }
   
   @override

@@ -8,7 +8,6 @@ import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_ev
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_state.dart';
 import 'package:safetrack/presentation/pages/features/submit_report/photo_preview_page.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
-import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.dart';
 
 class CameraPage extends StatelessWidget {
   const CameraPage({super.key});
@@ -34,7 +33,6 @@ class CameraPage extends StatelessWidget {
               ),
             );
             context.read<CameraBloc>().add(DisposeCameraEvent());
-            context.read<CameraBloc>().add(ResetCameraStateEvent());
           });
         }
       },
@@ -45,7 +43,11 @@ class CameraPage extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is CameraInitializingState) {
-          return const Center(child: MyCircularProgressIndicator());
+          return const Center(
+            child: CircularProgressIndicator(
+              color: LightColor.whitePrimaryTextColor,
+            ),
+          );
         } else if (state is CameraInitializedState) {
           // ignore: deprecated_member_use
           return WillPopScope(

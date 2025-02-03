@@ -15,5 +15,3 @@ class SwitchCameraEvent extends CameraEvent {
 }
 
 class ToggleFlashEvent extends CameraEvent {}
-
-class ResetCameraStateEvent extends CameraEvent {}
