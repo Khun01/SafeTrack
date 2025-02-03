@@ -23,61 +23,69 @@ class MyProfileInformation extends StatelessWidget {
         right: 16,
         top: 12,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: GoogleFonts.quicksand(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: LightColor.blackPrimaryTextColor,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 9),
-                decoration: BoxDecoration(
-                  color: const Color(0x1A023E8A),
-                  borderRadius: BorderRadius.circular(500),
-                ),
-                child: Icon(
-                  icon,
-                  color: LightColor.primaryColor,
-                ),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: GoogleFonts.quicksand(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: LightColor.blackPrimaryTextColor,
               ),
-              const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    subheading,
-                    style: GoogleFonts.quicksand(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: LightColor.blackAccentColor,
-                    ),
+            ),
+            const SizedBox(height: 8),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 9),
+                  decoration: BoxDecoration(
+                    color: const Color(0x1A023E8A),
+                    borderRadius: BorderRadius.circular(500),
                   ),
-                  Text(
-                    info,
-                    style: GoogleFonts.quicksand(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: LightColor.blackPrimaryTextColor,
-                    ),
+                  child: Icon(
+                    icon,
+                    color: LightColor.primaryColor,
                   ),
-                ],
-              )
-            ],
-          ),
-          const SizedBox(height: 12),
-          const Divider(
-            height: 3,
-            color: LightColor.dividerColor,
-          ),
-        ],
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        subheading,
+                        style: GoogleFonts.quicksand(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: LightColor.blackAccentColor,
+                        ),
+                      ),
+                      Text(
+                        info,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.quicksand(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: LightColor.blackPrimaryTextColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(height: 12),
+            const Divider(
+              height: 3,
+              color: LightColor.dividerColor,
+            ),
+          ],
+        ),
       ),
     );
   }

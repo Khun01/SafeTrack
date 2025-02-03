@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:safetrack/models/user.dart';
 import 'package:safetrack/services/storage.dart';
 
 class ProfileServices {
@@ -51,5 +53,24 @@ class ProfileServices {
       'statusCode': response.statusCode,
       'data': responseData,
     };
+  }
+
+  Future<User> users() async {
+    final user = await Storage.getData();
+    String? id = user['id'];
+    final response = await http.get(
+      Uri.parse('$baseUrl/user/$id'),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> user = json.decode(response.body);
+      log('Successfully retrieved user: $user');
+      return User.fromJson(user);
+    } else {
+      log('The status code is: ${response.statusCode}');
+      throw Exception('Failed to load duties');
+    }
   }
 }
