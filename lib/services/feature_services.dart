@@ -18,7 +18,7 @@ class FeatureServices {
 
   // ------------- FOR SUBMITING REPORT ------------- //
   Future<Map<String, dynamic>> submitReport(
-    String title,
+    String priority,
     String location,
     String description,
     String evidence,
@@ -36,7 +36,7 @@ class FeatureServices {
     final request = http.MultipartRequest('POST', uri)
       ..headers['Authorization'] = 'Bearer $token'
       ..headers['Accept'] = 'application/json'
-      ..fields['title'] = title
+      ..fields['priority_type'] = priority
       ..fields['location'] = location
       ..fields['description'] = description
       ..files.add(await http.MultipartFile.fromPath(

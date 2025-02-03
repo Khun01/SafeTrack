@@ -26,10 +26,12 @@ class SubmitReportPage extends StatefulWidget {
 
 class _SubmitReportPageState extends State<SubmitReportPage>
     with SingleTickerProviderStateMixin {
-  final TextEditingController title = TextEditingController();
   final TextEditingController description = TextEditingController();
   final TextEditingController location = TextEditingController();
   late final AnimationController controller;
+
+  final List<String> dropdownOptions = ['High', 'Medium', 'Low'];
+  String? selectedOption;
 
   @override
   void initState() {
@@ -57,7 +59,7 @@ class _SubmitReportPageState extends State<SubmitReportPage>
               const ConfirmationReportPage(),
               SharedAxisTransitionType.horizontal,
             );
-          }else if(state is SubmitReportErrorState) {
+          } else if (state is SubmitReportErrorState) {
             toast(context, state.errorMessage);
           }
         },
@@ -118,53 +120,91 @@ class _SubmitReportPageState extends State<SubmitReportPage>
                               ],
                             ),
                             const SizedBox(height: 32),
-                            Container(
-                              height: 150,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.file(
-                                  File(widget.photo),
-                                  fit: BoxFit.cover,
-                                  width: MediaQuery.of(context).size.width,
-                                  height: MediaQuery.of(context).size.height,
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Container(
+                                  height: 210,
+                                  width: 210,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(12),
+                                    child: Image.file(
+                                      File(widget.photo),
+                                      fit: BoxFit.cover,
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            const SizedBox(height: 16),
-                            TextFormField(
-                              controller: title,
-                              style: GoogleFonts.quicksand(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: LightColor.blackPrimaryTextColor,
-                              ),
-                              decoration: InputDecoration(
-                                hintText: 'Title',
-                                hintStyle: GoogleFonts.quicksand(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: LightColor.blackAccentColor,
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: DropdownButtonFormField(
+                                    hint: Text(
+                                      'Priority type',
+                                      style: GoogleFonts.quicksand(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: LightColor.blackAccentColor,
+                                      ),
+                                    ),
+                                    iconDisabledColor: LightColor.primaryColor,
+                                    iconEnabledColor: LightColor.primaryColor,
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.only(
+                                        left: 12,
+                                        top: 0,
+                                        bottom: 0,
+                                        right: 12,
+                                      ),
+                                      hintStyle: GoogleFonts.quicksand(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: LightColor.blackAccentColor,
+                                      ),
+                                      fillColor: LightColor.inputField,
+                                      filled: true,
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                        borderSide: const BorderSide(
+                                            color: Colors.transparent),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                        borderSide: const BorderSide(
+                                            color: Colors.transparent),
+                                      ),
+                                    ),
+                                    items: dropdownOptions
+                                        .map((option) =>
+                                            DropdownMenuItem<String>(
+                                              value: option,
+                                              child: Text(
+                                                option,
+                                                style: GoogleFonts.quicksand(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: LightColor
+                                                      .blackPrimaryTextColor,
+                                                ),
+                                              ),
+                                            ))
+                                        .toList(),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        selectedOption = value;
+                                      });
+                                    },
+                                  ),
                                 ),
-                                fillColor: LightColor.inputField,
-                                filled: true,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide: const BorderSide(
-                                      color: Colors.transparent),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide: const BorderSide(
-                                      color: Colors.transparent),
-                                ),
-                              ),
+                              ],
                             ),
                             const SizedBox(height: 8),
                             SizedBox(
@@ -246,7 +286,8 @@ class _SubmitReportPageState extends State<SubmitReportPage>
                                           controller: location,
                                           style: GoogleFonts.quicksand(
                                             fontSize: 14,
-                                            color: LightColor.blackSecondaryTextColor,
+                                            color: LightColor
+                                                .blackSecondaryTextColor,
                                           ),
                                           decoration: const InputDecoration(
                                             contentPadding:
@@ -271,13 +312,12 @@ class _SubmitReportPageState extends State<SubmitReportPage>
                               child: ElevatedButton(
                                 onPressed: () {
                                   if (location.text.isNotEmpty &&
-                                      title.text.isNotEmpty &&
                                       description.text.isNotEmpty) {
                                     context
                                         .read<SubmitReportBloc>()
                                         .add(SubmitButtonEvent(
                                           reportImage: widget.photo,
-                                          title: title.text,
+                                          priority: selectedOption ?? 'Low',
                                           description: description.text,
                                           location: location.text,
                                         ));

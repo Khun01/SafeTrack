@@ -18,16 +18,18 @@ class SubmitReportBloc extends Bloc<SubmitReportEvent, SubmitReportState> {
     emit(SubmitReportLoadingState());
     log('The submit button is clicked');
     try {
-      log('The data is = Image: ${event.reportImage}, Title: ${event.title}, Description: ${event.description}, Location: ${event.location}');
+      final priority = event.priority == 'High' ? 'high' : event.priority == 'Medium' ? 'medium' : 'low';
+      log('The data is = Image: ${event.reportImage}, Title: $priority, Description: ${event.description}, Location: ${event.location}');
       final response = await featureServices.submitReport(
-        event.title,
+        priority,
         event.location,
         event.description,
         event.reportImage,
       );
       final statusCode = response['statusCode'];
+      final data = response['data'];
       switch (statusCode) {
-        case 200:
+        case 201:
           emit(SubmitReportSuccessState());
           break;
         case 403:
@@ -36,6 +38,10 @@ class SubmitReportBloc extends Bloc<SubmitReportEvent, SubmitReportState> {
           ));
           break;
         default:
+        log('The error in submitting report is: $statusCode, $data');
+          emit(SubmitReportErrorState(
+            errorMessage: 'Something went wrong',
+          ));
           break;
       }
     } catch (e) {
