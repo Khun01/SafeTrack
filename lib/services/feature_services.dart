@@ -35,6 +35,7 @@ class FeatureServices {
     final uri = Uri.parse('$baseUrl/barangay-concern');
     final request = http.MultipartRequest('POST', uri)
       ..headers['Authorization'] = 'Bearer $token'
+      ..headers['Accept'] = 'application/json'
       ..fields['title'] = title
       ..fields['location'] = location
       ..fields['description'] = description
