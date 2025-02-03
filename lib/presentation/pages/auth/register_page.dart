@@ -56,7 +56,11 @@ class _RegisterPageState extends State<RegisterPage>
           if (state.registerSuccess && !state.registerLoading) {
             controller.addStatusListener((status) {
               if (status == AnimationStatus.completed) {
-                snackBar(context, state.successMessage);
+                snackBar(
+                  context,
+                  state.successMessage,
+                  LightColor.primaryColor,
+                );
                 Future.delayed(const Duration(milliseconds: 100), () {
                   Navigator.pushReplacement(
                     // ignore: use_build_context_synchronously
@@ -81,7 +85,7 @@ class _RegisterPageState extends State<RegisterPage>
               }
             });
           } else if (state.registerFailed) {
-            snackBar(context, state.errorMessage);
+            snackBar(context, state.errorMessage, LightColor.primaryColor);
             Future.delayed(const Duration(milliseconds: 300), () {
               // ignore: use_build_context_synchronously
               context.read<RegisterBloc>().add(RegisterFailedReset());
@@ -270,8 +274,11 @@ class _RegisterPageState extends State<RegisterPage>
                                                         'TextInput.hide');
                                               }
                                             } else {
-                                              snackBar(context,
-                                                  'Aggree with terms and services first');
+                                              snackBar(
+                                                context,
+                                                'Aggree with terms and services first',
+                                                LightColor.primaryColor,
+                                              );
                                             }
                                           },
                                           style: ElevatedButton.styleFrom(

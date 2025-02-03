@@ -50,7 +50,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage>
       child: BlocConsumer<ResetPasswordBloc, ResetPasswordState>(
         listener: (context, state) {
           if (state.resetPasswordFailed) {
-            snackBar(context, state.errorMessage);
+            snackBar(context, state.errorMessage, LightColor.primaryColor,);
             Future.delayed(const Duration(milliseconds: 300), () {
               // ignore: use_build_context_synchronously
               context.read<ResetPasswordBloc>().add(ResetPasswordFailedReset());
@@ -58,7 +58,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage>
           } else if (state.resetPasswordSuccess) {
             controller.addStatusListener((status) {
               if (status == AnimationStatus.completed) {
-                snackBar(context, state.successMessage);
+                snackBar(context, state.successMessage, LightColor.primaryColor,);
                 Future.delayed(const Duration(milliseconds: 100), () {
                   Navigator.push(
                     // ignore: use_build_context_synchronously

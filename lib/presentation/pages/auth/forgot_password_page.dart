@@ -45,7 +45,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
       child: BlocConsumer<ForgotPasswordBloc, ForgotPasswordState>(
         listener: (context, state) {
           if (state.forgotPasswordFailed) {
-            snackBar(context, state.errorMessage);
+            snackBar(
+              context,
+              state.errorMessage,
+              LightColor.primaryColor,
+            );
             Future.delayed(const Duration(milliseconds: 300), () {
               // ignore: use_build_context_synchronously
               context
@@ -55,7 +59,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
           } else if (state.forgotPasswordSuccess) {
             controller.addStatusListener((status) {
               if (status == AnimationStatus.completed) {
-                snackBar(context, state.successMessage);
+                snackBar(
+                  context,
+                  state.successMessage,
+                  LightColor.primaryColor,
+                );
                 Future.delayed(const Duration(milliseconds: 100), () {
                   Navigator.push(
                     // ignore: use_build_context_synchronously

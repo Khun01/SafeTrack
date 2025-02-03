@@ -18,7 +18,7 @@ void toast(BuildContext context, String message) {
   );
 }
 
-void snackBar(BuildContext context, String message) {
+void snackBar(BuildContext context, String message, Color color) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(
@@ -29,7 +29,7 @@ void snackBar(BuildContext context, String message) {
         ),
       ),
       duration: const Duration(seconds: 2),
-      backgroundColor: LightColor.primaryColor,
+      backgroundColor: color,
       behavior: SnackBarBehavior.fixed,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(

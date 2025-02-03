@@ -19,10 +19,28 @@ class SubmitReportBloc extends Bloc<SubmitReportEvent, SubmitReportState> {
     log('The submit button is clicked');
     try {
       log('The data is = Image: ${event.reportImage}, Title: ${event.title}, Description: ${event.description}, Location: ${event.location}');
-      emit(SubmitReportSuccessState());
+      final response = await featureServices.submitReport(
+        event.title,
+        event.location,
+        event.description,
+        event.reportImage,
+      );
+      final statusCode = response['statusCode'];
+      switch (statusCode) {
+        case 200:
+          emit(SubmitReportSuccessState());
+          break;
+        case 403:
+          emit(SubmitReportErrorState(
+            errorMessage: 'You are not verified to use this feature',
+          ));
+          break;
+        default:
+          break;
+      }
     } catch (e) {
       log('The error in submitting report is: ${e.toString()}');
-      emit(SubmitReportErrorState(errorMessage: e.toString()));
+      emit(SubmitReportErrorState(errorMessage: 'Network Error'));
     }
   }
 }
