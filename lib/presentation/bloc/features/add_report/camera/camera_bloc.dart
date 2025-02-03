@@ -103,6 +103,8 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
       } else {
         newFlashMode = FlashMode.off;
       }
+      log('current flash mode set to: $currentFlashMode');
+      log('The new flash is: $newFlashMode');
 
       await controller!.setFlashMode(newFlashMode);
       emit(CameraFlashToggledState(newFlashMode));

@@ -91,16 +91,37 @@ class CameraPage extends StatelessWidget {
                             Expanded(
                               child: Align(
                                 alignment: Alignment.centerRight,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    context
-                                        .read<CameraBloc>()
-                                        .add(ToggleFlashEvent());
+                                child: BlocBuilder<CameraBloc, CameraState>(
+                                  buildWhen: (previous, current) =>
+                                      current is CameraFlashToggledState,
+                                  builder: (context, state) {
+                                    IconData flashIcon = Icons.flash_auto;
+                                    if (state is CameraFlashToggledState) {
+                                      switch (state.flashMode) {
+                                        case FlashMode.off:
+                                          flashIcon = Icons.flash_off;
+                                          break;
+                                        case FlashMode.always:
+                                          flashIcon = Icons.flash_on;
+                                          break;
+                                        case FlashMode.auto:
+                                        default:
+                                          flashIcon = Icons.flash_auto;
+                                          break;
+                                      }
+                                    }
+                                    return GestureDetector(
+                                      onTap: () {
+                                        context
+                                            .read<CameraBloc>()
+                                            .add(ToggleFlashEvent());
+                                      },
+                                      child: Icon(
+                                        flashIcon,
+                                        color: LightColor.whitePrimaryTextColor,
+                                      ),
+                                    );
                                   },
-                                  child: const Icon(
-                                     Icons.electric_bolt_sharp,
-                                    color: LightColor.whitePrimaryTextColor,
-                                  ),
                                 ),
                               ),
                             )
