@@ -17,6 +17,7 @@ import 'package:safetrack/presentation/pages/features/safety_map_page.dart';
 import 'package:safetrack/presentation/widgets/my_app_bar.dart';
 import 'package:safetrack/presentation/widgets/my_home_page_feature_button.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
+import 'package:safetrack/presentation/widgets/my_tutorial_coach_mark.dart';
 import 'package:safetrack/services/global.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
@@ -30,6 +31,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late TutorialCoachMark tutorialCoachMark;
 
+  GlobalKey announcementKey = GlobalKey();
+  GlobalKey safetyTips = GlobalKey();
   GlobalKey myReport = GlobalKey();
   GlobalKey safetyMap = GlobalKey();
   GlobalKey calendar = GlobalKey();
@@ -88,14 +91,14 @@ class _HomePageState extends State<HomePage> {
           log('Wow grape nakita mo na ang user guide namin!!!');
         } else if (state is UserGuideHasntSeenState) {
           createTutorial();
-          Future.delayed(Duration.zero, showTutorial);
+          Future.delayed(const Duration(seconds: 1), showTutorial);
         }
       },
       builder: (context, state) {
         //pang reset lang
-        if (state is UserGuideHasSeenState) {
-          context.read<UserGuideBloc>().add(UserGuideResetEvent());
-        }
+        // if (state is UserGuideHasSeenState) {
+        //   context.read<UserGuideBloc>().add(UserGuideResetEvent());
+        // }
         return Scaffold(
           backgroundColor: LightColor.backgroundColor,
           body: SafeArea(
@@ -112,13 +115,19 @@ class _HomePageState extends State<HomePage> {
                     SliverToBoxAdapter(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 16),
-                        child: Text(
-                          'Announcement',
-                          style: GoogleFonts.quicksand(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: LightColor.blackPrimaryTextColor,
+                          vertical: 8,
+                          horizontal: 16,
+                        ),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            key: announcementKey,
+                            'Announcement',
+                            style: GoogleFonts.quicksand(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: LightColor.blackPrimaryTextColor,
+                            ),
                           ),
                         ),
                       ),
@@ -240,14 +249,21 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SliverToBoxAdapter(
                       child: Padding(
-                        padding:
-                            const EdgeInsets.only(top: 16, left: 16, bottom: 8),
-                        child: Text(
-                          'Safety Tips',
-                          style: GoogleFonts.quicksand(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: LightColor.blackPrimaryTextColor,
+                        padding: const EdgeInsets.only(
+                          top: 16,
+                          left: 16,
+                          bottom: 8,
+                        ),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            key: safetyTips,
+                            'Safety Tips',
+                            style: GoogleFonts.quicksand(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: LightColor.blackPrimaryTextColor,
+                            ),
                           ),
                         ),
                       ),
@@ -312,29 +328,14 @@ class _HomePageState extends State<HomePage> {
   void createTutorial() {
     tutorialCoachMark = TutorialCoachMark(
       targets: _createTargets(),
-      colorShadow: LightColor.primaryColor,
-      textSkip: "SKIP",
-      textStyleSkip: GoogleFonts.quicksand(
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-        color: LightColor.whitePrimaryTextColor,
-      ),
-      paddingFocus: 10,
-      opacityShadow: 0.5,
-      imageFilter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+      colorShadow: LightColor.blackPrimaryTextColor,
+      hideSkip: true,
+      pulseEnable: false,
+      opacityShadow: 0.4,
+      imageFilter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
       onFinish: () {
         context.read<UserGuideBloc>().add(UserGuideCompleteEvent());
         log("finish");
-      },
-      onClickTarget: (target) {
-        log('onClickTarget: $target');
-      },
-      onClickTargetWithTapPosition: (target, tapDetails) {
-        log("target: $target");
-        log("clicked at position local: ${tapDetails.localPosition} - global: ${tapDetails.globalPosition}");
-      },
-      onClickOverlay: (target) {
-        log('onClickOverlay: $target');
       },
       onSkip: () {
         log("skip");
@@ -348,35 +349,49 @@ class _HomePageState extends State<HomePage> {
     List<TargetFocus> targets = [];
     targets.add(
       TargetFocus(
+        identify: "announcementKey",
+        keyTarget: announcementKey,
+        shape: ShapeLightFocus.RRect,
+        enableOverlayTab: true,
+        contents: [
+          TargetContent(
+            align: ContentAlign.bottom,
+            builder: (context, controller) {
+              return MyTutorialCoachMark(
+                title: 'Announcement',
+                text:
+                    "Stay up to date with the latest announcements, including upcoming community events, health seminars, celebrations, and volunteer opportunities in our barangay.",
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
+              );
+            },
+          ),
+        ],
+      ),
+    );
+    targets.add(
+      TargetFocus(
         identify: "myReport",
         keyTarget: myReport,
-        alignSkip: Alignment.topRight,
         enableOverlayTab: true,
         contents: [
           TargetContent(
             align: ContentAlign.top,
             builder: (context, controller) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'My Report',
-                    style: GoogleFonts.quicksand(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w800,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
+              return MyTutorialCoachMark(
+                title: 'My Report',
+                text:
                     "Here you can view and manage all the reports you've submitted. Stay updated on the status of your reports and track your community's safety.",
-                    style: GoogleFonts.quicksand(
-                      fontSize: 14,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                ],
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
               );
             },
           ),
@@ -387,32 +402,20 @@ class _HomePageState extends State<HomePage> {
       TargetFocus(
         identify: "safetyMap",
         keyTarget: safetyMap,
-        alignSkip: Alignment.topRight,
         contents: [
           TargetContent(
             align: ContentAlign.top,
             builder: (context, controller) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Safety Map',
-                    style: GoogleFonts.quicksand(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w800,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
+              return MyTutorialCoachMark(
+                title: 'Safety Map',
+                text:
                     "The Safety Map shows real-time incidents happening around your community. Use this map to stay informed and take necessary actions when needed.",
-                    style: GoogleFonts.quicksand(
-                      fontSize: 14,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                ],
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
               );
             },
           ),
@@ -423,32 +426,20 @@ class _HomePageState extends State<HomePage> {
       TargetFocus(
         identify: "calendar",
         keyTarget: calendar,
-        alignSkip: Alignment.topRight,
         contents: [
           TargetContent(
             align: ContentAlign.top,
             builder: (context, controller) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Calendar',
-                    style: GoogleFonts.quicksand(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w800,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
+              return MyTutorialCoachMark(
+                title: 'Calendar',
+                text:
                     "Use the calendar to keep track of important community events and updates. Stay informed on safety-related activities and deadlines.",
-                    style: GoogleFonts.quicksand(
-                      fontSize: 14,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                ],
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
               );
             },
           ),
@@ -459,32 +450,20 @@ class _HomePageState extends State<HomePage> {
       TargetFocus(
         identify: "educational",
         keyTarget: educational,
-        alignSkip: Alignment.topRight,
         contents: [
           TargetContent(
             align: ContentAlign.top,
             builder: (context, controller) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Educational',
-                    style: GoogleFonts.quicksand(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w800,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
+              return MyTutorialCoachMark(
+                title: 'Educational',
+                text:
                     "Access educational resources and safety tips to learn more about community safety, emergency protocols, and how you can contribute to a safer environment.",
-                    style: GoogleFonts.quicksand(
-                      fontSize: 14,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                ],
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
               );
             },
           ),
@@ -495,32 +474,20 @@ class _HomePageState extends State<HomePage> {
       TargetFocus(
         identify: "contacts",
         keyTarget: contacts,
-        alignSkip: Alignment.topRight,
         contents: [
           TargetContent(
             align: ContentAlign.top,
             builder: (context, controller) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Contacts',
-                    style: GoogleFonts.quicksand(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w800,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
+              return MyTutorialCoachMark(
+                title: 'Contacts',
+                text:
                     "Quick access to important contacts for emergencies or community support. Reach out to local authorities or safety teams directly when needed.",
-                    style: GoogleFonts.quicksand(
-                      fontSize: 14,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                ],
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
               );
             },
           ),
@@ -531,32 +498,45 @@ class _HomePageState extends State<HomePage> {
       TargetFocus(
         identify: "sos",
         keyTarget: sos,
-        alignSkip: Alignment.topRight,
         contents: [
           TargetContent(
             align: ContentAlign.top,
             builder: (context, controller) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'SOS',
-                    style: GoogleFonts.quicksand(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w800,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    "In case of an emergency, use the SOS feature to quickly send alerts and request help from community responders or local authorities",
-                    style: GoogleFonts.quicksand(
-                      fontSize: 14,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                ],
+              return MyTutorialCoachMark(
+                title: 'SOS',
+                text:
+                    "In case of an emergency, use the SOS feature to quickly send alerts and request help from community responders or local authorities.",
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
+              );
+            },
+          ),
+        ],
+      ),
+    );
+    targets.add(
+      TargetFocus(
+        identify: "safetyTips",
+        keyTarget: safetyTips,
+        shape: ShapeLightFocus.RRect,
+        contents: [
+          TargetContent(
+            align: ContentAlign.top,
+            builder: (context, controller) {
+              return MyTutorialCoachMark(
+                title: 'Safety Tips',
+                text:
+                    "Get essential safety tips and guidelines to help you stay prepared and protect yourself and your community during emergencies, natural disasters, and everyday situations.",
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
               );
             },
           ),
@@ -567,68 +547,20 @@ class _HomePageState extends State<HomePage> {
       TargetFocus(
         identify: "home",
         keyTarget: home,
-        alignSkip: Alignment.bottomRight,
         contents: [
           TargetContent(
             align: ContentAlign.top,
             builder: (context, controller) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Home Page',
-                    style: GoogleFonts.quicksand(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w800,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                  Text(
+              return MyTutorialCoachMark(
+                title: 'Home',
+                text:
                     "Stay updated with the latest events, incidents, and updates happening in your area. Use this page as your gateway to explore community safety and resources.",
-                    style: GoogleFonts.quicksand(
-                      fontSize: 14,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                  const SizedBox(height: 80),
-                ],
-              );
-            },
-          ),
-        ],
-      ),
-    );
-    targets.add(
-      TargetFocus(
-        identify: "addReport",
-        keyTarget: addReport,
-        alignSkip: Alignment.bottomRight,
-        contents: [
-          TargetContent(
-            align: ContentAlign.top,
-            builder: (context, controller) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Report Incidents',
-                    style: GoogleFonts.quicksand(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w800,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                  Text(
-                    "Report any incidents or safety concerns in your community. Use this feature to share details about incidents and contribute to improving safety in your area.",
-                    style: GoogleFonts.quicksand(
-                      fontSize: 14,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                  const SizedBox(height: 80),
-                ],
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
               );
             },
           ),
@@ -639,32 +571,45 @@ class _HomePageState extends State<HomePage> {
       TargetFocus(
         identify: "profile",
         keyTarget: profile,
-        alignSkip: Alignment.bottomRight,
         contents: [
           TargetContent(
             align: ContentAlign.top,
             builder: (context, controller) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Profile Page',
-                    style: GoogleFonts.quicksand(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w800,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                  Text(
+              return MyTutorialCoachMark(
+                title: 'Profile',
+                text:
                     "View and update your personal information, manage your preferences, and ensure your account is always up to date for a personalized experience.",
-                    style: GoogleFonts.quicksand(
-                      fontSize: 14,
-                      color: LightColor.whitePrimaryTextColor,
-                    ),
-                  ),
-                  const SizedBox(height: 80),
-                ],
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
+              );
+            },
+          ),
+        ],
+      ),
+    );
+    targets.add(
+      TargetFocus(
+        identify: "addReport",
+        keyTarget: addReport,
+        contents: [
+          TargetContent(
+            align: ContentAlign.top,
+            builder: (context, controller) {
+              return MyTutorialCoachMark(
+                title: 'Report Incidents',
+                text:
+                    "Report any incidents or safety concerns in your community. Use this feature to share details about incidents and contribute to improving safety in your area.",
+                next: "Finish",
+                onNext: () {
+                  controller.next();
+                },
+                onSkip: () {
+                  controller.skip();
+                },
               );
             },
           ),
