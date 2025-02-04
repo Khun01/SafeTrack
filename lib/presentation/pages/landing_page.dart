@@ -1,3 +1,4 @@
+// ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,66 +36,61 @@ class LandingPage extends StatelessWidget {
         },
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: LightColor.backgroundColor,
-            body: SafeArea(
-              child: Stack(
-                children: [
-                  Container(
+            body: Stack(
+              children: [
+                Positioned.fill(
+                  child: Image.asset(
+                    'assets/images/landing_page_bg.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 48,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Color(0xFFFFFFFF),
+                          Color(0xFFFFFFFF),
+                          Color(0xFFFFFFFF),
+                          Color(0x99FFFFFF),
+                          Color(0x03FFFFFF),
+                          Color(0x03FFFFFF),
+                        ],
+                      ),
                     ),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Image.asset(
-                          'assets/images/logo.png',
-                          height: 70,
-                          width: 70,
-                        ),
                         Text(
-                          'Welcome to',
+                          'Together for\n a Safer Tomorrow',
+                          textAlign: TextAlign.center,
                           style: GoogleFonts.quicksand(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 32,
+                            fontWeight: FontWeight.w800,
                             color: LightColor.blackPrimaryTextColor,
                           ),
                         ),
+                        const SizedBox(height: 32),
                         Text(
-                          'SafeTrack',
+                          'Your reports make a difference—keep your barangay informed and protected.',
+                          textAlign: TextAlign.center,
                           style: GoogleFonts.quicksand(
-                            fontSize: 40,
-                            fontWeight: FontWeight.w800,
-                            color: LightColor.primaryColor,
+                            fontSize: 16,
+                            color: LightColor.blackSecondaryTextColor,
                           ),
                         ),
-                        const Spacer(),
-                        Opacity(
-                          opacity: 0.50,
-                          child: Image.asset(
-                            'assets/images/center.jpeg',
-                            height: 200,
-                            width: 400,
-                          ),
-                        ),
-                        const Spacer(),
-                        SizedBox(
-                          width: 250,
-                          child: Text(
-                            'Your Barangay Your Voice',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.quicksand(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                              color: LightColor.blackPrimaryTextColor,
-                            ),
-                          ),
-                        ),
-                        const Spacer(),
-                        SizedBox(
+                        const SizedBox(height: 32),
+                        Container(
                           width: double.infinity,
                           height: 50,
+                          margin: const EdgeInsets.symmetric(horizontal: 24),
                           child: ElevatedButton(
                             onPressed: () {
                               context
@@ -105,7 +101,7 @@ class LandingPage extends StatelessWidget {
                               elevation: 0,
                               backgroundColor: LightColor.primaryColor,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(24),
+                                borderRadius: BorderRadius.circular(16),
                               ),
                             ),
                             child: Text(
@@ -118,16 +114,15 @@ class LandingPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 32),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               "Don't have an account?",
                               style: GoogleFonts.quicksand(
-                                fontSize: 14,
-                                color: LightColor.blackSecondaryTextColor
-                              ),
+                                  fontSize: 14,
+                                  color: LightColor.blackSecondaryTextColor),
                             ),
                             const SizedBox(width: 4),
                             GestureDetector(
@@ -142,6 +137,7 @@ class LandingPage extends StatelessWidget {
                                 'Register Now',
                                 style: GoogleFonts.quicksand(
                                   fontSize: 14,
+                                  fontWeight: FontWeight.w500,
                                   color: LightColor.primaryColor,
                                   decoration: TextDecoration.underline,
                                   decorationColor: LightColor.primaryColor,
@@ -149,28 +145,29 @@ class LandingPage extends StatelessWidget {
                               ),
                             ),
                           ],
-                        )
+                        ),
+                        const SizedBox(height: 24),
                       ],
                     ),
                   ),
-                  if (state is CheckLoginStatusChecking) ...[
-                    Positioned(
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      child: Container(
-                        width: double.infinity,
-                        height: double.infinity,
-                        color: Colors.black.withOpacity(0.5),
-                      ),
+                ),
+                if (state is CheckLoginStatusChecking) ...[
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    child: Container(
+                      width: double.infinity,
+                      height: double.infinity,
+                      color: Colors.black.withOpacity(0.5),
                     ),
-                    const Center(
-                      child: MyCircularProgressIndicator(),
-                    ),
-                  ]
-                ],
-              ),
+                  ),
+                  const Center(
+                    child: MyCircularProgressIndicator(),
+                  ),
+                ]
+              ],
             ),
           );
         },

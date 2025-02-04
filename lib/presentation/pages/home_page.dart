@@ -93,9 +93,9 @@ class _HomePageState extends State<HomePage> {
       },
       builder: (context, state) {
         //pang reset lang
-        // if (state is UserGuideHasSeenState) {
-        //   context.read<UserGuideBloc>().add(UserGuideResetEvent());
-        // }
+        if (state is UserGuideHasSeenState) {
+          context.read<UserGuideBloc>().add(UserGuideResetEvent());
+        }
         return Scaffold(
           backgroundColor: LightColor.backgroundColor,
           body: SafeArea(
