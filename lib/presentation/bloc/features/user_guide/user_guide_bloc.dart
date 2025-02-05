@@ -41,8 +41,11 @@ class UserGuideBloc extends Bloc<UserGuideEvent, UserGuideState> {
     try {
       await Storage.saveField('hasSeenTutorial_$id', 'true');
       log('Saving: hasSeenTutorial_$id = true');
-      emit(UserGuideHasSeenState());
+      // emit(UserGuideHasSeenState());
+      emit(UserGuideFinishedState());
+      
     } catch (e) {
+      emit(UserGuideErrorState(errorMessage: e.toString()));
       log('Error in marking tutorial as seen: $e');
     }
   }

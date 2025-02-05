@@ -89,6 +89,8 @@ class _HomePageState extends State<HomePage> {
       listener: (context, state) {
         if (state is UserGuideHasSeenState) {
           log('Wow grape nakita mo na ang user guide namin!!!');
+        } else if (state is UserGuideFinishedState) {
+          log('The state is finished');
         } else if (state is UserGuideHasntSeenState) {
           createTutorial();
           Future.delayed(const Duration(seconds: 1), showTutorial);
@@ -547,6 +549,7 @@ class _HomePageState extends State<HomePage> {
       TargetFocus(
         identify: "home",
         keyTarget: home,
+        shape: ShapeLightFocus.RRect,
         contents: [
           TargetContent(
             align: ContentAlign.top,
@@ -571,6 +574,7 @@ class _HomePageState extends State<HomePage> {
       TargetFocus(
         identify: "profile",
         keyTarget: profile,
+        shape: ShapeLightFocus.RRect,
         contents: [
           TargetContent(
             align: ContentAlign.top,
@@ -595,6 +599,7 @@ class _HomePageState extends State<HomePage> {
       TargetFocus(
         identify: "addReport",
         keyTarget: addReport,
+        shape: ShapeLightFocus.RRect,
         contents: [
           TargetContent(
             align: ContentAlign.top,
