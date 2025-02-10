@@ -57,32 +57,11 @@ class _WrapperState extends State<Wrapper> with SingleTickerProviderStateMixin {
   Widget buildPage() {
     switch (selectedIndex) {
       case 0:
-        return MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => userInformationBloc,
-            ),
-            BlocProvider(
-              create: (context) => userGuideBloc,
-            )
-          ],
-          child: const HomePage(),
-        );
+        return const HomePage();
       case 1:
         return const SizedBox.shrink();
-
       case 2:
-        return MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => logoutBloc,
-            ),
-            BlocProvider(
-              create: (context) => userInformationBloc,
-            ),
-          ],
-          child: const ProfilePage(),
-        );
+        return const ProfilePage();
       default:
         return const SizedBox.shrink();
     }

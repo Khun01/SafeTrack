@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
 
     return BlocConsumer<UserGuideBloc, UserGuideState>(
       listener: (context, state) {
-        if (state is UserGuideHasSeenState) {
+        if (state is UserGuideHasSeenState) {       
           log('Wow grape nakita mo na ang user guide namin!!!');
         } else if (state is UserGuideFinishedState) {
           log('The state is finished');

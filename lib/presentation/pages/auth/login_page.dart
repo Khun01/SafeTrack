@@ -32,8 +32,13 @@ class LoginPage extends StatelessWidget {
               context.read<LoginBloc>().add(LoginFailedReset());
             });
           } else if (state.loginSuccess) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Wrapper()));
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Wrapper(),
+              ),
+              (Route<dynamic> route) => false,
+            );
             toast(context, 'Login successfully');
           } else if (state.loginLoading) {
             FocusScope.of(context).unfocus();
