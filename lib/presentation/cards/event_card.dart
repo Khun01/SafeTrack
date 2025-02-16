@@ -67,124 +67,125 @@ class EventCard extends StatelessWidget {
               ),
               const SizedBox(width: 24),
               Expanded(
-                child: IntrinsicHeight(
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: color.withOpacity(0.12),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              height: 8,
-                              width: 8,
-                              decoration: BoxDecoration(
-                                color: color,
-                                borderRadius: BorderRadius.circular(6),
-                              ),
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: color.withOpacity(0.12),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            height: 8,
+                            width: 8,
+                            decoration: BoxDecoration(
+                              color: color,
+                              borderRadius: BorderRadius.circular(6),
                             ),
-                            const SizedBox(width: 8),
-                            Expanded(
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: AnimatedDefaultTextStyle(
+                              style: GoogleFonts.quicksand(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: LightColor.blackPrimaryTextColor,
+                              ),
+                              duration: const Duration(milliseconds: 300),
                               child: Text(
                                 title,
-                                maxLines: 1,
+                                maxLines: isExpanded ? 5 : 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.quicksand(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: LightColor.blackPrimaryTextColor,
-                                ),
                               ),
                             ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              height: 8,
-                              width: 8,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                              ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 8,
+                            width: 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
                             ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    description,
-                                    style: GoogleFonts.quicksand(
-                                      fontSize: 12,
-                                      color: LightColor.blackPrimaryTextColor,
-                                    ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  description,
+                                  style: GoogleFonts.quicksand(
+                                    fontSize: 12,
+                                    color: LightColor.blackPrimaryTextColor,
                                   ),
-                                  isExpanded
-                                      ? Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            const SizedBox(height: 8),
-                                            Text(
-                                              'Schedule time:',
-                                              style: GoogleFonts.quicksand(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold,
-                                                color: LightColor
-                                                    .blackPrimaryTextColor,
+                                ),
+                                AnimatedSize(
+                                  duration: const Duration(milliseconds: 300),
+                                  curve: Curves.easeInOut,
+                                  alignment: Alignment.topCenter,
+                                  child: SizedBox(
+                                    height: isExpanded ? null : 0,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(height: 8),
+                                        Text(
+                                          'Schedule time:',
+                                          style: GoogleFonts.quicksand(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color:
+                                                LightColor.blackPrimaryTextColor,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        for (var event in schedule)
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              bottom: 4,
+                                            ),
+                                            child: Text.rich(
+                                              TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                    text:
+                                                        '${formatTime(event.startTime)} - ${formatTime(event.endTime)}',
+                                                    style: GoogleFonts.quicksand(
+                                                      fontSize: 12,
+                                                      fontWeight: FontWeight.bold,
+                                                      color: LightColor
+                                                          .blackPrimaryTextColor,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text:
+                                                        ': ${event.description}',
+                                                    style: GoogleFonts.quicksand(
+                                                      fontSize: 12,
+                                                      color: LightColor
+                                                          .blackPrimaryTextColor,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                            const SizedBox(height: 4),
-                                            for (var event in schedule)
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                  bottom: 4,
-                                                ),
-                                                child: Text.rich(
-                                                  TextSpan(
-                                                    children: [
-                                                      TextSpan(
-                                                        text:
-                                                            '${formatTime(event.startTime)} - ${formatTime(event.endTime)}',
-                                                        style: GoogleFonts
-                                                            .quicksand(
-                                                          fontSize: 12,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: LightColor
-                                                              .blackPrimaryTextColor,
-                                                        ),
-                                                      ),
-                                                      TextSpan(
-                                                        text:
-                                                            ': ${event.description}',
-                                                        style: GoogleFonts
-                                                            .quicksand(
-                                                          fontSize: 12,
-                                                          color: LightColor
-                                                              .blackPrimaryTextColor,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                          ],
-                                        )
-                                      : const SizedBox.shrink()
-                                ],
-                              ),
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -194,7 +195,7 @@ class EventCard extends StatelessWidget {
           const Divider(
             height: 2,
             color: LightColor.accentColor,
-          )
+          ),
         ],
       ),
     );

@@ -75,7 +75,7 @@ class _CalendarPageState extends State<CalendarPage> {
                     child: Text(
                       'No events scheduled for this day',
                       style: GoogleFonts.quicksand(
-                        color: Colors.grey,
+                        color: LightColor.blackSecondaryTextColor,
                         fontSize: 16.0,
                       ),
                     ),
