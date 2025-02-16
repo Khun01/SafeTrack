@@ -33,7 +33,7 @@ class AnnouncementCard extends StatelessWidget {
             bottom: -20,
             right: -40,
             child: SizedBox(
-              height: 150,
+              height: 120,
               child: Image.asset(
                 'assets/images/announcement_image.png',
               ),

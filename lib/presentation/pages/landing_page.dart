@@ -65,89 +65,91 @@ class LandingPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          'Together for\n a Safer Tomorrow',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.quicksand(
-                            fontSize: 32,
-                            fontWeight: FontWeight.w800,
-                            color: LightColor.blackPrimaryTextColor,
-                          ),
-                        ),
-                        const SizedBox(height: 32),
-                        Text(
-                          'Your reports make a difference—keep your barangay informed and protected.',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.quicksand(
-                            fontSize: 16,
-                            color: LightColor.blackSecondaryTextColor,
-                          ),
-                        ),
-                        const SizedBox(height: 32),
-                        Container(
-                          width: double.infinity,
-                          height: 50,
-                          margin: const EdgeInsets.symmetric(horizontal: 24),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              context
-                                  .read<CheckLoginStatusBloc>()
-                                  .add(CheckLoginStatusEventToken());
-                            },
-                            style: ElevatedButton.styleFrom(
-                              elevation: 0,
-                              backgroundColor: LightColor.primaryColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                            ),
-                            child: Text(
-                              'Get Started',
-                              style: GoogleFonts.quicksand(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: LightColor.whitePrimaryTextColor,
-                              ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 24, bottom: 32, right: 24),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Together for\n a Safer Tomorrow',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.quicksand(
+                              fontSize: 32,
+                              fontWeight: FontWeight.w800,
+                              color: LightColor.blackPrimaryTextColor,
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 32),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Don't have an account?",
-                              style: GoogleFonts.quicksand(
-                                  fontSize: 14,
-                                  color: LightColor.blackSecondaryTextColor),
+                          const SizedBox(height: 32),
+                          Text(
+                            'Your reports make a difference—keep your barangay informed and protected.',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.quicksand(
+                              fontSize: 16,
+                              color: LightColor.blackSecondaryTextColor,
                             ),
-                            const SizedBox(width: 4),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const RegisterPage()));
+                          ),
+                          const SizedBox(height: 32),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                context
+                                    .read<CheckLoginStatusBloc>()
+                                    .add(CheckLoginStatusEventToken());
                               },
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                backgroundColor: LightColor.primaryColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                              ),
                               child: Text(
-                                'Register Now',
+                                'Get Started',
                                 style: GoogleFonts.quicksand(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                  color: LightColor.primaryColor,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: LightColor.primaryColor,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: LightColor.whitePrimaryTextColor,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                        const SizedBox(height: 24),
-                      ],
+                          ),
+                          const SizedBox(height: 32),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Don't have an account?",
+                                style: GoogleFonts.quicksand(
+                                  fontSize: 14,
+                                  color: LightColor.blackSecondaryTextColor,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const RegisterPage()));
+                                },
+                                child: Text(
+                                  'Register Now',
+                                  style: GoogleFonts.quicksand(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: LightColor.primaryColor,
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: LightColor.primaryColor,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

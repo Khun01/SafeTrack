@@ -33,7 +33,7 @@ class MyHomePageFeatureButton extends StatelessWidget {
             ],
           ),
           child: OpenContainer(
-            transitionDuration: const Duration(seconds: 1),
+            transitionDuration: const Duration(milliseconds: 300),
             transitionType: ContainerTransitionType.fadeThrough,
             closedElevation: 0,
             openElevation: 0,

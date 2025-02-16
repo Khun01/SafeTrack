@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:safetrack/models/announcement.dart';
 import 'package:safetrack/services/storage.dart';
 
 class FeatureServices {
@@ -11,6 +13,28 @@ class FeatureServices {
 
   
   // ------------- FOR GETTING ANNOUNCEMENT ------------- //
+  Future<List<Announcement>> fetchAnnouncement() async {
+    final user = await Storage.getData();
+    String? token = user['token'];
+    final response = await http.get(
+      Uri.parse('$baseUrl/announcements'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization':
+            'Bearer $token'
+      },
+    );
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> jsonData = json.decode(response.body);
+      final List<dynamic> announcementList = jsonData['announcement'];
+      return announcementList
+          .map((json) => Announcement.fromJson(json))
+          .toList();
+    } else {
+      log('The status code when fetching announcement is: ${response.statusCode}');
+      throw Exception('Failed to load announcement');
+    }
+  }
 
   // ------------- FOR GETTING CONTACTS ------------- //
 

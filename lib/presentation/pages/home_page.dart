@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/models/announcement.dart';
+import 'package:safetrack/presentation/bloc/features/announcement/announcement_bloc.dart';
+import 'package:safetrack/presentation/bloc/features/announcement/announcement_state.dart';
 import 'package:safetrack/presentation/bloc/features/user_guide/user_guide_bloc.dart';
 import 'package:safetrack/presentation/bloc/features/user_guide/user_guide_event.dart';
 import 'package:safetrack/presentation/bloc/features/user_guide/user_guide_state.dart';
@@ -14,6 +16,7 @@ import 'package:safetrack/presentation/pages/features/contacts_page.dart';
 import 'package:safetrack/presentation/pages/features/educational_page.dart';
 import 'package:safetrack/presentation/pages/features/my_report_page.dart';
 import 'package:safetrack/presentation/pages/features/safety_map_page.dart';
+import 'package:safetrack/presentation/widgets/my_announcement_shimmer.dart';
 import 'package:safetrack/presentation/widgets/my_app_bar.dart';
 import 'package:safetrack/presentation/widgets/my_home_page_feature_button.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
@@ -52,42 +55,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final announcement = [
-      Announcement(
-        title: 'Barangay Fiesta 2025',
-        description:
-            'Join us for a day of fun, food, and festivities to celebrate the annual Barangay Fiesta.',
-        date: '2025-02-15',
-      ),
-      Announcement(
-        title: 'Clean-Up Drive',
-        description:
-            'Help keep our barangay clean! Join the community clean-up drive and make a difference.',
-        date: '2025-01-20',
-      ),
-      Announcement(
-        title: 'Barangay Health Awareness Seminar',
-        description:
-            'Learn more about health and wellness at our free health awareness seminar hosted by the barangay health center.',
-        date: '2025-01-25',
-      ),
-      Announcement(
-        title: 'Christmas Gift-Giving',
-        description:
-            'Spread the holiday cheer by joining our annual Christmas gift-giving event for less fortunate families in our barangay.',
-        date: '2025-12-15',
-      ),
-      Announcement(
-        title: 'Sports Festival 2025',
-        description:
-            'Get ready for a fun and competitive sports festival in our barangay. All residents are welcome to participate!',
-        date: '2025-03-10',
-      ),
-    ];
-
     return BlocConsumer<UserGuideBloc, UserGuideState>(
       listener: (context, state) {
-        if (state is UserGuideHasSeenState) {       
+        if (state is UserGuideHasSeenState) {
           log('Wow grape nakita mo na ang user guide namin!!!');
         } else if (state is UserGuideFinishedState) {
           log('The state is finished');
@@ -134,20 +104,80 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    SliverToBoxAdapter(
-                      child: Container(
-                        height: 240,
-                        padding: const EdgeInsets.only(right: 16),
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: announcement.length,
-                          itemBuilder: (context, index) {
-                            return AnnouncementCard(
-                              announcement: announcement[index],
+                    BlocBuilder<AnnouncementBloc, AnnouncementState>(
+                      builder: (context, state) {
+                        if (state is AnnouncementLoading) {
+                          return SliverToBoxAdapter(
+                            child: Container(
+                              height: 240,
+                              padding: const EdgeInsets.only(right: 16),
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 2,
+                                itemBuilder: (context, index) {
+                                  return const MyAnnouncementShimmer();
+                                },
+                              ),
+                            ),
+                          );
+                        } else if (state is AnnouncementSuccess) {
+                          final announcement = state.announcement;
+                          if (announcement.isEmpty) {
+                            return SliverToBoxAdapter(
+                              child: Container(
+                                height: 240,
+                                padding: const EdgeInsets.only(right: 16),
+                                child: Center(
+                                  child: Text(
+                                    "No announcements available",
+                                    style: GoogleFonts.quicksand(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: LightColor.blackPrimaryTextColor,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             );
-                          },
-                        ),
-                      ),
+                          } else {
+                            return SliverToBoxAdapter(
+                              child: Container(
+                                height: 240,
+                                padding: const EdgeInsets.only(right: 16),
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: announcement.length,
+                                  itemBuilder: (context, index) {
+                                    return AnnouncementCard(
+                                      announcement: announcement[index],
+                                    );
+                                  },
+                                ),
+                              ),
+                            );
+                          }
+                        } else if (state is AnnouncementFailed) {
+                          return SliverToBoxAdapter(
+                            child: SizedBox(
+                              height: 240,
+                              child: Center(
+                                child: Text(
+                                  "Failed to load announcement",
+                                  style: GoogleFonts.quicksand(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: LightColor.blackPrimaryTextColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        } else {
+                          return const SliverToBoxAdapter(
+                            child: SizedBox.shrink(),
+                          );
+                        }
+                      },
                     ),
                     SliverToBoxAdapter(
                       child: Container(
