@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/bloc/features/announcement/announcement_bloc.dart';
+import 'package:safetrack/presentation/bloc/features/announcement/announcement_event.dart';
 import 'package:safetrack/presentation/bloc/features/announcement/announcement_state.dart';
 import 'package:safetrack/presentation/bloc/features/user_guide/user_guide_bloc.dart';
 import 'package:safetrack/presentation/bloc/features/user_guide/user_guide_event.dart';
@@ -31,6 +32,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final scrollController = ScrollController();
   late TutorialCoachMark tutorialCoachMark;
 
   GlobalKey announcementKey = GlobalKey();
@@ -75,60 +77,102 @@ class _HomePageState extends State<HomePage> {
           body: SafeArea(
             child: Stack(
               children: [
-                CustomScrollView(
-                  slivers: [
-                    const SliverToBoxAdapter(
-                      child: MyAppBar(),
-                    ),
-                    const SliverToBoxAdapter(
-                      child: Divider(height: 2, color: LightColor.dividerColor),
-                    ),
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 16,
-                        ),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            key: announcementKey,
-                            'Announcement',
-                            style: GoogleFonts.quicksand(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: LightColor.blackPrimaryTextColor,
+                RefreshIndicator(
+                  onRefresh: () async {
+                    context
+                        .read<AnnouncementBloc>()
+                        .add(FetchAnnouncementEvent());
+                  },
+                  child: CustomScrollView(
+                    controller: scrollController,
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    slivers: [
+                      const SliverToBoxAdapter(
+                        child: MyAppBar(),
+                      ),
+                      const SliverToBoxAdapter(
+                        child:
+                            Divider(height: 2, color: LightColor.dividerColor),
+                      ),
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 8,
+                            horizontal: 16,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              key: announcementKey,
+                              'Announcement',
+                              style: GoogleFonts.quicksand(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: LightColor.blackPrimaryTextColor,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    BlocBuilder<AnnouncementBloc, AnnouncementState>(
-                      builder: (context, state) {
-                        if (state is AnnouncementLoading) {
-                          return SliverToBoxAdapter(
-                            child: Container(
-                              height: 240,
-                              padding: const EdgeInsets.only(right: 16),
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: 2,
-                                itemBuilder: (context, index) {
-                                  return const MyAnnouncementShimmer();
-                                },
-                              ),
-                            ),
-                          );
-                        } else if (state is AnnouncementSuccess) {
-                          final announcement = state.announcement;
-                          if (announcement.isEmpty) {
+                      BlocBuilder<AnnouncementBloc, AnnouncementState>(
+                        builder: (context, state) {
+                          if (state is AnnouncementLoading) {
                             return SliverToBoxAdapter(
                               child: Container(
                                 height: 240,
                                 padding: const EdgeInsets.only(right: 16),
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 2,
+                                  itemBuilder: (context, index) {
+                                    return const MyAnnouncementShimmer();
+                                  },
+                                ),
+                              ),
+                            );
+                          } else if (state is AnnouncementSuccess) {
+                            final announcement = state.announcement.reversed.toList();
+                            if (announcement.isEmpty) {
+                              return SliverToBoxAdapter(
+                                child: Container(
+                                  height: 240,
+                                  padding: const EdgeInsets.only(right: 16),
+                                  child: Center(
+                                    child: Text(
+                                      "No announcements available",
+                                      style: GoogleFonts.quicksand(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: LightColor.blackPrimaryTextColor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            } else {
+                              return SliverToBoxAdapter(
+                                child: Container(
+                                  height: 240,
+                                  padding: const EdgeInsets.only(right: 16),
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: announcement.length,
+                                    itemBuilder: (context, index) {
+                                      return AnnouncementCard(
+                                        announcement: announcement[index],
+                                      );
+                                    },
+                                  ),
+                                ),
+                              );
+                            }
+                          } else if (state is AnnouncementFailed) {
+                            return SliverToBoxAdapter(
+                              child: SizedBox(
+                                height: 240,
                                 child: Center(
                                   child: Text(
-                                    "No announcements available",
+                                    "Failed to load announcement",
                                     style: GoogleFonts.quicksand(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -139,180 +183,148 @@ class _HomePageState extends State<HomePage> {
                               ),
                             );
                           } else {
-                            return SliverToBoxAdapter(
-                              child: Container(
-                                height: 240,
-                                padding: const EdgeInsets.only(right: 16),
-                                child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: announcement.length,
-                                  itemBuilder: (context, index) {
-                                    return AnnouncementCard(
-                                      announcement: announcement[index],
-                                    );
-                                  },
-                                ),
-                              ),
+                            return const SliverToBoxAdapter(
+                              child: SizedBox.shrink(),
                             );
                           }
-                        } else if (state is AnnouncementFailed) {
-                          return SliverToBoxAdapter(
-                            child: SizedBox(
-                              height: 240,
-                              child: Center(
-                                child: Text(
-                                  "Failed to load announcement",
-                                  style: GoogleFonts.quicksand(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: LightColor.blackPrimaryTextColor,
-                                  ),
+                        },
+                      ),
+                      SliverToBoxAdapter(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 24),
+                          color: const Color(0x4DE5E9F4),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    MyHomePageFeatureButton(
+                                      key: myReport,
+                                      name: 'My Report',
+                                      image: 'assets/icons/document.png',
+                                      onTap: const MyReportPage(),
+                                    ),
+                                    const SizedBox(height: 24),
+                                    MyHomePageFeatureButton(
+                                      key: educational,
+                                      name: 'Educational',
+                                      image: 'assets/icons/educational.png',
+                                      onTap: const EducationalPage(),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                          );
-                        } else {
-                          return const SliverToBoxAdapter(
-                            child: SizedBox.shrink(),
-                          );
-                        }
-                      },
-                    ),
-                    SliverToBoxAdapter(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 24),
-                        color: const Color(0x4DE5E9F4),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  MyHomePageFeatureButton(
-                                    key: myReport,
-                                    name: 'My Report',
-                                    image: 'assets/icons/document.png',
-                                    onTap: const MyReportPage(),
-                                  ),
-                                  const SizedBox(height: 24),
-                                  MyHomePageFeatureButton(
-                                    key: educational,
-                                    name: 'Educational',
-                                    image: 'assets/icons/educational.png',
-                                    onTap: const EducationalPage(),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  MyHomePageFeatureButton(
-                                    key: safetyMap,
-                                    name: 'Safety Map',
-                                    image: 'assets/icons/map.png',
-                                    onTap: const SafetyMapPage(),
-                                  ),
-                                  const SizedBox(height: 24),
-                                  MyHomePageFeatureButton(
-                                    key: contacts,
-                                    name: 'Contacts',
-                                    image: 'assets/icons/contact.png',
-                                    onTap: const ContactsPage(),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  MyHomePageFeatureButton(
-                                    key: calendar,
-                                    name: 'Calendar',
-                                    image: 'assets/icons/calendar.png',
-                                    onTap: const CalendarPage(),
-                                  ),
-                                  const SizedBox(height: 24),
-                                  GestureDetector(
-                                    onTap: () {
-                                      toast(context, "SOS");
-                                    },
-                                    child: Column(
-                                      key: sos,
-                                      children: [
-                                        Container(
-                                          height: 60,
-                                          width: 60,
-                                          padding: const EdgeInsets.all(16),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(500),
-                                            color: const Color(0xFFE5E9F4),
-                                            boxShadow: const [
-                                              BoxShadow(
-                                                color: Color(0x1A023E8A),
-                                                spreadRadius: 1,
-                                                blurRadius: 4,
-                                                offset: Offset(0, 4),
-                                              )
-                                            ],
-                                          ),
-                                          child: Image.asset(
-                                              'assets/icons/sos.png'),
-                                        ),
-                                        const SizedBox(height: 16),
-                                        Text(
-                                          'SOS',
-                                          style: GoogleFonts.quicksand(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                            color: LightColor.primaryColor,
-                                          ),
-                                        ),
-                                      ],
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    MyHomePageFeatureButton(
+                                      key: safetyMap,
+                                      name: 'Safety Map',
+                                      image: 'assets/icons/map.png',
+                                      onTap: const SafetyMapPage(),
                                     ),
-                                  )
-                                ],
+                                    const SizedBox(height: 24),
+                                    MyHomePageFeatureButton(
+                                      key: contacts,
+                                      name: 'Contacts',
+                                      image: 'assets/icons/contact.png',
+                                      onTap: const ContactsPage(),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    MyHomePageFeatureButton(
+                                      key: calendar,
+                                      name: 'Calendar',
+                                      image: 'assets/icons/calendar.png',
+                                      onTap: const CalendarPage(),
+                                    ),
+                                    const SizedBox(height: 24),
+                                    GestureDetector(
+                                      onTap: () {
+                                        toast(context, "SOS");
+                                      },
+                                      child: Column(
+                                        key: sos,
+                                        children: [
+                                          Container(
+                                            height: 60,
+                                            width: 60,
+                                            padding: const EdgeInsets.all(16),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(500),
+                                              color: const Color(0xFFE5E9F4),
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  color: Color(0x1A023E8A),
+                                                  spreadRadius: 1,
+                                                  blurRadius: 4,
+                                                  offset: Offset(0, 4),
+                                                )
+                                              ],
+                                            ),
+                                            child: Image.asset(
+                                                'assets/icons/sos.png'),
+                                          ),
+                                          const SizedBox(height: 16),
+                                          Text(
+                                            'SOS',
+                                            style: GoogleFonts.quicksand(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                              color: LightColor.primaryColor,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 16,
-                          left: 16,
-                          bottom: 8,
-                        ),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            key: safetyTips,
-                            'Safety Tips',
-                            style: GoogleFonts.quicksand(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: LightColor.blackPrimaryTextColor,
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            top: 16,
+                            left: 16,
+                            bottom: 8,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              key: safetyTips,
+                              'Safety Tips',
+                              style: GoogleFonts.quicksand(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: LightColor.blackPrimaryTextColor,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    // SliverList.builder(
-                    //   itemBuilder: (context, index) {
-                    //     return ActivitiesCard(
-                    //       activities: activities[index],
-                    //     );
-                    //   },
-                    //   itemCount: activities.length,
-                    // ),
-                    SliverToBoxAdapter(
-                      child: Container(
-                        height: 80,
+                      // SliverList.builder(
+                      //   itemBuilder: (context, index) {
+                      //     return ActivitiesCard(
+                      //       activities: activities[index],
+                      //     );
+                      //   },
+                      //   itemCount: activities.length,
+                      // ),
+                      SliverToBoxAdapter(
+                        child: Container(
+                          height: 80,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Positioned(
                   bottom: 0,
