@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:safetrack/models/announcement.dart';
+import 'package:safetrack/models/events/event.dart';
 import 'package:safetrack/services/storage.dart';
 
 class FeatureServices {
@@ -11,7 +12,6 @@ class FeatureServices {
 
   FeatureServices({required this.baseUrl});
 
-  
   // ------------- FOR GETTING ANNOUNCEMENT ------------- //
   Future<List<Announcement>> fetchAnnouncement() async {
     final user = await Storage.getData();
@@ -20,8 +20,7 @@ class FeatureServices {
       Uri.parse('$baseUrl/announcements'),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization':
-            'Bearer $token'
+        'Authorization': 'Bearer $token'
       },
     );
     if (response.statusCode == 200) {
@@ -37,6 +36,24 @@ class FeatureServices {
   }
 
   // ------------- FOR GETTING CONTACTS ------------- //
+
+  // ------------- FOR GETTING EVENTS ------------- //
+  Future<List<Event>> fetchEvents() async {
+    final user = await Storage.getData();
+    String? token = user['token'];
+    final response = await http.get(
+      Uri.parse('$baseUrl/events'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token'
+      },
+    );
+    if (response.statusCode == 200) {
+      return Event.fromJsonList(response.body);
+    } else {
+      throw Exception('Failed to load events');
+    }
+  }
 
   // ------------- FOR SOS ------------- //
 
@@ -76,6 +93,4 @@ class FeatureServices {
       'data': responseData,
     };
   }
-
-
 }

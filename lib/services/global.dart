@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -62,4 +64,12 @@ void navigationAnimation(
       },
     ),
   );
+}
+
+Color hexToColor(String hex) {
+  hex = hex.replaceAll("#", "");
+  if (hex.length == 6) {
+    hex = "FF$hex";
+  }
+  return Color(int.parse(hex, radix: 16)).withOpacity(1.0);
 }
