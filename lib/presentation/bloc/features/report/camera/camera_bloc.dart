@@ -61,10 +61,7 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
 
   FutureOr<void> capturePhotoEvent(
       CapturePhotoEvent event, Emitter<CameraState> emit) async {
-    if (controller == null || !controller!.value.isInitialized) {
-      emit(CameraErrorState("Camera not initialized"));
-      return;
-    }
+    emit(TakingEvidenceLoadingState());
     try {
       final image = await controller!.takePicture();
       log('The image path is: ${image.path}');
@@ -111,7 +108,7 @@ class CameraBloc extends Bloc<CameraEvent, CameraState> {
       emit(CameraErrorState("Error toggling flash: $e"));
     }
   }
-  
+
   @override
   Future<void> close() {
     controller?.dispose();

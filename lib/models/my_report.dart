@@ -1,5 +1,3 @@
-import 'dart:io';
-
 class MyReport {
   final int id;
   final String priority;
@@ -7,7 +5,7 @@ class MyReport {
   final String description;
   final String status;
   final String date;
-  final File evidence;
+  final String evidence;
 
   MyReport({
     required this.id,
@@ -27,7 +25,7 @@ class MyReport {
       description: json['description'],
       status: json['status'],
       date: json['created_at'],
-      evidence: File(json['evidence_url']),
+      evidence: json['evidence'],
     );
   }
 

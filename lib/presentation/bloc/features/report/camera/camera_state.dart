@@ -16,6 +16,8 @@ class CameraErrorState extends CameraState {
   CameraErrorState(this.errorMessage);
 }
 
+class TakingEvidenceLoadingState extends CameraState{}
+
 class CameraInitializingState extends CameraState {}
 
 class CameraPhotoCapturedState extends CameraState {

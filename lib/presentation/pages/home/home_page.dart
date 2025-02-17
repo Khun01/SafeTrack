@@ -14,7 +14,7 @@ import 'package:safetrack/presentation/cards/announcement_card.dart';
 import 'package:safetrack/presentation/pages/home/features/calendar_page.dart';
 import 'package:safetrack/presentation/pages/home/features/contacts_page.dart';
 import 'package:safetrack/presentation/pages/home/features/educational_page.dart';
-import 'package:safetrack/presentation/pages/home/features/my_report_page.dart';
+import 'package:safetrack/presentation/pages/home/features/report/my_report_page.dart';
 import 'package:safetrack/presentation/pages/home/features/safety_map_page.dart';
 import 'package:safetrack/presentation/widgets/my_announcement_shimmer.dart';
 import 'package:safetrack/presentation/widgets/my_app_bar.dart';

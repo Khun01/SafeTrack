@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/models/my_report.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
+import 'package:safetrack/services/global.dart';
 
 class MyReportCard extends StatelessWidget {
   final MyReport myReport;
@@ -12,6 +13,7 @@ class MyReportCard extends StatelessWidget {
     return Stack(
       children: [
         Container(
+          margin: const EdgeInsets.only(bottom: 12),
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
@@ -34,6 +36,15 @@ class MyReportCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: LightColor.accentColor,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.network(
+                    '$evidenceUrl${myReport.evidence}',
+                    fit: BoxFit.cover,
+                    height: 90,
+                    width: 90,
+                  ),
                 ),
               ),
               Expanded(
@@ -90,7 +101,7 @@ class MyReportCard extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Date: ${myReport.date}',
+                            'Date: ${myReport.formattedTime}',
                             style: GoogleFonts.quicksand(
                               fontSize: 12,
                               color: LightColor.blackAccentColor,
@@ -113,9 +124,13 @@ class MyReportCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: myReport.status == 'Completed'
                   ? const Color(0xFF4CAF50)
-                  : myReport.status == 'Investigating'
+                  : myReport.status == 'under_review' ||
+                          myReport.status == 'in_progress' ||
+                          myReport.status == 'resolved'
                       ? const Color(0xFF2196F3)
-                      : const Color(0xFFFFAE00),
+                      : myReport.status == 'rejected'
+                          ? const Color(0xFFF44336)
+                          : const Color(0xFFFFAE00),
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(4),
                 topRight: Radius.circular(12),
@@ -124,7 +139,15 @@ class MyReportCard extends StatelessWidget {
               ),
             ),
             child: Text(
-              myReport.status,
+              myReport.status == 'new'
+                  ? 'Pending'
+                  : myReport.status == 'under_review' ||
+                          myReport.status == 'in_progress' ||
+                          myReport.status == 'resolved'
+                      ? 'Investigating'
+                      : myReport.status == 'rejected'
+                          ? 'Rejected'
+                          : myReport.status,
               style: GoogleFonts.quicksand(
                 fontSize: 10,
                 fontWeight: FontWeight.bold,

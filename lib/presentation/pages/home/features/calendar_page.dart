@@ -61,6 +61,7 @@ class _CalendarPageState extends State<CalendarPage> {
                   child: CircularProgressIndicator(),
                 ),
               );
+              break;
             case GetEventsSuccessState():
               final events = getEventState.event
                       ?.where((getEventState) => isSameDay(
@@ -120,6 +121,7 @@ class _CalendarPageState extends State<CalendarPage> {
                   },
                 );
               }
+              break;
             case GetEventsFailedState():
               body = SliverFillRemaining(
                 hasScrollBody: false,
@@ -132,10 +134,12 @@ class _CalendarPageState extends State<CalendarPage> {
                   ),
                 ),
               );
+              break;
             default:
               body = const SliverToBoxAdapter(
                 child: SizedBox.shrink(),
               );
+              break;
           }
           return Scaffold(
             backgroundColor: LightColor.backgroundColor,

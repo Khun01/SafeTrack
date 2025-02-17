@@ -14,3 +14,10 @@ class SubmitButtonEvent extends MyReportEvent {
   });
 }
 
+class FetchingMyReportEvent extends MyReportEvent {}
+
+class SearchMyReportEvent extends MyReportEvent {
+  final String query;
+
+  SearchMyReportEvent({required this.query});
+}

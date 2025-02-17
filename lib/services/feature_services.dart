@@ -58,24 +58,27 @@ class FeatureServices {
 
   // ------------- FOR SOS ------------- //
 
+  // --------------------------------------- FOR MY REPORT --------------------------------------- //
+
   // ------------- FOR FETCHING MY REPORT ------------- //
   Future<List<MyReport>> fetchReport() async {
     final user = await Storage.getData();
     String? token = user['token'];
     final response = await http.get(
-      Uri.parse('$baseUrl/announcements'),
+      Uri.parse('$baseUrl/barangay-concern'),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $token'
       },
     );
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> jsonData = json.decode(response.body);
-      final List<dynamic> myReportList = jsonData['announcement'];
-      return myReportList.map((json) => MyReport.fromJson(json)).toList();
-    } else {
-      log('The status code when fetching My Report is: ${response.statusCode}');
-      throw Exception('Failed to load My Report');
+    switch (response.statusCode) {
+      case 200:
+        final List<dynamic> jsonList = json.decode(response.body);
+        return jsonList.map((json) => MyReport.fromJson(json)).toList();
+      case 403:
+        return throw ('You are not verified to access this feature.');
+      default:
+        return throw ('Failed to load My Report');
     }
   }
 

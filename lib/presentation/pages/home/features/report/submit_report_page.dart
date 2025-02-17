@@ -8,7 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:safetrack/presentation/bloc/features/report/my_report/my_report_bloc.dart';
 import 'package:safetrack/presentation/bloc/features/report/my_report/my_report_event.dart';
 import 'package:safetrack/presentation/bloc/features/report/my_report/my_report_state.dart';
-import 'package:safetrack/presentation/pages/home/features/submit_report/confirmation_report_page.dart';
+import 'package:safetrack/presentation/pages/home/features/report/confirmation_report_page.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
 import 'package:safetrack/services/feature_services.dart';
 import 'package:safetrack/services/global.dart';
@@ -174,12 +174,14 @@ class _SubmitReportPageState extends State<SubmitReportPage>
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12),
                                         borderSide: const BorderSide(
-                                            color: Colors.transparent),
+                                          color: Colors.transparent,
+                                        ),
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(12),
                                         borderSide: const BorderSide(
-                                            color: Colors.transparent),
+                                          color: Colors.transparent,
+                                        ),
                                       ),
                                     ),
                                     items: dropdownOptions
@@ -287,7 +289,7 @@ class _SubmitReportPageState extends State<SubmitReportPage>
                                           style: GoogleFonts.quicksand(
                                             fontSize: 14,
                                             color: LightColor
-                                                .blackSecondaryTextColor,
+                                                .blackPrimaryTextColor,
                                           ),
                                           decoration: const InputDecoration(
                                             contentPadding:
@@ -298,11 +300,6 @@ class _SubmitReportPageState extends State<SubmitReportPage>
                                     ],
                                   ),
                                 ),
-                                const Icon(
-                                  Icons.arrow_forward_ios_rounded,
-                                  size: 20,
-                                  color: LightColor.blackPrimaryTextColor,
-                                )
                               ],
                             ),
                             const Spacer(),

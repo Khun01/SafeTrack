@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
 
 const String baseUrl = 'http://192.168.100.212:8000/api';
-const String profileUrl = 'http://192.168.100.212:8000/';
+const String evidenceUrl = 'http://192.168.100.212:8000/storage/';
 
 void toast(BuildContext context, String message) {
   Fluttertoast.showToast(

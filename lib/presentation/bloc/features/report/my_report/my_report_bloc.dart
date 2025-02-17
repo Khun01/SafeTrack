@@ -8,9 +8,10 @@ import 'package:safetrack/services/feature_services.dart';
 
 class MyReportBloc extends Bloc<MyReportEvent, MyReportState> {
   final FeatureServices featureServices;
-  MyReportBloc({required this.featureServices})
-      : super(SubmitReportInitial()) {
+  MyReportBloc({required this.featureServices}) : super(MyReportInitial()) {
     on<SubmitButtonEvent>(submitButtonEvent);
+    on<FetchingMyReportEvent>(fetchingMyReportEvent);
+    on<SearchMyReportEvent>(searchMyReportEvent);
   }
 
   FutureOr<void> submitButtonEvent(
@@ -18,8 +19,12 @@ class MyReportBloc extends Bloc<MyReportEvent, MyReportState> {
     emit(SubmitReportLoadingState());
     log('The submit button is clicked');
     try {
-      final priority = event.priority == 'High' ? 'high' : event.priority == 'Medium' ? 'medium' : 'low';
-      log('The data is = Image: ${event.reportImage}, Title: $priority, Description: ${event.description}, Location: ${event.location}');
+      final priority = event.priority == 'High'
+          ? 'high'
+          : event.priority == 'Medium'
+              ? 'medium'
+              : 'low';
+      log('The data is = Image: ${event.reportImage}, Priority type: $priority, Description: ${event.description}, Location: ${event.location}');
       final response = await featureServices.submitReport(
         priority,
         event.location,
@@ -38,7 +43,7 @@ class MyReportBloc extends Bloc<MyReportEvent, MyReportState> {
           ));
           break;
         default:
-        log('The error in submitting report is: $statusCode, $data');
+          log('The error in submitting report is: $statusCode, $data');
           emit(SubmitReportErrorState(
             errorMessage: 'Something went wrong',
           ));
@@ -47,6 +52,37 @@ class MyReportBloc extends Bloc<MyReportEvent, MyReportState> {
     } catch (e) {
       log('The error in submitting report is: ${e.toString()}');
       emit(SubmitReportErrorState(errorMessage: 'Network Error'));
+    }
+  }
+
+  FutureOr<void> fetchingMyReportEvent(
+      FetchingMyReportEvent event, Emitter<MyReportState> emit) async {
+    emit(FetchingMyReportState());
+    try {
+      final myReport = await featureServices.fetchReport();
+      emit(FetchingMyReportSuccessState(myReport: myReport));
+    } catch (e) {
+      emit(FetchingMyReportErrorState(errorMessage: e.toString()));
+    }
+  }
+
+  FutureOr<void> searchMyReportEvent(
+      SearchMyReportEvent event, Emitter<MyReportState> emit) async {
+    emit(FetchingMyReportState());
+    try {
+      final myReport = await featureServices.fetchReport();
+      final filteredReports = myReport.where((report) {
+        return report.description
+                .toLowerCase()
+                .contains(event.query.toLowerCase()) ||
+            report.location.toLowerCase().contains(event.query.toLowerCase()) ||
+            report.priority.toLowerCase() == event.query.toLowerCase() ||
+            report.status.toLowerCase() == event.query.toLowerCase() ||
+            report.date.toLowerCase() == event.query.toLowerCase();
+      }).toList();
+      emit(FetchingMyReportSuccessState(myReport: filteredReports));
+    } catch (e) {
+      emit(FetchingMyReportErrorState(errorMessage: e.toString()));
     }
   }
 }
