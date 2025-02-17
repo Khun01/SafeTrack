@@ -235,8 +235,17 @@ class _WrapperState extends State<Wrapper> with SingleTickerProviderStateMixin {
                                     bottom: 0,
                                     left: 0,
                                     right: 0,
-                                    child: SizedBox(
+                                    child: Container(
                                       height: 60,
+                                      decoration: const BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Color(0x1A023E8A),
+                                            offset: Offset(0.0, -2.0),
+                                            blurRadius: 4.0,
+                                          )
+                                        ],
+                                      ),
                                       child: BottomNavigationBar(
                                         elevation: 0,
                                         showUnselectedLabels: false,

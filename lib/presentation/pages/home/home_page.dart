@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:safetrack/models/safety_tips.dart';
 import 'package:safetrack/presentation/bloc/features/announcement/announcement_bloc.dart';
 import 'package:safetrack/presentation/bloc/features/announcement/announcement_event.dart';
 import 'package:safetrack/presentation/bloc/features/announcement/announcement_state.dart';
@@ -11,6 +12,7 @@ import 'package:safetrack/presentation/bloc/features/user_guide/user_guide_bloc.
 import 'package:safetrack/presentation/bloc/features/user_guide/user_guide_event.dart';
 import 'package:safetrack/presentation/bloc/features/user_guide/user_guide_state.dart';
 import 'package:safetrack/presentation/cards/announcement_card.dart';
+import 'package:safetrack/presentation/cards/safety_tips_card.dart';
 import 'package:safetrack/presentation/pages/home/features/calendar_page.dart';
 import 'package:safetrack/presentation/pages/home/features/contacts_page.dart';
 import 'package:safetrack/presentation/pages/home/features/educational_page.dart';
@@ -56,6 +58,21 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    List<SafetyTips> safetyTipsList = [
+      SafetyTips(
+        title: 'flood',
+        heading: 'Flood safety tips 🌊',
+        subheading: 'Steps for staying safe during floods.',
+        date: 'August 2024',
+      ),
+      SafetyTips(
+        title: 'fire',
+        heading: 'Fire safety tips 🔥',
+        subheading: 'Preventing Household Fires.',
+        date: 'August 2024',
+      ),
+    ];
+
     return BlocConsumer<UserGuideBloc, UserGuideState>(
       listener: (context, state) {
         if (state is UserGuideHasSeenState) {
@@ -73,7 +90,6 @@ class _HomePageState extends State<HomePage> {
         //   context.read<UserGuideBloc>().add(UserGuideResetEvent());
         // }
         return Scaffold(
-          backgroundColor: LightColor.backgroundColor,
           body: SafeArea(
             child: Stack(
               children: [
@@ -131,7 +147,8 @@ class _HomePageState extends State<HomePage> {
                               ),
                             );
                           } else if (state is AnnouncementSuccess) {
-                            final announcement = state.announcement.reversed.toList();
+                            final announcement =
+                                state.announcement.reversed.toList();
                             if (announcement.isEmpty) {
                               return SliverToBoxAdapter(
                                 child: Container(
@@ -258,13 +275,30 @@ class _HomePageState extends State<HomePage> {
                                               borderRadius:
                                                   BorderRadius.circular(500),
                                               color: const Color(0xFFE5E9F4),
+                                              border: const Border(
+                                                top: BorderSide(
+                                                    color: LightColor
+                                                        .whiteSecondaryTextColor,
+                                                    width: 1.5),
+                                                left: BorderSide(
+                                                    color: LightColor
+                                                        .whiteSecondaryTextColor,
+                                                    width: 1.5),
+                                              ),
                                               boxShadow: const [
+                                                BoxShadow(
+                                                  color: LightColor
+                                                      .whiteAccentColor,
+                                                  spreadRadius: 2,
+                                                  blurRadius: 4,
+                                                  offset: Offset(-1, -1),
+                                                ),
                                                 BoxShadow(
                                                   color: Color(0x1A023E8A),
                                                   spreadRadius: 1,
                                                   blurRadius: 4,
-                                                  offset: Offset(0, 4),
-                                                )
+                                                  offset: Offset(4, 4),
+                                                ),
                                               ],
                                             ),
                                             child: Image.asset(
@@ -310,17 +344,24 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      // SliverList.builder(
-                      //   itemBuilder: (context, index) {
-                      //     return ActivitiesCard(
-                      //       activities: activities[index],
-                      //     );
-                      //   },
-                      //   itemCount: activities.length,
-                      // ),
                       SliverToBoxAdapter(
                         child: Container(
-                          height: 80,
+                          height: 170,
+                          padding: const EdgeInsets.only(right: 16),
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: safetyTipsList.length,
+                            itemBuilder: (context, index) {
+                              return SafetyTipsCard(
+                                safetyTips: safetyTipsList[index],
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: Container(
+                          height: 78,
                         ),
                       ),
                     ],

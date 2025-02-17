@@ -23,13 +23,23 @@ class MyHomePageFeatureButton extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(500),
+            border: const Border(
+              top: BorderSide(color: LightColor.whiteSecondaryTextColor, width: 1.5),
+              left: BorderSide(color: LightColor.whiteSecondaryTextColor, width: 1.5),
+            ),
             boxShadow: const [
+              BoxShadow(
+                color: LightColor.whiteAccentColor,
+                spreadRadius: 2,
+                blurRadius: 4,
+                offset: Offset(-1, -1),
+              ),
               BoxShadow(
                 color: Color(0x1A023E8A),
                 spreadRadius: 1,
                 blurRadius: 4,
-                offset: Offset(0, 4),
-              )
+                offset: Offset(4, 4),
+              ),
             ],
           ),
           child: OpenContainer(
