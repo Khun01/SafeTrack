@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/models/my_report.dart';
 import 'package:safetrack/presentation/cards/my_report_card.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
+import 'package:safetrack/presentation/widgets/my_header.dart';
 
 class MyReportPage extends StatelessWidget {
   const MyReportPage({super.key});
@@ -14,97 +15,92 @@ class MyReportPage extends StatelessWidget {
           title: 'May nag away HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
           description:
               'May nag away raw sabi ni John Brandon Lambino HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
+          location: 'Dito lang samin',
           status: 'Completed',
-          priority: 'High'),
+          priority: 'High',
+          date: 'August 10, 2024,'),
       MyReport(
-          title: 'May nag away',
-          description: 'May nag away raw sabi ni John Brandon Lambino',
-          status: 'Completed',
-          priority: 'Low'),
+        title: 'May nag away',
+        description: 'May nag away raw sabi ni John Brandon Lambino',
+        location: 'Dito lang samin',
+        status: 'Completed',
+        priority: 'Low',
+        date: 'August 10, 2024',
+      ),
       MyReport(
-          title: 'May nag away',
-          description: 'May nag away raw sabi ni John Brandon Lambino',
-          status: 'In-progress',
-          priority: 'Low'),
+        title: 'May nag away',
+        description: 'May nag away raw sabi ni John Brandon Lambino',
+        location: 'Dito lang samin',
+        status: 'Investigating',
+        priority: 'Low',
+        date: 'August 10, 2024',
+      ),
       MyReport(
-          title: 'May nag away',
-          description: 'May nag away raw sabi ni John Brandon Lambino',
-          status: 'Completed',
-          priority: 'High'),
+        title: 'May nag away',
+        description: 'May nag away raw sabi ni John Brandon Lambino',
+        location: 'Dito lang samin',
+        status: 'Completed',
+        priority: 'High',
+        date: 'August 10, 2024',
+      ),
       MyReport(
-          title: 'May nag away',
-          description: 'May nag away raw sabi ni John Brandon Lambino',
-          status: 'Completed',
-          priority: 'High'),
+        title: 'May nag away',
+        description: 'May nag away raw sabi ni John Brandon Lambino',
+        location: 'Dito lang samin',
+        status: 'Completed',
+        priority: 'High',
+        date: 'August 10, 2024',
+      ),
       MyReport(
-          title: 'May nag away HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
-          description:
-              'May nag away raw sabi ni John Brandon Lambino HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
-          status: 'Completed',
-          priority: 'Low'),
+        title: 'May nag away HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
+        description:
+            'May nag away raw sabi ni John Brandon Lambino HAHAHAHAHAHAHAHAHHAHAHAHAHAHAH',
+        location: 'Dito lang samin',
+        status: 'Investigating',
+        priority: 'Low',
+        date: 'August 10, 2024',
+      ),
       MyReport(
-          title: 'May nag away',
-          description: 'May nag away raw sabi ni John Brandon Lambino',
-          status: 'Pending',
-          priority: 'Medium'),
+        title: 'May nag away',
+        description: 'May nag away raw sabi ni John Brandon Lambino',
+        location: 'Dito lang samin',
+        status: 'Pending',
+        priority: 'Medium',
+        date: 'August 10, 2024',
+      ),
       MyReport(
-          title: 'May nag away',
-          description: 'May nag away raw sabi ni John Brandon Lambino',
-          status: 'Pending',
-          priority: 'High'),
+        title: 'May nag away',
+        description: 'May nag away raw sabi ni John Brandon Lambino',
+        location: 'Dito lang samin',
+        status: 'Pending',
+        priority: 'High',
+        date: 'August 10, 2024',
+      ),
       MyReport(
-          title: 'May nag away',
-          description: 'May nag away raw sabi ni John Brandon Lambino',
-          status: 'Completed',
-          priority: 'Medium'),
+        title: 'May nag away',
+        description: 'May nag away raw sabi ni John Brandon Lambino',
+        location: 'Dito lang samin',
+        status: 'Completed',
+        priority: 'Medium',
+        date: 'August 10, 2024',
+      ),
       MyReport(
-          title: 'May nag away',
-          description: 'May nag away raw sabi ni John Brandon Lambino',
-          status: 'Completed',
-          priority: 'Low'),
+        title: 'May nag away',
+        description: 'May nag away raw sabi ni John Brandon Lambino',
+        location: 'Dito lang samin',
+        status: 'Investigating',
+        priority: 'Low',
+        date: 'August 10, 2024',
+      ),
     ];
     return Scaffold(
       backgroundColor: LightColor.backgroundColor,
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 16,
-                right: 16,
-                top: 24,
-                bottom: 16,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Icon(Icons.arrow_back),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text(
-                        'My report',
-                        style: GoogleFonts.quicksand(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: LightColor.blackPrimaryTextColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(),
-                  ),
-                ],
-              ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: MyHeader(title: 'My report'),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -144,8 +140,15 @@ class MyReportPage extends StatelessWidget {
               child: ListView.builder(
                 itemCount: myReport.length,
                 itemBuilder: (context, index) {
-                  return MyReportCard(
-                    myReport: myReport[index],
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 12,
+                      left: 16,
+                      right: 16,
+                    ),
+                    child: MyReportCard(
+                      myReport: myReport[index],
+                    ),
                   );
                 },
               ),

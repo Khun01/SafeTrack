@@ -11,11 +11,11 @@ import 'package:safetrack/presentation/bloc/features/user_guide/user_guide_bloc.
 import 'package:safetrack/presentation/bloc/features/user_guide/user_guide_event.dart';
 import 'package:safetrack/presentation/bloc/features/user_guide/user_guide_state.dart';
 import 'package:safetrack/presentation/cards/announcement_card.dart';
-import 'package:safetrack/presentation/pages/features/calendar_page.dart';
-import 'package:safetrack/presentation/pages/features/contacts_page.dart';
-import 'package:safetrack/presentation/pages/features/educational_page.dart';
-import 'package:safetrack/presentation/pages/features/my_report_page.dart';
-import 'package:safetrack/presentation/pages/features/safety_map_page.dart';
+import 'package:safetrack/presentation/pages/home/features/calendar_page.dart';
+import 'package:safetrack/presentation/pages/home/features/contacts_page.dart';
+import 'package:safetrack/presentation/pages/home/features/educational_page.dart';
+import 'package:safetrack/presentation/pages/home/features/my_report_page.dart';
+import 'package:safetrack/presentation/pages/home/features/safety_map_page.dart';
 import 'package:safetrack/presentation/widgets/my_announcement_shimmer.dart';
 import 'package:safetrack/presentation/widgets/my_app_bar.dart';
 import 'package:safetrack/presentation/widgets/my_home_page_feature_button.dart';

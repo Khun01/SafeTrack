@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_bloc.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_event.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_state.dart';
-import 'package:safetrack/presentation/pages/features/submit_report/photo_preview_page.dart';
+import 'package:safetrack/presentation/pages/home/features/submit_report/photo_preview_page.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
 
 class CameraPage extends StatelessWidget {

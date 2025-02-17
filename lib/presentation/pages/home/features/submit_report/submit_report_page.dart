@@ -8,7 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/submit_report/submit_report_bloc.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/submit_report/submit_report_event.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/submit_report/submit_report_state.dart';
-import 'package:safetrack/presentation/pages/features/submit_report/confirmation_report_page.dart';
+import 'package:safetrack/presentation/pages/home/features/submit_report/confirmation_report_page.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
 import 'package:safetrack/services/feature_services.dart';
 import 'package:safetrack/services/global.dart';

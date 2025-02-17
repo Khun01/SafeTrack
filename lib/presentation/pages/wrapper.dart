@@ -16,9 +16,9 @@ import 'package:safetrack/presentation/bloc/features/user_guide/user_guide_state
 import 'package:safetrack/presentation/bloc/profile/user_information/user_information_bloc.dart';
 import 'package:safetrack/presentation/bloc/profile/user_information/user_information_event.dart';
 import 'package:safetrack/presentation/bloc/profile/user_information/user_information_state.dart';
-import 'package:safetrack/presentation/pages/features/submit_report/camera_page.dart';
-import 'package:safetrack/presentation/pages/home_page.dart';
-import 'package:safetrack/presentation/pages/profile_page.dart';
+import 'package:safetrack/presentation/pages/home/features/submit_report/camera_page.dart';
+import 'package:safetrack/presentation/pages/home/home_page.dart';
+import 'package:safetrack/presentation/pages/profile/profile_page.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
 import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.dart';
 import 'package:safetrack/services/auth_services.dart';

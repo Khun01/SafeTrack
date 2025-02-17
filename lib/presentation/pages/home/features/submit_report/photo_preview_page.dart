@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_bloc.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_event.dart';
 import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_state.dart';
-import 'package:safetrack/presentation/pages/features/submit_report/submit_report_page.dart';
+import 'package:safetrack/presentation/pages/home/features/submit_report/submit_report_page.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
 
 class PhotoPreviewPage extends StatelessWidget {
