@@ -2,19 +2,19 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:safetrack/presentation/bloc/features/add_report/submit_report/submit_report_event.dart';
-import 'package:safetrack/presentation/bloc/features/add_report/submit_report/submit_report_state.dart';
+import 'package:safetrack/presentation/bloc/features/report/my_report/my_report_event.dart';
+import 'package:safetrack/presentation/bloc/features/report/my_report/my_report_state.dart';
 import 'package:safetrack/services/feature_services.dart';
 
-class SubmitReportBloc extends Bloc<SubmitReportEvent, SubmitReportState> {
+class MyReportBloc extends Bloc<MyReportEvent, MyReportState> {
   final FeatureServices featureServices;
-  SubmitReportBloc({required this.featureServices})
+  MyReportBloc({required this.featureServices})
       : super(SubmitReportInitial()) {
     on<SubmitButtonEvent>(submitButtonEvent);
   }
 
   FutureOr<void> submitButtonEvent(
-      SubmitButtonEvent event, Emitter<SubmitReportState> emit) async {
+      SubmitButtonEvent event, Emitter<MyReportState> emit) async {
     emit(SubmitReportLoadingState());
     log('The submit button is clicked');
     try {

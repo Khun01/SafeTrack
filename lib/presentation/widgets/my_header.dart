@@ -12,7 +12,7 @@ class MyHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.only(top: 24, bottom: 16),
       child: Row(
         children: [

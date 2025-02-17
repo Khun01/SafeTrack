@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:safetrack/presentation/bloc/features/add_report/submit_report/submit_report_bloc.dart';
-import 'package:safetrack/presentation/bloc/features/add_report/submit_report/submit_report_event.dart';
-import 'package:safetrack/presentation/bloc/features/add_report/submit_report/submit_report_state.dart';
+import 'package:safetrack/presentation/bloc/features/report/my_report/my_report_bloc.dart';
+import 'package:safetrack/presentation/bloc/features/report/my_report/my_report_event.dart';
+import 'package:safetrack/presentation/bloc/features/report/my_report/my_report_state.dart';
 import 'package:safetrack/presentation/pages/home/features/submit_report/confirmation_report_page.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
 import 'package:safetrack/services/feature_services.dart';
@@ -47,11 +47,11 @@ class _SubmitReportPageState extends State<SubmitReportPage>
 
   @override
   Widget build(BuildContext context) {
-    final SubmitReportBloc submitReportBloc =
-        SubmitReportBloc(featureServices: FeatureServices(baseUrl: baseUrl));
+    final MyReportBloc myReportBloc =
+        MyReportBloc(featureServices: FeatureServices(baseUrl: baseUrl));
     return BlocProvider(
-      create: (context) => submitReportBloc,
-      child: BlocConsumer<SubmitReportBloc, SubmitReportState>(
+      create: (context) => myReportBloc,
+      child: BlocConsumer<MyReportBloc, MyReportState>(
         listener: (context, state) {
           if (state is SubmitReportSuccessState) {
             navigationAnimation(
@@ -314,7 +314,7 @@ class _SubmitReportPageState extends State<SubmitReportPage>
                                   if (location.text.isNotEmpty &&
                                       description.text.isNotEmpty) {
                                     context
-                                        .read<SubmitReportBloc>()
+                                        .read<MyReportBloc>()
                                         .add(SubmitButtonEvent(
                                           reportImage: widget.photo,
                                           priority: selectedOption ?? 'Low',

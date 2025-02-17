@@ -1,8 +1,10 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/bloc/profile/user_information/user_information_bloc.dart';
 import 'package:safetrack/presentation/bloc/profile/user_information/user_information_state.dart';
+import 'package:safetrack/presentation/pages/home/notification_page.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
 
 class MyAppBar extends StatelessWidget {
@@ -50,7 +52,7 @@ class MyAppBar extends StatelessWidget {
                         color: LightColor.blackPrimaryTextColor,
                       ),
                     );
-                  }else if(state is UserInformationLoadingState){
+                  } else if (state is UserInformationLoadingState) {
                     return const SizedBox(
                       height: 23,
                       width: 23,
@@ -58,7 +60,7 @@ class MyAppBar extends StatelessWidget {
                         strokeWidth: 1,
                       ),
                     );
-                  }else{
+                  } else {
                     return Text(
                       '',
                       style: GoogleFonts.quicksand(
@@ -72,10 +74,22 @@ class MyAppBar extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          GestureDetector(
-            onTap: () {},
-            child: const Icon(Icons.notifications,
-                size: 28, color: LightColor.primaryColor),
+          OpenContainer(
+            transitionType: ContainerTransitionType.fadeThrough,
+            transitionDuration: const Duration(milliseconds: 300),
+            closedElevation: 0,
+            openElevation: 0,
+            openColor: Colors.transparent,
+            closedShape: const CircleBorder(),
+            closedBuilder: (context, action) {
+              return const Icon(
+                Icons.notifications,
+                color: LightColor.primaryColor,
+              );
+            },
+            openBuilder: (context, action) {
+              return const NotificationPage();
+            },
           ),
         ],
       ),

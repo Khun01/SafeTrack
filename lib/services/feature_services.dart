@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:safetrack/models/announcement.dart';
 import 'package:safetrack/models/events/event.dart';
+import 'package:safetrack/models/my_report.dart';
 import 'package:safetrack/services/storage.dart';
 
 class FeatureServices {
@@ -56,6 +57,27 @@ class FeatureServices {
   }
 
   // ------------- FOR SOS ------------- //
+
+  // ------------- FOR FETCHING MY REPORT ------------- //
+  Future<List<MyReport>> fetchReport() async {
+    final user = await Storage.getData();
+    String? token = user['token'];
+    final response = await http.get(
+      Uri.parse('$baseUrl/announcements'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token'
+      },
+    );
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> jsonData = json.decode(response.body);
+      final List<dynamic> myReportList = jsonData['announcement'];
+      return myReportList.map((json) => MyReport.fromJson(json)).toList();
+    } else {
+      log('The status code when fetching My Report is: ${response.statusCode}');
+      throw Exception('Failed to load My Report');
+    }
+  }
 
   // ------------- FOR SUBMITING REPORT ------------- //
   Future<Map<String, dynamic>> submitReport(

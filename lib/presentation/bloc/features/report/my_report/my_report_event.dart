@@ -1,6 +1,6 @@
-abstract class SubmitReportEvent {}
+abstract class MyReportEvent {}
 
-class SubmitButtonEvent extends SubmitReportEvent {
+class SubmitButtonEvent extends MyReportEvent {
   final String reportImage;
   final String priority;
   final String description;

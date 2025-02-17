@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:camera/camera.dart';
-import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_event.dart';
-import 'package:safetrack/presentation/bloc/features/add_report/camera/camera_state.dart';
+import 'package:safetrack/presentation/bloc/features/report/camera/camera_event.dart';
+import 'package:safetrack/presentation/bloc/features/report/camera/camera_state.dart';
 
 class CameraBloc extends Bloc<CameraEvent, CameraState> {
   CameraController? controller;
