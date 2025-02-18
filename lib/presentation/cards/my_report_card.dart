@@ -16,7 +16,7 @@ class MyReportCard extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 12),
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(24),
             color: LightColor.whitePrimaryTextColor,
             border: Border.all(color: LightColor.accentColor),
             boxShadow: const [
@@ -34,11 +34,11 @@ class MyReportCard extends StatelessWidget {
                 height: 90,
                 width: 90,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(20),
                   color: LightColor.accentColor,
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(20),
                   child: Image.network(
                     '$evidenceUrl${myReport.evidence}',
                     fit: BoxFit.cover,
@@ -133,9 +133,9 @@ class MyReportCard extends StatelessWidget {
                           : const Color(0xFFFFAE00),
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(4),
-                topRight: Radius.circular(12),
+                topRight: Radius.circular(22),
                 bottomRight: Radius.circular(4),
-                bottomLeft: Radius.circular(12),
+                bottomLeft: Radius.circular(22),
               ),
             ),
             child: Text(

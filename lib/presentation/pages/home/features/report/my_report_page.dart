@@ -137,67 +137,105 @@ class MyReportPage extends StatelessWidget {
                         primary: false,
                         automaticallyImplyLeading: false,
                         expandedHeight: 132,
-                        backgroundColor:
-                            Theme.of(context).scaffoldBackgroundColor,
                         scrolledUnderElevation: 0,
                         title: const MyHeader(title: 'My report'),
-                        flexibleSpace: FlexibleSpaceBar(
-                          background: Column(
-                            children: [
-                              const SizedBox(height: 68),
-                              AnimatedOpacity(
-                                opacity: scrolled ? 0 : 1,
-                                duration: const Duration(milliseconds: 300),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                  ),
-                                  child: TextField(
-                                    controller: searchController,
-                                    onChanged: (query) {
-                                      context.read<MyReportBloc>().add(
-                                          SearchMyReportEvent(query: query));
-                                    },
-                                    decoration: InputDecoration(
-                                      filled: true,
-                                      fillColor: LightColor.inputField,
-                                      hintText: 'Search...',
-                                      hintStyle: GoogleFonts.quicksand(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: LightColor.blackAccentColor,
-                                      ),
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                        vertical: 12,
-                                        horizontal: 16,
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                        borderSide: BorderSide.none,
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                        borderSide: BorderSide.none,
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                        borderSide: BorderSide.none,
-                                      ),
-                                      suffixIcon: const Icon(
-                                        Icons.search,
+                        flexibleSpace: AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                            boxShadow: scrolled
+                                ? [
+                                    BoxShadow(
                                         color:
-                                            LightColor.blackSecondaryTextColor,
+                                            Colors.black.withValues(alpha: 0.2),
+                                        offset: const Offset(0.0, 10.0),
+                                        blurRadius: 10.0,
+                                        spreadRadius: -6.0)
+                                  ]
+                                : [],
+                          ),
+                          child: FlexibleSpaceBar(
+                            background: Column(
+                              children: [
+                                const SizedBox(height: 68),
+                                AnimatedOpacity(
+                                  opacity: scrolled ? 0 : 1,
+                                  duration: const Duration(milliseconds: 300),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                    ),
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Color(0x1A023E8A),
+                                            offset: Offset(0.0, 10.0),
+                                            blurRadius: 4.0,
+                                            spreadRadius: -4.0,
+                                          )
+                                        ],
+                                      ),
+                                      child: TextField(
+                                        controller: searchController,
+                                        onChanged: (query) {
+                                          context.read<MyReportBloc>().add(
+                                                SearchMyReportEvent(
+                                                  query: query,
+                                                ),
+                                              );
+                                        },
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor:
+                                              LightColor.whitePrimaryTextColor,
+                                          hintText: 'Search...',
+                                          hintStyle: GoogleFonts.quicksand(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: LightColor.blackAccentColor,
+                                          ),
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                            vertical: 12,
+                                            horizontal: 16,
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                            borderSide: BorderSide.none,
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                            borderSide: BorderSide.none,
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                            borderSide: BorderSide.none,
+                                          ),
+                                          suffixIcon: const Icon(
+                                            Icons.search,
+                                            color: LightColor
+                                                .blackSecondaryTextColor,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       );
                     },
+                  ),
+                  const SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 8,
+                    ),
                   ),
                   body,
                 ],

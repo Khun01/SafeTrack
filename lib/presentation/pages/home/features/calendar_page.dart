@@ -30,7 +30,7 @@ class _CalendarPageState extends State<CalendarPage> {
 
   final scrollController = ScrollController();
 
-  String formattedDate = DateFormat('MMMM yyyy').format(DateTime.now());
+  String formattedDate = DateFormat('MMMM dd yyyy').format(DateTime.now());
   DateTime focusedDay = DateTime.now();
   DateTime selectedDay = DateTime.now();
 
@@ -150,48 +150,61 @@ class _CalendarPageState extends State<CalendarPage> {
                 controller: scrollController,
                 physics: const AlwaysScrollableScrollPhysics(),
                 slivers: [
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        left: 16,
-                        right: 16,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const MyHeader(title: 'Calendar'),
-                          Text(
-                            formattedDate,
-                            style: GoogleFonts.quicksand(
-                              color: LightColor.blackSecondaryTextColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
+                  SliverLayoutBuilder(
+                    builder: (BuildContext context, constraints) {
+                      return SliverAppBar(
+                        pinned: true,
+                        primary: false,
+                        automaticallyImplyLeading: false,
+                        collapsedHeight: 273,
+                        backgroundColor:
+                            Theme.of(context).scaffoldBackgroundColor,
+                        scrolledUnderElevation: 0,
+                        title: const MyHeader(title: 'Calendar'),
+                        flexibleSpace: FlexibleSpaceBar(
+                          background: Padding(
+                            padding: const EdgeInsets.only(
+                              left: 16,
+                              right: 16,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 68),
+                                Text(
+                                  formattedDate,
+                                  style: GoogleFonts.quicksand(
+                                    color: LightColor.blackSecondaryTextColor,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                buildCalendar(),
+                                const SizedBox(height: 16),
+                                Text(
+                                  "Today's event",
+                                  style: GoogleFonts.quicksand(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    color: LightColor.blackPrimaryTextColor,
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                const Divider(
+                                  height: 2,
+                                  color: LightColor.accentColor,
+                                ),
+                              ],
                             ),
                           ),
-                          buildCalendar(),
-                          const SizedBox(height: 16),
-                          Text(
-                            "Today's event",
-                            style: GoogleFonts.quicksand(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: LightColor.blackPrimaryTextColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 12, left: 12, right: 12),
-                      child: Divider(
-                        height: 2,
-                        color: LightColor.accentColor,
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                   ),
                   body,
+                  const SliverToBoxAdapter(
+                    child: SizedBox(height: 5000),
+                  )
                 ],
               ),
             ),
