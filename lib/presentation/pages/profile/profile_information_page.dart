@@ -1,4 +1,3 @@
-// ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -41,17 +40,17 @@ class ProfileInformationPage extends StatelessWidget {
                             pinned: true,
                             automaticallyImplyLeading: false,
                             expandedHeight: 250,
-                            collapsedHeight: 76,
+                            collapsedHeight: 70,
+                            primary: false,
                             flexibleSpace: AnimatedContainer(
                               duration: const Duration(milliseconds: 300),
-                              height: 250,
                               decoration: BoxDecoration(
                                 color: LightColor.primaryColor,
                                 boxShadow: scrolled
                                     ? [
                                         BoxShadow(
-                                          color:
-                                              Colors.black.withOpacity(0.2),
+                                          color: Colors.black
+                                              .withValues(alpha: 0.2),
                                           offset: const Offset(0.0, 10.0),
                                           blurRadius: 10.0,
                                           spreadRadius: -6.0,
@@ -62,9 +61,21 @@ class ProfileInformationPage extends StatelessWidget {
                               child: Stack(
                                 clipBehavior: Clip.none,
                                 children: [
+                                  Positioned(
+                                    top: 26,
+                                    left: 16,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Icon(
+                                        Icons.arrow_back,
+                                        color: LightColor.whitePrimaryTextColor,
+                                      ),
+                                    ),
+                                  ),
                                   AnimatedPositioned(
-                                    duration:
-                                        const Duration(milliseconds: 500),
+                                    duration: const Duration(milliseconds: 500),
                                     left: 0,
                                     right: 0,
                                     bottom: 24,
@@ -72,8 +83,8 @@ class ProfileInformationPage extends StatelessWidget {
                                       children: [
                                         AnimatedOpacity(
                                           opacity: scrolled ? 0 : 1,
-                                          duration: const Duration(
-                                              milliseconds: 300),
+                                          duration:
+                                              const Duration(milliseconds: 300),
                                           child: const Center(
                                             child: Icon(
                                               Icons.account_circle,
@@ -86,8 +97,8 @@ class ProfileInformationPage extends StatelessWidget {
                                         const SizedBox(height: 8),
                                         AnimatedOpacity(
                                           opacity: scrolled ? 0 : 1,
-                                          duration: const Duration(
-                                              milliseconds: 300),
+                                          duration:
+                                              const Duration(milliseconds: 300),
                                           child: Text(
                                             user.name,
                                             style: GoogleFonts.quicksand(
@@ -100,8 +111,8 @@ class ProfileInformationPage extends StatelessWidget {
                                         ),
                                         AnimatedOpacity(
                                           opacity: scrolled ? 0 : 1,
-                                          duration: const Duration(
-                                              milliseconds: 300),
+                                          duration:
+                                              const Duration(milliseconds: 300),
                                           child: Text(
                                             user.isVerified == 1
                                                 ? 'Verified'
@@ -127,8 +138,8 @@ class ProfileInformationPage extends StatelessWidget {
                                         style: GoogleFonts.quicksand(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
-                                          color: LightColor
-                                              .whitePrimaryTextColor,
+                                          color:
+                                              LightColor.whitePrimaryTextColor,
                                         ),
                                       ),
                                     ),
@@ -143,8 +154,8 @@ class ProfileInformationPage extends StatelessWidget {
                                       child: const Center(
                                         child: Icon(
                                           Icons.account_circle,
-                                          color: LightColor
-                                              .whitePrimaryTextColor,
+                                          color:
+                                              LightColor.whitePrimaryTextColor,
                                           size: 30,
                                         ),
                                       ),
@@ -208,7 +219,7 @@ class ProfileInformationPage extends StatelessWidget {
                           title: 'Gender',
                           icon: Icons.cake_outlined,
                           subheading: 'Gender Identity',
-                          info: user.gender ?? 'Your gender',
+                          info: user.gender != null ? (user.gender == 'male' ? 'Male' : 'Female') : 'Your gender',
                         ),
                       ),
                       SliverToBoxAdapter(
@@ -259,19 +270,6 @@ class ProfileInformationPage extends StatelessWidget {
                       )
                     ],
                   ),
-                  Positioned(
-                    top: 24,
-                    left: 16,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Icon(
-                        Icons.arrow_back,
-                        color: LightColor.whitePrimaryTextColor,
-                      ),
-                    ),
-                  )
                 ],
               ),
             );

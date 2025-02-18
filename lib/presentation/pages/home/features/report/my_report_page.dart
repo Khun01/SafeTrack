@@ -146,11 +146,12 @@ class MyReportPage extends StatelessWidget {
                             boxShadow: scrolled
                                 ? [
                                     BoxShadow(
-                                        color:
-                                            Colors.black.withValues(alpha: 0.2),
-                                        offset: const Offset(0.0, 10.0),
-                                        blurRadius: 10.0,
-                                        spreadRadius: -6.0)
+                                      color:
+                                          Colors.black.withValues(alpha: 0.2),
+                                      offset: const Offset(0.0, 10.0),
+                                      blurRadius: 10.0,
+                                      spreadRadius: -6.0,
+                                    )
                                   ]
                                 : [],
                           ),
