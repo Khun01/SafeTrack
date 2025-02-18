@@ -125,162 +125,160 @@ class CameraPage extends StatelessWidget {
           },
           child: Scaffold(
             backgroundColor: LightColor.blackPrimaryTextColor,
-            body: SafeArea(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16,
-                      right: 16,
-                      top: 24,
-                      bottom: 24,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                            context
-                                .read<CameraBloc>()
-                                .add(DisposeCameraEvent());
-                          },
-                          child: const Icon(
-                            Icons.arrow_back,
-                            color: LightColor.whitePrimaryTextColor,
+            body: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    right: 16,
+                    top: 24,
+                    bottom: 24,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                          context
+                              .read<CameraBloc>()
+                              .add(DisposeCameraEvent());
+                        },
+                        child: const Icon(
+                          Icons.arrow_back,
+                          color: LightColor.whitePrimaryTextColor,
+                        ),
+                      ),
+                      BlocBuilder<CameraBloc, CameraState>(
+                        buildWhen: (previous, current) =>
+                            current is CameraFlashToggledState,
+                        builder: (context, state) {
+                          IconData flashIcon = Icons.flash_auto;
+                          if (state is CameraFlashToggledState) {
+                            switch (state.flashMode) {
+                              case FlashMode.off:
+                                flashIcon = Icons.flash_off;
+                                break;
+                              case FlashMode.always:
+                                flashIcon = Icons.flash_on;
+                                break;
+                              case FlashMode.auto:
+                              default:
+                                flashIcon = Icons.flash_auto;
+                                break;
+                            }
+                          }
+                          return GestureDetector(
+                            onTap: () {
+                              context
+                                  .read<CameraBloc>()
+                                  .add(ToggleFlashEvent());
+                            },
+                            child: Icon(
+                              flashIcon,
+                              color: LightColor.whitePrimaryTextColor,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                body,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Center(
+                          child: Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              color: LightColor.whitePrimaryTextColor,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: LightColor.blackPrimaryTextColor,
+                                width: 2,
+                              ),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color(0x1A023E8A),
+                                  offset: Offset(0.0, 10.0),
+                                  blurRadius: 4.0,
+                                  spreadRadius: -4.0,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        BlocBuilder<CameraBloc, CameraState>(
-                          buildWhen: (previous, current) =>
-                              current is CameraFlashToggledState,
-                          builder: (context, state) {
-                            IconData flashIcon = Icons.flash_auto;
-                            if (state is CameraFlashToggledState) {
-                              switch (state.flashMode) {
-                                case FlashMode.off:
-                                  flashIcon = Icons.flash_off;
-                                  break;
-                                case FlashMode.always:
-                                  flashIcon = Icons.flash_on;
-                                  break;
-                                case FlashMode.auto:
-                                default:
-                                  flashIcon = Icons.flash_auto;
-                                  break;
-                              }
-                            }
-                            return GestureDetector(
-                              onTap: () {
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: () {
+                              if (state is TakingEvidenceLoadingState) {
+                                null;
+                              } else {
                                 context
                                     .read<CameraBloc>()
-                                    .add(ToggleFlashEvent());
-                              },
-                              child: Icon(
-                                flashIcon,
-                                color: LightColor.whitePrimaryTextColor,
-                              ),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  body,
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Center(
+                                    .add(CapturePhotoEvent());
+                              }
+                            },
                             child: Container(
-                              height: 40,
-                              width: 40,
+                              height: 70,
+                              width: 70,
+                              padding: const EdgeInsets.all(2),
                               decoration: BoxDecoration(
                                 color: LightColor.whitePrimaryTextColor,
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(
-                                  color: LightColor.blackPrimaryTextColor,
-                                  width: 2,
-                                ),
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Color(0x1A023E8A),
-                                    offset: Offset(0.0, 10.0),
-                                    blurRadius: 4.0,
-                                    spreadRadius: -4.0,
-                                  ),
-                                ],
+                                borderRadius: BorderRadius.circular(500),
                               ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: GestureDetector(
-                              onTap: () {
-                                if (state is TakingEvidenceLoadingState) {
-                                  null;
-                                } else {
-                                  context
-                                      .read<CameraBloc>()
-                                      .add(CapturePhotoEvent());
-                                }
-                              },
                               child: Container(
-                                height: 70,
-                                width: 70,
-                                padding: const EdgeInsets.all(2),
                                 decoration: BoxDecoration(
                                   color: LightColor.whitePrimaryTextColor,
-                                  borderRadius: BorderRadius.circular(500),
-                                ),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: LightColor.whitePrimaryTextColor,
-                                    border: Border.all(
-                                      color: LightColor.blackPrimaryTextColor,
-                                      width: 3,
-                                    ),
-                                    borderRadius: BorderRadius.circular(500),
+                                  border: Border.all(
+                                    color: LightColor.blackPrimaryTextColor,
+                                    width: 3,
                                   ),
+                                  borderRadius: BorderRadius.circular(500),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                        Expanded(
-                          child: Center(
-                            child: GestureDetector(
-                              onTap: () {
-                                if (controller != null) {
-                                  context
-                                      .read<CameraBloc>()
-                                      .add(SwitchCameraEvent(
-                                        controller: controller,
-                                      ));
-                                } else {
-                                  snackBar(
-                                    context,
-                                    'Camera controller is not initialized.',
-                                    LightColor.primaryColor,
-                                  );
-                                }
-                              },
-                              child: const Center(
-                                child: Icon(
-                                  Icons.cameraswitch_outlined,
-                                  color: LightColor.whitePrimaryTextColor,
-                                ),
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: () {
+                              if (controller != null) {
+                                context
+                                    .read<CameraBloc>()
+                                    .add(SwitchCameraEvent(
+                                      controller: controller,
+                                    ));
+                              } else {
+                                snackBar(
+                                  context,
+                                  'Camera controller is not initialized.',
+                                  LightColor.primaryColor,
+                                );
+                              }
+                            },
+                            child: const Center(
+                              child: Icon(
+                                Icons.cameraswitch_outlined,
+                                color: LightColor.whitePrimaryTextColor,
                               ),
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         );

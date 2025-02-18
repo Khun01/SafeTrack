@@ -7,12 +7,10 @@ class EducationalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            MyHeader(title: 'Educational'),
-          ],
-        ),
+      body: Column(
+        children: [
+          MyHeader(title: 'Educational'),
+        ],
       ),
     );
   }

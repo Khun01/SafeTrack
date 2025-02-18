@@ -90,106 +90,71 @@ class _HomePageState extends State<HomePage> {
         //   context.read<UserGuideBloc>().add(UserGuideResetEvent());
         // }
         return Scaffold(
-          body: SafeArea(
-            child: Stack(
-              children: [
-                RefreshIndicator(
-                  onRefresh: () async {
-                    context
-                        .read<AnnouncementBloc>()
-                        .add(FetchAnnouncementEvent());
-                  },
-                  child: CustomScrollView(
-                    controller: scrollController,
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    slivers: [
-                      const SliverToBoxAdapter(
-                        child: MyAppBar(),
-                      ),
-                      const SliverToBoxAdapter(
-                        child:
-                            Divider(height: 2, color: LightColor.dividerColor),
-                      ),
-                      SliverToBoxAdapter(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 8,
-                            horizontal: 16,
-                          ),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              key: announcementKey,
-                              'Announcement',
-                              style: GoogleFonts.quicksand(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: LightColor.blackPrimaryTextColor,
-                              ),
+          body: Stack(
+            children: [
+              RefreshIndicator(
+                onRefresh: () async {
+                  context
+                      .read<AnnouncementBloc>()
+                      .add(FetchAnnouncementEvent());
+                },
+                child: CustomScrollView(
+                  controller: scrollController,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  slivers: [
+                    const SliverToBoxAdapter(
+                      child: MyAppBar(),
+                    ),
+                    const SliverToBoxAdapter(
+                      child: Divider(height: 2, color: LightColor.dividerColor),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 8,
+                          horizontal: 16,
+                        ),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            key: announcementKey,
+                            'Announcement',
+                            style: GoogleFonts.quicksand(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: LightColor.blackPrimaryTextColor,
                             ),
                           ),
                         ),
                       ),
-                      BlocBuilder<AnnouncementBloc, AnnouncementState>(
-                        builder: (context, state) {
-                          if (state is AnnouncementLoading) {
+                    ),
+                    BlocBuilder<AnnouncementBloc, AnnouncementState>(
+                      builder: (context, state) {
+                        if (state is AnnouncementLoading) {
+                          return SliverToBoxAdapter(
+                            child: Container(
+                              height: 240,
+                              padding: const EdgeInsets.only(right: 16),
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 2,
+                                itemBuilder: (context, index) {
+                                  return const MyAnnouncementShimmer();
+                                },
+                              ),
+                            ),
+                          );
+                        } else if (state is AnnouncementSuccess) {
+                          final announcement =
+                              state.announcement.reversed.toList();
+                          if (announcement.isEmpty) {
                             return SliverToBoxAdapter(
                               child: Container(
                                 height: 240,
                                 padding: const EdgeInsets.only(right: 16),
-                                child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: 2,
-                                  itemBuilder: (context, index) {
-                                    return const MyAnnouncementShimmer();
-                                  },
-                                ),
-                              ),
-                            );
-                          } else if (state is AnnouncementSuccess) {
-                            final announcement =
-                                state.announcement.reversed.toList();
-                            if (announcement.isEmpty) {
-                              return SliverToBoxAdapter(
-                                child: Container(
-                                  height: 240,
-                                  padding: const EdgeInsets.only(right: 16),
-                                  child: Center(
-                                    child: Text(
-                                      "No announcements available",
-                                      style: GoogleFonts.quicksand(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: LightColor.blackPrimaryTextColor,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            } else {
-                              return SliverToBoxAdapter(
-                                child: Container(
-                                  height: 240,
-                                  padding: const EdgeInsets.only(right: 16),
-                                  child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: announcement.length,
-                                    itemBuilder: (context, index) {
-                                      return AnnouncementCard(
-                                        announcement: announcement[index],
-                                      );
-                                    },
-                                  ),
-                                ),
-                              );
-                            }
-                          } else if (state is AnnouncementFailed) {
-                            return SliverToBoxAdapter(
-                              child: SizedBox(
-                                height: 240,
                                 child: Center(
                                   child: Text(
-                                    "Failed to load announcement",
+                                    "No announcements available",
                                     style: GoogleFonts.quicksand(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -200,205 +165,242 @@ class _HomePageState extends State<HomePage> {
                               ),
                             );
                           } else {
-                            return const SliverToBoxAdapter(
-                              child: SizedBox.shrink(),
+                            return SliverToBoxAdapter(
+                              child: Container(
+                                height: 240,
+                                padding: const EdgeInsets.only(right: 16),
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: announcement.length,
+                                  itemBuilder: (context, index) {
+                                    return AnnouncementCard(
+                                      announcement: announcement[index],
+                                    );
+                                  },
+                                ),
+                              ),
                             );
                           }
-                        },
-                      ),
-                      SliverToBoxAdapter(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 24),
-                          color: const Color(0x4DE5E9F4),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    MyHomePageFeatureButton(
-                                      key: myReport,
-                                      name: 'My Report',
-                                      image: 'assets/icons/document.png',
-                                      onTap: const MyReportPage(),
-                                    ),
-                                    const SizedBox(height: 24),
-                                    MyHomePageFeatureButton(
-                                      key: educational,
-                                      name: 'Educational',
-                                      image: 'assets/icons/educational.png',
-                                      onTap: const EducationalPage(),
-                                    ),
-                                  ],
+                        } else if (state is AnnouncementFailed) {
+                          return SliverToBoxAdapter(
+                            child: SizedBox(
+                              height: 240,
+                              child: Center(
+                                child: Text(
+                                  "Failed to load announcement",
+                                  style: GoogleFonts.quicksand(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: LightColor.blackPrimaryTextColor,
+                                  ),
                                 ),
                               ),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    MyHomePageFeatureButton(
-                                      key: safetyMap,
-                                      name: 'Safety Map',
-                                      image: 'assets/icons/map.png',
-                                      onTap: const SafetyMapPage(),
-                                    ),
-                                    const SizedBox(height: 24),
-                                    MyHomePageFeatureButton(
-                                      key: contacts,
-                                      name: 'Contacts',
-                                      image: 'assets/icons/contact.png',
-                                      onTap: const ContactsPage(),
-                                    ),
-                                  ],
-                                ),
+                            ),
+                          );
+                        } else {
+                          return const SliverToBoxAdapter(
+                            child: SizedBox.shrink(),
+                          );
+                        }
+                      },
+                    ),
+                    SliverToBoxAdapter(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 24),
+                        color: const Color(0x4DE5E9F4),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  MyHomePageFeatureButton(
+                                    key: myReport,
+                                    name: 'My Report',
+                                    image: 'assets/icons/document.png',
+                                    onTap: const MyReportPage(),
+                                  ),
+                                  const SizedBox(height: 24),
+                                  MyHomePageFeatureButton(
+                                    key: educational,
+                                    name: 'Educational',
+                                    image: 'assets/icons/educational.png',
+                                    onTap: const EducationalPage(),
+                                  ),
+                                ],
                               ),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    MyHomePageFeatureButton(
-                                      key: calendar,
-                                      name: 'Calendar',
-                                      image: 'assets/icons/calendar.png',
-                                      onTap: const CalendarPage(),
-                                    ),
-                                    const SizedBox(height: 24),
-                                    GestureDetector(
-                                      onTap: () {
-                                        toast(context, "SOS");
-                                      },
-                                      child: Column(
-                                        key: sos,
-                                        children: [
-                                          Container(
-                                            height: 60,
-                                            width: 60,
-                                            padding: const EdgeInsets.all(16),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(500),
-                                              color: const Color(0xFFE5E9F4),
-                                              border: const Border(
-                                                top: BorderSide(
-                                                    color: LightColor
-                                                        .whiteSecondaryTextColor,
-                                                    width: 1.5),
-                                                left: BorderSide(
-                                                    color: LightColor
-                                                        .whiteSecondaryTextColor,
-                                                    width: 1.5),
-                                              ),
-                                              boxShadow: const [
-                                                BoxShadow(
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  MyHomePageFeatureButton(
+                                    key: safetyMap,
+                                    name: 'Safety Map',
+                                    image: 'assets/icons/map.png',
+                                    onTap: const SafetyMapPage(),
+                                  ),
+                                  const SizedBox(height: 24),
+                                  MyHomePageFeatureButton(
+                                    key: contacts,
+                                    name: 'Contacts',
+                                    image: 'assets/icons/contact.png',
+                                    onTap: const ContactsPage(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  MyHomePageFeatureButton(
+                                    key: calendar,
+                                    name: 'Calendar',
+                                    image: 'assets/icons/calendar.png',
+                                    onTap: const CalendarPage(),
+                                  ),
+                                  const SizedBox(height: 24),
+                                  GestureDetector(
+                                    onTap: () {
+                                      toast(context, "SOS");
+                                    },
+                                    child: Column(
+                                      key: sos,
+                                      children: [
+                                        Container(
+                                          height: 60,
+                                          width: 60,
+                                          padding: const EdgeInsets.all(16),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(500),
+                                            color: const Color(0xFFE5E9F4),
+                                            border: const Border(
+                                              top: BorderSide(
                                                   color: LightColor
-                                                      .whiteAccentColor,
-                                                  spreadRadius: 2,
-                                                  blurRadius: 4,
-                                                  offset: Offset(-1, -1),
-                                                ),
-                                                BoxShadow(
-                                                  color: Color(0x1A023E8A),
-                                                  spreadRadius: 1,
-                                                  blurRadius: 4,
-                                                  offset: Offset(4, 4),
-                                                ),
-                                              ],
+                                                      .whiteSecondaryTextColor,
+                                                  width: 1.5),
+                                              left: BorderSide(
+                                                  color: LightColor
+                                                      .whiteSecondaryTextColor,
+                                                  width: 1.5),
                                             ),
-                                            child: Image.asset(
-                                                'assets/icons/sos.png'),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color:
+                                                    LightColor.whiteAccentColor,
+                                                spreadRadius: 2,
+                                                blurRadius: 4,
+                                                offset: Offset(-1, -1),
+                                              ),
+                                              BoxShadow(
+                                                color: Color(0x1A023E8A),
+                                                spreadRadius: 1,
+                                                blurRadius: 4,
+                                                offset: Offset(4, 4),
+                                              ),
+                                            ],
                                           ),
-                                          const SizedBox(height: 16),
-                                          Text(
-                                            'SOS',
-                                            style: GoogleFonts.quicksand(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
-                                              color: LightColor.primaryColor,
-                                            ),
+                                          child: Image.asset(
+                                              'assets/icons/sos.png'),
+                                        ),
+                                        const SizedBox(height: 16),
+                                        Text(
+                                          'SOS',
+                                          style: GoogleFonts.quicksand(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            color: LightColor.primaryColor,
                                           ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
-                      SliverToBoxAdapter(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 16,
-                            left: 16,
-                            bottom: 8,
-                          ),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              key: safetyTips,
-                              'Safety Tips',
-                              style: GoogleFonts.quicksand(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: LightColor.blackPrimaryTextColor,
-                              ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 16,
+                          left: 16,
+                          bottom: 8,
+                        ),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            key: safetyTips,
+                            'Safety Tips',
+                            style: GoogleFonts.quicksand(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: LightColor.blackPrimaryTextColor,
                             ),
                           ),
                         ),
                       ),
-                      SliverToBoxAdapter(
-                        child: Container(
-                          height: 170,
-                          padding: const EdgeInsets.only(right: 16),
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: safetyTipsList.length,
-                            itemBuilder: (context, index) {
-                              return SafetyTipsCard(
-                                safetyTips: safetyTipsList[index],
-                              );
-                            },
-                          ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Container(
+                        height: 170,
+                        padding: const EdgeInsets.only(right: 16),
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: safetyTipsList.length,
+                          itemBuilder: (context, index) {
+                            return SafetyTipsCard(
+                              safetyTips: safetyTipsList[index],
+                            );
+                          },
                         ),
                       ),
-                      SliverToBoxAdapter(
-                        child: Container(
-                          height: 78,
-                        ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Container(
+                        height: 78,
                       ),
-                    ],
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        key: home,
+                        height: 56,
+                      ),
+                    ),
+                    Expanded(child: Container()),
+                    Expanded(
+                      child: Container(
+                        key: profile,
+                        height: 56,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                bottom: 32,
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: Container(
+                    key: addReport,
+                    height: 50,
+                    width: 50,
+                    decoration: const BoxDecoration(shape: BoxShape.circle),
                   ),
                 ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          key: home,
-                          height: 60,
-                          color: Colors.blue,
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          key: addReport,
-                          height: 60,
-                          color: Colors.amber,
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          key: profile,
-                          height: 60,
-                          color: Colors.green,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         );
       },
@@ -681,7 +683,6 @@ class _HomePageState extends State<HomePage> {
       TargetFocus(
         identify: "addReport",
         keyTarget: addReport,
-        shape: ShapeLightFocus.RRect,
         contents: [
           TargetContent(
             align: ContentAlign.top,

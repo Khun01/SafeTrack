@@ -67,7 +67,7 @@ class SafetyTipsCard extends StatelessWidget {
           bottom: 12,
           right: 12,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
             decoration: BoxDecoration(
               color: safetyTips.title == 'flood'
                   ? const Color(0xFF0059D1)

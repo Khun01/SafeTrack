@@ -7,12 +7,10 @@ class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            MyHeader(title: 'Notifications'),
-          ],
-        ),
+      body: Column(
+        children: [
+          MyHeader(title: 'Notifications'),
+        ],
       ),
     );
   }

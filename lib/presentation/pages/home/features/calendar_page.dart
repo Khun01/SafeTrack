@@ -142,60 +142,57 @@ class _CalendarPageState extends State<CalendarPage> {
               break;
           }
           return Scaffold(
-            backgroundColor: LightColor.backgroundColor,
-            body: SafeArea(
-              child: RefreshIndicator(
-                onRefresh: () async {
-                  getEventsBloc.add(GetEvents());
-                },
-                child: CustomScrollView(
-                  controller: scrollController,
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  slivers: [
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          left: 16,
-                          right: 16,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const MyHeader(title: 'Calendar'),
-                            Text(
-                              formattedDate,
-                              style: GoogleFonts.quicksand(
-                                color: LightColor.blackSecondaryTextColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                              ),
+            body: RefreshIndicator(
+              onRefresh: () async {
+                getEventsBloc.add(GetEvents());
+              },
+              child: CustomScrollView(
+                controller: scrollController,
+                physics: const AlwaysScrollableScrollPhysics(),
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        left: 16,
+                        right: 16,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const MyHeader(title: 'Calendar'),
+                          Text(
+                            formattedDate,
+                            style: GoogleFonts.quicksand(
+                              color: LightColor.blackSecondaryTextColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
                             ),
-                            buildCalendar(),
-                            const SizedBox(height: 16),
-                            Text(
-                              "Today's event",
-                              style: GoogleFonts.quicksand(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: LightColor.blackPrimaryTextColor,
-                              ),
+                          ),
+                          buildCalendar(),
+                          const SizedBox(height: 16),
+                          Text(
+                            "Today's event",
+                            style: GoogleFonts.quicksand(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: LightColor.blackPrimaryTextColor,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                    const SliverToBoxAdapter(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 12, left: 12, right: 12),
-                        child: Divider(
-                          height: 2,
-                          color: LightColor.accentColor,
-                        ),
+                  ),
+                  const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 12, left: 12, right: 12),
+                      child: Divider(
+                        height: 2,
+                        color: LightColor.accentColor,
                       ),
                     ),
-                    body,
-                  ],
-                ),
+                  ),
+                  body,
+                ],
               ),
             ),
           );
