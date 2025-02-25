@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +13,7 @@ import 'package:safetrack/presentation/bloc/profile/proof_of_id/image_picker_sta
 import 'package:safetrack/presentation/bloc/profile/verification_of_user/verification_of_user_bloc.dart';
 import 'package:safetrack/presentation/bloc/profile/verification_of_user/verification_of_user_event.dart';
 import 'package:safetrack/presentation/bloc/profile/verification_of_user/verification_of_user_state.dart';
+import 'package:safetrack/presentation/pages/wrapper.dart';
 import 'package:safetrack/presentation/widgets/my_circular_progress_indicator.dart';
 import 'package:safetrack/presentation/widgets/my_verification_form.dart';
 import 'package:safetrack/services/global.dart';
@@ -98,8 +100,23 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
         listener: (context, verificationOfUserState) {
           if (verificationOfUserState is VerificationOfUserSuccess) {
             log('THe verification of user is success');
+            snackBar(
+              context,
+              'Your verification request is now under review.',
+              LightColor.primaryColor,
+            );
+            navigationAnimation(
+              context,
+              const Wrapper(),
+              SharedAxisTransitionType.horizontal,
+            );
           } else if (verificationOfUserState is VerificationOfUserError) {
             log('The erorr in verification of user is: ${verificationOfUserState.errorMessage}');
+            snackBar(
+              context,
+              verificationOfUserState.errorMessage,
+              LightColor.primaryColor,
+            );
           }
         },
         builder: (context, verificationOfUserState) {
@@ -245,14 +262,6 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Basic Information',
-                                  style: GoogleFonts.quicksand(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: LightColor.blackPrimaryTextColor,
-                                  ),
-                                ),
                                 const SizedBox(height: 8),
                                 Row(
                                   children: [
@@ -562,17 +571,13 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                   ],
                                 ),
                                 const SizedBox(height: 16),
-                                Text(
-                                  'Emergency Contact',
-                                  style: GoogleFonts.quicksand(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: LightColor.blackPrimaryTextColor,
-                                  ),
+                                const Divider(
+                                  height: 2,
+                                  color: LightColor.dividerColor,
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
-                                  'Full name',
+                                  'Emergency contact person',
                                   style: GoogleFonts.quicksand(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
@@ -597,7 +602,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Emergency Contact number',
+                                            'Emergency contact number',
                                             style: GoogleFonts.quicksand(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
@@ -685,13 +690,9 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                   ],
                                 ),
                                 const SizedBox(height: 16),
-                                Text(
-                                  'Identity Verification',
-                                  style: GoogleFonts.quicksand(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: LightColor.blackPrimaryTextColor,
-                                  ),
+                                const Divider(
+                                  height: 2,
+                                  color: LightColor.dividerColor,
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
@@ -710,7 +711,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                         .add(ImagePickerRequestedEvent());
                                   },
                                   child: Container(
-                                    height: 150,
+                                    height: 170,
                                     width: double.infinity,
                                     padding: const EdgeInsets.all(12),
                                     decoration: BoxDecoration(
@@ -777,7 +778,6 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                                           ),
                                         ),
                                 ),
-                                const SizedBox(height: 60)
                               ],
                             ),
                           ),
@@ -842,7 +842,7 @@ class _VerifyAccountPageState extends State<VerifyAccountPage>
                         child: Container(
                           width: double.infinity,
                           height: double.infinity,
-                          color: Colors.black.withValues(),
+                          color: Colors.black.withValues(alpha: 0.5),
                         ),
                       ),
                       const Center(

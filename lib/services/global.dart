@@ -23,23 +23,28 @@ void toast(BuildContext context, String message) {
 void snackBar(BuildContext context, String message, Color color) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-      content: Text(
-        message,
-        style: GoogleFonts.quicksand(
-          fontSize: 14,
-          color: LightColor.whitePrimaryTextColor,
+      content: Container(
+        height: 50,
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            message,
+            style: GoogleFonts.quicksand(
+              fontSize: 14,
+              color: LightColor.whitePrimaryTextColor,
+            ),
+          ),
         ),
       ),
       duration: const Duration(seconds: 2),
-      backgroundColor: color,
       behavior: SnackBarBehavior.fixed,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(26),
-        ),
-      ),
-      padding: const EdgeInsets.all(16),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
     ),
   );
 }

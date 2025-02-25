@@ -31,16 +31,44 @@ class VerificationOfUserBloc
     final gender = event.selectedOption == 'Female' ? 'female' : 'male';
     log('$name, $birthday, $phoneNo, $emergencyContactName, $emergencyContactNo, $relationship, $address, $gender, ${event.idUrl}');
     try {
-      final response = await profileServices.verificationRequest(name, gender, phoneNo, address, birthday, emergencyContactName, emergencyContactNo, relationship, event.idUrl!);
-      final statucCode = response['statusCode'];
+      final response = await profileServices.verificationRequest(
+          name,
+          gender,
+          phoneNo,
+          address,
+          birthday,
+          emergencyContactName,
+          emergencyContactNo,
+          relationship,
+          event.idUrl!);
+      final statusCode = response['statusCode'];
       final data = response['data'];
-      if(statucCode == 200){
-        log('The verification request is: $statucCode');
-        emit(VerificationOfUserSuccess());
-      } else {
-        log('The verification request is: $statucCode, $data');
-        emit(VerificationOfUserError('Failed to submit verification request: $statucCode'));
+      switch (statusCode) {
+        case 200:
+          emit(VerificationOfUserSuccess());
+          break;
+        case 400:
+          emit(
+            VerificationOfUserError(
+              'Your verification request is under review',
+            ),
+          );
+          break;
+        default:
+          emit(
+            VerificationOfUserError(
+              'Failed to submit verification request: $statusCode',
+            ),
+          );
+          break;
       }
+      // if(statucCode == 200){
+      //   log('The verification request is: $statucCode');
+      //   emit(VerificationOfUserSuccess());
+      // } else {
+      //   log('The verification request is: $statucCode, $data');
+      //   emit(VerificationOfUserError('Failed to submit verification request: $statucCode'));
+      // }
     } catch (e) {
       emit(VerificationOfUserError(e.toString()));
     }

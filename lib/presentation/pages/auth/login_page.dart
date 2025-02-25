@@ -140,9 +140,7 @@ class LoginPage extends StatelessWidget {
                         height: 50,
                         child: ElevatedButton(
                           onPressed: () {
-                            context
-                                .read<LoginBloc>()
-                                .add(LoginButtonPressed());
+                            context.read<LoginBloc>().add(LoginButtonPressed());
                             SystemChannels.textInput
                                 .invokeMethod('TextInput.hide');
                           },
@@ -176,14 +174,15 @@ class LoginPage extends StatelessWidget {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                                side: const BorderSide(
-                                  color: LightColor.blackPrimaryTextColor,
-                                ),
+                            backgroundColor: Colors.transparent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              side: const BorderSide(
+                                color: LightColor.blackPrimaryTextColor,
                               ),
-                              elevation: 0),
+                            ),
+                            elevation: 0,
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
