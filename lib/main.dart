@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:safetrack/presentation/pages/example_page.dart';
 import 'package:safetrack/presentation/pages/landing_page.dart';
 
 void main() {
@@ -24,4 +23,4 @@ class MyApp extends StatelessWidget {
       home: const LandingPage(),
     );
   }
-}
+} 

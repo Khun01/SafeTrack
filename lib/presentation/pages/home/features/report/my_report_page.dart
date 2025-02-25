@@ -166,63 +166,95 @@ class MyReportPage extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 16,
                                     ),
-                                    child: Container(
-                                      decoration: const BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Color(0x1A023E8A),
-                                            offset: Offset(0.0, 10.0),
-                                            blurRadius: 4.0,
-                                            spreadRadius: -4.0,
-                                          )
-                                        ],
-                                      ),
-                                      child: TextField(
-                                        controller: searchController,
-                                        onChanged: (query) {
-                                          context.read<MyReportBloc>().add(
-                                                SearchMyReportEvent(
-                                                  query: query,
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            decoration: const BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Color(0x1A023E8A),
+                                                  offset: Offset(0.0, 10.0),
+                                                  blurRadius: 4.0,
+                                                  spreadRadius: -4.0,
+                                                )
+                                              ],
+                                            ),
+                                            child: TextField(
+                                              controller: searchController,
+                                              onChanged: (query) {
+                                                context
+                                                    .read<MyReportBloc>()
+                                                    .add(
+                                                      SearchMyReportEvent(
+                                                        query: query,
+                                                      ),
+                                                    );
+                                              },
+                                              decoration: InputDecoration(
+                                                filled: true,
+                                                fillColor: LightColor
+                                                    .whitePrimaryTextColor,
+                                                hintText: 'Search...',
+                                                hintStyle:
+                                                    GoogleFonts.quicksand(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: LightColor
+                                                      .blackAccentColor,
                                                 ),
-                                              );
-                                        },
-                                        decoration: InputDecoration(
-                                          filled: true,
-                                          fillColor:
-                                              LightColor.whitePrimaryTextColor,
-                                          hintText: 'Search...',
-                                          hintStyle: GoogleFonts.quicksand(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                            color: LightColor.blackAccentColor,
+                                                contentPadding:
+                                                    const EdgeInsets.symmetric(
+                                                  vertical: 12,
+                                                  horizontal: 16,
+                                                ),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(16),
+                                                  borderSide: BorderSide.none,
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(16),
+                                                  borderSide: BorderSide.none,
+                                                ),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(16),
+                                                  borderSide: BorderSide.none,
+                                                ),
+                                              ),
+                                            ),
                                           ),
-                                          contentPadding:
-                                              const EdgeInsets.symmetric(
-                                            vertical: 12,
-                                            horizontal: 16,
-                                          ),
-                                          border: OutlineInputBorder(
+                                        ),
+                                        Container(
+                                          width: 48,
+                                          height: 48,
+                                          margin:
+                                              const EdgeInsets.only(left: 6),
+                                          decoration: BoxDecoration(
+                                            color: LightColor
+                                                .whitePrimaryTextColor,
                                             borderRadius:
                                                 BorderRadius.circular(16),
-                                            borderSide: BorderSide.none,
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Color(0x1A023E8A),
+                                                offset: Offset(0.0, 10.0),
+                                                blurRadius: 4.0,
+                                                spreadRadius: -4.0,
+                                              )
+                                            ],
                                           ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(16),
-                                            borderSide: BorderSide.none,
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(16),
-                                            borderSide: BorderSide.none,
-                                          ),
-                                          suffixIcon: const Icon(
+                                          child: const Icon(
                                             Icons.search,
                                             color: LightColor
                                                 .blackSecondaryTextColor,
                                           ),
-                                        ),
-                                      ),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),

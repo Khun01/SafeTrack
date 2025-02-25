@@ -38,143 +38,141 @@ class VerificationPage extends StatelessWidget {
           return Scaffold(
             resizeToAvoidBottomInset: false,
             backgroundColor: LightColor.backgroundColor,
-            body: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 24, horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Icon(
-                        Icons.arrow_back,
-                        size: 24,
-                        color: LightColor.blackPrimaryTextColor,
-                      ),
+            body: Padding(
+              padding: const EdgeInsets.symmetric(
+                  vertical: 24, horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Icon(
+                      Icons.arrow_back,
+                      size: 24,
+                      color: LightColor.blackPrimaryTextColor,
                     ),
-                    const SizedBox(height: 16),
-                    Text(
-                      'Verification',
-                      style: GoogleFonts.quicksand(
-                        fontSize: 40,
-                        fontWeight: FontWeight.w700,
-                        color: LightColor.blackPrimaryTextColor,
-                      ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Verification',
+                    style: GoogleFonts.quicksand(
+                      fontSize: 40,
+                      fontWeight: FontWeight.w700,
+                      color: LightColor.blackPrimaryTextColor,
                     ),
-                    Text(
-                      'Please wait for the code to be submit',
-                      style: GoogleFonts.quicksand(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: LightColor.blackSecondaryTextColor,
-                      ),
+                  ),
+                  Text(
+                    'Please wait for the code to be submit',
+                    style: GoogleFonts.quicksand(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: LightColor.blackSecondaryTextColor,
                     ),
-                    const SizedBox(height: 24),
-                    Text(
-                      'Enter the verification code sent to your email to reset your password.',
-                      style: GoogleFonts.quicksand(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: LightColor.blackSecondaryTextColor,
-                      ),
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    'Enter the verification code sent to your email to reset your password.',
+                    style: GoogleFonts.quicksand(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: LightColor.blackSecondaryTextColor,
                     ),
-                    const SizedBox(height: 24),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: List.generate(
-                        6,
-                        (index) => SizedBox(
-                          width: 50,
-                          height: 55,
-                          child: TextFormField(
-                            onChanged: (value) {
-                              log('The token in the textField is; $value');
-                              context
-                                  .read<VerificationBloc>()
-                                  .add(VerificationTokenChangedEvent(
-                                    token: value,
-                                    index: index,
-                                  ));
-                              if (value.length == 1) {
-                                FocusScope.of(context).nextFocus();
-                              }
-                            },
-                            keyboardType: TextInputType.number,
-                            textAlign: TextAlign.center,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(1),
-                              FilteringTextInputFormatter.digitsOnly,
-                            ],
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: const BorderSide(
-                                  color: LightColor.primaryColor,
-                                ),
+                  ),
+                  const SizedBox(height: 24),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: List.generate(
+                      6,
+                      (index) => SizedBox(
+                        width: 50,
+                        height: 55,
+                        child: TextFormField(
+                          onChanged: (value) {
+                            log('The token in the textField is; $value');
+                            context
+                                .read<VerificationBloc>()
+                                .add(VerificationTokenChangedEvent(
+                                  token: value,
+                                  index: index,
+                                ));
+                            if (value.length == 1) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                          },
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(1),
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(
+                                color: LightColor.primaryColor,
                               ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 24),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          context
-                              .read<VerificationBloc>()
-                              .add(VerificationButtonPressed());
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: LightColor.primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
+                  ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context
+                            .read<VerificationBloc>()
+                            .add(VerificationButtonPressed());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: LightColor.primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
                         ),
-                        child: Text(
-                          'Submit',
-                          style: GoogleFonts.quicksand(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: LightColor.whitePrimaryTextColor,
-                          ),
+                      ),
+                      child: Text(
+                        'Submit',
+                        style: GoogleFonts.quicksand(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: LightColor.whitePrimaryTextColor,
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Didn't received the code?",
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Didn't received the code?",
+                          style: GoogleFonts.quicksand(
+                            fontSize: 14,
+                            color: LightColor.blackSecondaryTextColor,
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Text(
+                            'Resend Code',
                             style: GoogleFonts.quicksand(
                               fontSize: 14,
-                              color: LightColor.blackSecondaryTextColor,
+                              color: LightColor.primaryColor,
+                              decoration: TextDecoration.underline,
+                              decorationColor: LightColor.primaryColor,
                             ),
                           ),
-                          const SizedBox(width: 4),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Text(
-                              'Resend Code',
-                              style: GoogleFonts.quicksand(
-                                fontSize: 14,
-                                color: LightColor.primaryColor,
-                                decoration: TextDecoration.underline,
-                                decorationColor: LightColor.primaryColor,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
           );

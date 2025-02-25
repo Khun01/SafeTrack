@@ -53,12 +53,17 @@ class MyReportCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        myReport.location,
-                        style: GoogleFonts.quicksand(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: LightColor.blackPrimaryTextColor,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.40,
+                        child: Text(
+                          myReport.location,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.quicksand(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: LightColor.blackPrimaryTextColor,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 1),
@@ -120,7 +125,7 @@ class MyReportCard extends StatelessWidget {
           top: 4,
           right: 4,
           child: Container(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
             decoration: BoxDecoration(
               color: myReport.status == 'Completed'
                   ? const Color(0xFF4CAF50)
@@ -149,7 +154,7 @@ class MyReportCard extends StatelessWidget {
                           ? 'Rejected'
                           : myReport.status,
               style: GoogleFonts.quicksand(
-                fontSize: 10,
+                fontSize: 12,
                 fontWeight: FontWeight.bold,
                 color: LightColor.whitePrimaryTextColor,
               ),

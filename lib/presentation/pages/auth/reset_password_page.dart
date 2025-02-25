@@ -92,138 +92,136 @@ class _ResetPasswordPageState extends State<ResetPasswordPage>
           return Scaffold(
             resizeToAvoidBottomInset: false,
             backgroundColor: LightColor.backgroundColor,
-            body: SafeArea(
-              child: AnimatedSwitcher(
-                duration: const Duration(seconds: 1),
-                child: state.resetPasswordLoading
-                    ? Center(
-                        child: Lottie.asset(
-                          'assets/lottie/register_loading.json',
-                        ),
-                      )
-                    : state.resetPasswordSuccess
-                        ? Center(
-                            child: Lottie.asset(
-                              'assets/lottie/confirmation.json',
-                              controller: controller,
-                              onLoaded: (composition) {
-                                controller
-                                  ..duration = composition.duration
-                                  ..forward();
-                              },
-                              repeat: false,
-                            ),
-                          )
-                        : Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 24, horizontal: 16),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Icon(
-                                    Icons.arrow_back,
-                                    size: 24,
-                                    color: LightColor.blackPrimaryTextColor,
-                                  ),
-                                ),
-                                const SizedBox(height: 16),
-                                Text(
-                                  'Reset Password',
-                                  style: GoogleFonts.quicksand(
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.w700,
-                                    color: LightColor.blackPrimaryTextColor,
-                                  ),
-                                ),
-                                Text(
-                                  'Enter your new password to open your account',
-                                  style: GoogleFonts.quicksand(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: LightColor.blackSecondaryTextColor,
-                                  ),
-                                ),
-                                const SizedBox(height: 24),
-                                Text(
-                                  'Create your new password to secure your account and get back on track. Make it strong, unique, and ready to keep your data safe!',
-                                  style: GoogleFonts.quicksand(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: LightColor.blackSecondaryTextColor,
-                                  ),
-                                ),
-                                const SizedBox(height: 16),
-                                MyForm(
-                                  label: 'Password',
-                                  icon: const Icon(Icons.lock_outline),
-                                  obscureText: true,
-                                  errorText: !state.passwordIsNotEmpty
-                                      ? 'Enter your password'
-                                      : (!state.isPasswordValid
-                                          ? 'Password should be greater than 8'
-                                          : null),
-                                  onChanged: (value) {
-                                    context.read<ResetPasswordBloc>().add(
-                                        ResetPasswordChanged(password: value));
-                                  },
-                                ),
-                                const SizedBox(height: 8),
-                                MyForm(
-                                  label: 'Confirm Password',
-                                  icon: const Icon(Icons.lock_outline),
-                                  obscureText: true,
-                                  errorText: !state.confirmPasswordIsNotEmpty
-                                      ? 'Enter your password'
-                                      : (!state.isConfirmPasswordValid
-                                          ? 'Confrim password should be greater than 8'
-                                          : !state.isPasswordEqualToConfirmedPassword
-                                              ? 'Password and confirmed password do not match'
-                                              : null),
-                                  onChanged: (value) {
-                                    context.read<ResetPasswordBloc>().add(
-                                        ResetConfirmPasswordChanged(
-                                            confirmPassword: value));
-                                  },
-                                ),
-                                const SizedBox(height: 24),
-                                SizedBox(
-                                  width: double.infinity,
-                                  height: 50,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      if (state.isFormValid) {
-                                        context
-                                            .read<ResetPasswordBloc>()
-                                            .add(ResetPasswordButtonPressed(
-                                              email: widget.email,
-                                              token: widget.token,
-                                            ));
-                                      }
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: LightColor.primaryColor,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(16),
-                                      ),
-                                    ),
-                                    child: Text(
-                                      'Reset Password',
-                                      style: GoogleFonts.quicksand(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: LightColor.whitePrimaryTextColor,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+            body: AnimatedSwitcher(
+              duration: const Duration(seconds: 1),
+              child: state.resetPasswordLoading
+                  ? Center(
+                      child: Lottie.asset(
+                        'assets/lottie/register_loading.json',
+                      ),
+                    )
+                  : state.resetPasswordSuccess
+                      ? Center(
+                          child: Lottie.asset(
+                            'assets/lottie/confirmation.json',
+                            controller: controller,
+                            onLoaded: (composition) {
+                              controller
+                                ..duration = composition.duration
+                                ..forward();
+                            },
+                            repeat: false,
                           ),
-              ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 24, horizontal: 16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Icon(
+                                  Icons.arrow_back,
+                                  size: 24,
+                                  color: LightColor.blackPrimaryTextColor,
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                'Reset Password',
+                                style: GoogleFonts.quicksand(
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.w700,
+                                  color: LightColor.blackPrimaryTextColor,
+                                ),
+                              ),
+                              Text(
+                                'Enter your new password to open your account',
+                                style: GoogleFonts.quicksand(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: LightColor.blackSecondaryTextColor,
+                                ),
+                              ),
+                              const SizedBox(height: 24),
+                              Text(
+                                'Create your new password to secure your account and get back on track. Make it strong, unique, and ready to keep your data safe!',
+                                style: GoogleFonts.quicksand(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: LightColor.blackSecondaryTextColor,
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              MyForm(
+                                label: 'Password',
+                                icon: const Icon(Icons.lock_outline),
+                                obscureText: true,
+                                errorText: !state.passwordIsNotEmpty
+                                    ? 'Enter your password'
+                                    : (!state.isPasswordValid
+                                        ? 'Password should be greater than 8'
+                                        : null),
+                                onChanged: (value) {
+                                  context.read<ResetPasswordBloc>().add(
+                                      ResetPasswordChanged(password: value));
+                                },
+                              ),
+                              const SizedBox(height: 8),
+                              MyForm(
+                                label: 'Confirm Password',
+                                icon: const Icon(Icons.lock_outline),
+                                obscureText: true,
+                                errorText: !state.confirmPasswordIsNotEmpty
+                                    ? 'Enter your password'
+                                    : (!state.isConfirmPasswordValid
+                                        ? 'Confrim password should be greater than 8'
+                                        : !state.isPasswordEqualToConfirmedPassword
+                                            ? 'Password and confirmed password do not match'
+                                            : null),
+                                onChanged: (value) {
+                                  context.read<ResetPasswordBloc>().add(
+                                      ResetConfirmPasswordChanged(
+                                          confirmPassword: value));
+                                },
+                              ),
+                              const SizedBox(height: 24),
+                              SizedBox(
+                                width: double.infinity,
+                                height: 50,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    if (state.isFormValid) {
+                                      context
+                                          .read<ResetPasswordBloc>()
+                                          .add(ResetPasswordButtonPressed(
+                                            email: widget.email,
+                                            token: widget.token,
+                                          ));
+                                    }
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: LightColor.primaryColor,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    'Reset Password',
+                                    style: GoogleFonts.quicksand(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: LightColor.whitePrimaryTextColor,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
             ),
           );
         },
