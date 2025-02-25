@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/bloc/features/report/my_report/my_report_bloc.dart';
 import 'package:safetrack/presentation/bloc/features/report/my_report/my_report_event.dart';
@@ -83,7 +86,108 @@ class MyReportPage extends StatelessWidget {
                         ).animate(animation),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: MyReportCard(myReport: myReports),
+                          child: Slidable(
+                            endActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    margin: const EdgeInsets.only(left: 8, bottom: 12),
+                                    height: 98,
+                                    child: InkWell(
+                                      child: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFFF44336),
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Color(0x1A023E8A),
+                                              offset: Offset(0.0, 10.0),
+                                              blurRadius: 4.0,
+                                              spreadRadius: -4.0,
+                                            )
+                                          ],
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Icon(
+                                              Icons.delete,
+                                              color: LightColor
+                                                  .whitePrimaryTextColor,
+                                            ),
+                                            const SizedBox(height: 6),
+                                            Text(
+                                              'Delete',
+                                              style: GoogleFonts.quicksand(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                                color: LightColor
+                                                    .whitePrimaryTextColor,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        log("Edit ${myReports.id}");
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    margin: const EdgeInsets.only(left: 8, bottom: 12),
+                                    height: 98,
+                                    child: InkWell(
+                                      child: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFF26A1F4),
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Color(0x1A023E8A),
+                                              offset: Offset(0.0, 10.0),
+                                              blurRadius: 4.0,
+                                              spreadRadius: -4.0,
+                                            )
+                                          ],
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Icon(
+                                              Icons.edit,
+                                              color: LightColor
+                                                  .whitePrimaryTextColor,
+                                            ),
+                                            const SizedBox(height: 6),
+                                            Text(
+                                              'Edit',
+                                              style: GoogleFonts.quicksand(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                                color: LightColor
+                                                    .whitePrimaryTextColor,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        log("Edit ${myReports.id}");
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            child: MyReportCard(myReport: myReports),
+                          ),
                         ),
                       ),
                     );
