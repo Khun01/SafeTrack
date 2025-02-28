@@ -42,7 +42,6 @@ class VerificationOfUserBloc
           relationship,
           event.idUrl!);
       final statusCode = response['statusCode'];
-      final data = response['data'];
       switch (statusCode) {
         case 200:
           emit(VerificationOfUserSuccess());

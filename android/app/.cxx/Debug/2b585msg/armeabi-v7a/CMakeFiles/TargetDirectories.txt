@@ -1,0 +1,2 @@
+/Applications/BJFolder/SafeTrack/SafeTrackFlutter/SafeTrack/android/app/.cxx/Debug/2b585msg/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Applications/BJFolder/SafeTrack/SafeTrackFlutter/SafeTrack/android/app/.cxx/Debug/2b585msg/armeabi-v7a/CMakeFiles/rebuild_cache.dir

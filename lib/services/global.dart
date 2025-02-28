@@ -6,8 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safetrack/presentation/theme/colors.dart';
 
-const String baseUrl = 'http://192.168.100.212:8000/api';
-const String evidenceUrl = 'http://192.168.100.212:8000/storage/';
+const String baseUrl = 'http://192.168.43.246:8000/api';
+const String evidenceUrl = 'http://192.168.43.246:8000/storage/';
 
 void toast(BuildContext context, String message) {
   Fluttertoast.showToast(
@@ -78,3 +78,4 @@ Color hexToColor(String hex) {
   }
   return Color(int.parse(hex, radix: 16)).withOpacity(1.0);
 }
+  
