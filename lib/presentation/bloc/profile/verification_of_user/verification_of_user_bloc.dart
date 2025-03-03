@@ -61,13 +61,6 @@ class VerificationOfUserBloc
           );
           break;
       }
-      // if(statucCode == 200){
-      //   log('The verification request is: $statucCode');
-      //   emit(VerificationOfUserSuccess());
-      // } else {
-      //   log('The verification request is: $statucCode, $data');
-      //   emit(VerificationOfUserError('Failed to submit verification request: $statucCode'));
-      // }
     } catch (e) {
       emit(VerificationOfUserError(e.toString()));
     }
